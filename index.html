@@ -196,29 +196,29 @@
                                 <label class="font-medium text-secondary">Evolução Clínica:</label>
                                 <select id="evolucao-clinica" class="form-select w-full mt-1">
                                     <option value="">-- Selecione --</option>
-                                    <option value="Estável">Estável</option>
-                                    <option value="Mantém o Quadro">Mantém o Quadro</option>
-                                    <option value="Melhora Clínica">Melhora Clínica</option>
-                                    <option value="Piora Clínica">Piora Clínica</option>
-                                    <option value="Instável">Instável</option>
+                                    <option value="estável">estável</option>
+                                    <option value="mantendo o quadro">mantendo o quadro</option>
+                                    <option value="com melhora clínica">com melhora clínica</option>
+                                    <option value="com piora clínica">com piora clínica</option>
+                                    <option value="instável">instável</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Evolução Hemodinâmica:</label>
                                 <select id="evolucao-hemo" class="form-select w-full mt-1">
                                     <option value="">-- Selecione --</option>
-                                    <option value="Estável">Estável</option>
-                                    <option value="Instável">Instável</option>
+                                    <option value="estável">estável</option>
+                                    <option value="instável">instável</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Estado Geral:</label>
                                 <select id="estado-geral" class="form-select w-full mt-1">
                                     <option value="">-- Selecione --</option>
-                                    <option value="Bom">Bom</option>
-                                    <option value="Regular">Regular</option>
-                                    <option value="Ruim">Ruim</option>
-                                    <option value="Grave">Grave</option>
+                                    <option value="bom">bom</option>
+                                    <option value="regular">regular</option>
+                                    <option value="ruim">ruim</option>
+                                    <option value="grave">grave</option>
                                 </select>
                             </div>
                             <div>
@@ -405,17 +405,17 @@
                                         <label class="font-medium text-secondary">Aceitação da dieta:</label>
                                         <select id="dieta-aceitacao" class="form-select w-full mt-1">
                                             <option value="">-- Selecione --</option>
-                                            <option value="Boa">Boa</option>
-                                            <option value="Regular">Regular</option>
-                                            <option value="Ruim">Ruim</option>
+                                            <option value="boa">boa</option>
+                                            <option value="regular">regular</option>
+                                            <option value="ruim">ruim</option>
                                         </select>
                                     </div>
                                      <div>
                                         <label class="font-medium text-secondary">Diurese (Tipo):</label>
                                         <select id="diurese-tipo" class="form-select w-full mt-1">
                                             <option value="">-- Selecione --</option>
-                                            <option value="Espontânea">Espontânea</option>
-                                            <option value="Sonda Vesical de Demora">Sonda Vesical de Demora</option>
+                                            <option value="espontânea">espontânea</option>
+                                            <option value="por Sonda Vesical de Demora">por Sonda Vesical de Demora</option>
                                             <option value="Anúria/Oligúria">Anúria/Oligúria</option>
                                             <option value="Ausente">Ausente</option>
                                             <option value="outro">Outro</option>
@@ -433,12 +433,12 @@
                                         <label class="font-medium text-secondary">Evacuações (Tipo):</label>
                                         <select id="evacuacoes-tipo" class="form-select w-full mt-1">
                                             <option value="">-- Selecione --</option>
-                                            <option value="Presentes e Fisiológicas">Presentes e Fisiológicas</option>
-                                            <option value="Diarreia">Diarréia</option>
-                                            <option value="Constipação">Constipação</option>
-                                            <option value="Melena">Melena</option>
-                                            <option value="Hematoquezia">Hematoquezia</option>
-                                            <option value="Ausentes">Ausentes</option>
+                                            <option value="presentes e fisiológicas">presentes e fisiológicas</option>
+                                            <option value="diarreia">diarreia</option>
+                                            <option value="constipação">constipação</option>
+                                            <option value="melena">melena</option>
+                                            <option value="hematoquezia">hematoquezia</option>
+                                            <option value="ausentes">ausentes</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -502,6 +502,11 @@
                                         <input type="time" id="queda-sato2-hora" class="form-input w-full mt-1">
                                     </div>
                                 </div>
+                                <!-- CAMPO ADICIONADO AQUI -->
+                                <div class="mt-4">
+                                    <label class="font-medium text-secondary">Outras observações de eventos:</label>
+                                    <textarea id="eventos-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Apresentou episódio de vômito após dieta."></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -527,10 +532,10 @@
                                             <label class="font-medium text-secondary">Aparência Geral:</label>
                                             <select id="ef-aparencia-geral" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Boa">Boa</option>
-                                                <option value="Regular">Regular</option>
-                                                <option value="Ruim">Ruim</option>
-                                                <option value="Grave">Grave</option>
+                                                <option value="boa">boa</option>
+                                                <option value="regular">regular</option>
+                                                <option value="ruim">ruim</option>
+                                                <option value="grave">grave</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -542,10 +547,10 @@
                                             <label class="font-medium text-secondary">Expressão Facialis / Fácies:</label>
                                             <select id="ef-facies" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Atípica">Atípica</option>
-                                                <option value="Dolorosa">Dolorosa</option>
-                                                <option value="Ansiosa">Ansiosa</option>
-                                                <option value="Calma">Calma</option>
+                                                <option value="atípica">atípica</option>
+                                                <option value="dolorosa">dolorosa</option>
+                                                <option value="ansiosa">ansiosa</option>
+                                                <option value="calma">calma</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -557,10 +562,10 @@
                                             <label class="font-medium text-secondary">Sinais de Desconforto/Sofrimento:</label>
                                             <select id="ef-desconforto" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausentes">Ausentes</option>
-                                                <option value="Leve">Leve</option>
-                                                <option value="Moderado">Moderado</option>
-                                                <option value="Intenso">Intenso</option>
+                                                <option value="ausentes">ausentes</option>
+                                                <option value="leves">leves</option>
+                                                <option value="moderados">moderados</option>
+                                                <option value="intensos">intensos</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -572,11 +577,11 @@
                                             <label class="font-medium text-secondary">Contato / Interação:</label>
                                             <select id="ef-contato" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ativo e Cooperativo">Ativo e Cooperativo</option>
-                                                <option value="Retraído">Retraído</option>
-                                                <option value="Irritável">Irritável</option>
-                                                <option value="Apático">Apático</option>
-                                                <option value="Ausente">Ausente</option>
+                                                <option value="ativo e cooperativo">ativo e cooperativo</option>
+                                                <option value="retraído">retraído</option>
+                                                <option value="irritável">irritável</option>
+                                                <option value="apático">apático</option>
+                                                <option value="ausente">ausente</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -588,10 +593,10 @@
                                             <label class="font-medium text-secondary">Estado Nutricional:</label>
                                             <select id="ef-estado-nutricional" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Eutrófico">Eutrófico</option>
-                                                <option value="Desnutrido">Desnutrido</option>
-                                                <option value="Obeso">Obeso</option>
-                                                <option value="Caquético">Caquético</option>
+                                                <option value="eutrófico">eutrófico</option>
+                                                <option value="desnutrido">desnutrido</option>
+                                                <option value="obeso">obeso</option>
+                                                <option value="caquético">caquético</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -603,13 +608,13 @@
                                             <label class="font-medium text-secondary">Decúbito/Mobilidade:</label>
                                             <select id="ef-decubito" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ativo no leito">Ativo no leito</option>
-                                                <option value="Restrito ao leito">Restrito ao leito</option>
-                                                <option value="Decúbito Dorsal">Decúbito Dorsal</option>
-                                                <option value="Decúbito Lateral Direito">Decúbito Lateral Direito</option>
-                                                <option value="Decúbito Lateral Esquerdo">Decúbito Lateral Esquerdo</option>
-                                                <option value="Deambula com auxílio">Deambula com auxílio</option>
-                                                <option value="Deambula sem auxílio">Deambula sem auxílio</option>
+                                                <option value="ativo no leito">ativo no leito</option>
+                                                <option value="restrito ao leito">restrito ao leito</option>
+                                                <option value="em decúbito dorsal">em decúbito dorsal</option>
+                                                <option value="em decúbito lateral direito">em decúbito lateral direito</option>
+                                                <option value="em decúbito lateral esquerdo">em decúbito lateral esquerdo</option>
+                                                <option value="deambula com auxílio">deambula com auxílio</option>
+                                                <option value="deambula sem auxílio">deambula sem auxílio</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -645,14 +650,14 @@
                                             <label class="font-medium text-secondary">Nível de Consciência:</label>
                                             <select id="neuro-consciencia-ef" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Lúcido e Orientado (T/E)">Lúcido e Orientado (T/E)</option>
-                                                <option value="Confuso">Confuso</option>
-                                                <option value="Agitado">Agitado</option>
-                                                <option value="Desorientado">Desorientado</option>
-                                                <option value="Sonolento">Sonolento</option>
-                                                <option value="Obnubilado">Obnubilado</option>
-                                                <option value="Estuporoso">Estuporoso</option>
-                                                <option value="Em Coma">Em Coma</option>
+                                                <option value="lúcido e orientado em tempo e espaço">lúcido e orientado em tempo e espaço</option>
+                                                <option value="confuso">confuso</option>
+                                                <option value="agitado">agitado</option>
+                                                <option value="desorientado">desorientado</option>
+                                                <option value="sonolento">sonolento</option>
+                                                <option value="obnubilado">obnubilado</option>
+                                                <option value="estuporoso">estuporoso</option>
+                                                <option value="em coma">em coma</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -664,11 +669,11 @@
                                             <label class="font-medium text-secondary">Pupilas:</label>
                                             <select id="neuro-pupilas" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Isocóricas e Fotorreagentes">Isocóricas e Fotorreagentes</option>
-                                                <option value="Lentamente Fotorreagentes">Lentamente Fotorreagentes</option>
-                                                <option value="Mióticas">Mióticas</option>
-                                                <option value="Midriáticas">Midriáticas</option>
-                                                <option value="Anisocóricas">Anisocóricas</option>
+                                                <option value="isocóricas e fotorreagentes">isocóricas e fotorreagentes</option>
+                                                <option value="lentamente fotorreagentes">lentamente fotorreagentes</option>
+                                                <option value="mióticas">mióticas</option>
+                                                <option value="midriáticas">midriáticas</option>
+                                                <option value="anisocóricas">anisocóricas</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -680,7 +685,7 @@
                                             <label class="font-medium text-secondary">Pares Cranianos:</label>
                                             <select id="neuro-pares" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Preservados">Preservados</option>
+                                                <option value="preservados">preservados</option>
                                                 <option value="Alterados">Alterados</option>
                                                 <option value="outro">Outro</option>
                                             </select>
@@ -697,10 +702,10 @@
                                             <label class="font-medium text-secondary">Força Motora:</label>
                                             <select id="neuro-forca-motora" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Preservada nos 4 Membros">Preservada nos 4 Membros</option>
-                                                <option value="Diminuída">Diminuída</option>
-                                                <option value="Paresia (localizar)">Paresia (localizar)</option>
-                                                <option value="Plegia (localizar)">Plegia (localizar)</option>
+                                                <option value="preservada nos 4 membros">preservada nos 4 membros</option>
+                                                <option value="diminuída globalmente">diminuída globalmente</option>
+                                                <option value="Paresia">Paresia</option>
+                                                <option value="Plegia">Plegia</option>
                                                 <option value="Hemiplegia">Hemiplegia</option>
                                                 <option value="Tetraplegia">Tetraplegia</option>
                                                 <option value="outro">Outro</option>
@@ -718,9 +723,9 @@
                                             <label class="font-medium text-secondary">Sensibilidade:</label>
                                             <select id="neuro-sensibilidade" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Preservada">Preservada</option>
-                                                <option value="Diminuída">Diminuída</option>
-                                                <option value="Alterada">Alterada</option>
+                                                <option value="preservada">preservada</option>
+                                                <option value="diminuída">diminuída</option>
+                                                <option value="alterada">alterada</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -732,10 +737,10 @@
                                             <label class="font-medium text-secondary">Reflexos:</label>
                                             <select id="neuro-reflexos" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Preservados">Preservados</option>
-                                                <option value="Hiporreflexia">Hiporreflexia</option>
-                                                <option value="Arreflexia">Arreflexia</option>
-                                                <option value="Hiperreflexia">Hiperreflexia</option>
+                                                <option value="preservados">preservados</option>
+                                                <option value="com hiporreflexia">com hiporreflexia</option>
+                                                <option value="com arreflexia">com arreflexia</option>
+                                                <option value="com hiperreflexia">com hiperreflexia</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -747,8 +752,8 @@
                                             <label class="font-medium text-secondary">Sinais Meníngeos:</label>
                                             <select id="neuro-meningeos" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausentes">Ausentes</option>
-                                                <option value="Presentes">Presentes</option>
+                                                <option value="ausentes">ausentes</option>
+                                                <option value="presentes">presentes</option>
                                             </select>
                                         </div>
                                         <div>
@@ -759,16 +764,16 @@
                                             <label class="font-medium text-secondary">Escala de RASS:</label>
                                             <select id="neuro-rass" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="+4 Agitado Combativo">+4 Agitado Combativo</option>
-                                                <option value="+3 Muito Agitado">+3 Muito Agitado</option>
-                                                <option value="+2 Agitado">+2 Agitado</option>
-                                                <option value="+1 Inquieto">+1 Inquieto</option>
-                                                <option value="0 Alerta e Calmo">0 Alerta e Calmo</option>
-                                                <option value="-1 Sonolento">-1 Sonolento</option>
-                                                <option value="-2 Sedação Leve">-2 Sedação Leve</option>
-                                                <option value="-3 Sedação Moderada">-3 Sedação Moderada</option>
-                                                <option value="-4 Sedação Profunda">-4 Sedação Profunda</option>
-                                                <option value="-5 Não Despertável">-5 Não Despertável</option>
+                                                <option value="+4 (Combativo)">+4 (Combativo)</option>
+                                                <option value="+3 (Muito Agitado)">+3 (Muito Agitado)</option>
+                                                <option value="+2 (Agitado)">+2 (Agitado)</option>
+                                                <option value="+1 (Inquieto)">+1 (Inquieto)</option>
+                                                <option value="0 (Alerta e Calmo)">0 (Alerta e Calmo)</option>
+                                                <option value="-1 (Sonolento)">-1 (Sonolento)</option>
+                                                <option value="-2 (Sedação Leve)">-2 (Sedação Leve)</option>
+                                                <option value="-3 (Sedação Moderada)">-3 (Sedação Moderada)</option>
+                                                <option value="-4 (Sedação Profunda)">-4 (Sedação Profunda)</option>
+                                                <option value="-5 (Não Despertável)">-5 (Não Despertável)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -787,8 +792,8 @@
                                             <label class="font-medium text-secondary">Ritmo:</label>
                                             <select id="cardio-ritmo" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Regular">Regular</option>
-                                                <option value="Irregular">Irregular</option>
+                                                <option value="regular">regular</option>
+                                                <option value="irregular">irregular</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -800,10 +805,10 @@
                                             <label class="font-medium text-secondary">Bulhas:</label>
                                             <select id="cardio-bulhas" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Normofonéticas">Normofonéticas</option>
-                                                <option value="Hipofonéticas">Hipofonéticas</option>
-                                                <option value="Hiperfonéticas">Hiperfonéticas</option>
-                                                <option value="Desdobradas">Desdobradas</option>
+                                                <option value="normofonéticas">normofonéticas</option>
+                                                <option value="hipofonéticas">hipofonéticas</option>
+                                                <option value="hiperfonéticas">hiperfonéticas</option>
+                                                <option value="desdobradas">desdobradas</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -815,8 +820,8 @@
                                             <label class="font-medium text-secondary">Tempos:</label>
                                             <select id="cardio-bulhas-tempos" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="em 2 Tempos">em 2 Tempos</option>
-                                                <option value="em 3 Tempos">em 3 Tempos</option>
+                                                <option value="em 2 tempos">em 2 tempos</option>
+                                                <option value="em 3 tempos">em 3 tempos</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -828,10 +833,10 @@
                                             <label class="font-medium text-secondary">Sopros:</label>
                                             <select id="cardio-sopros" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausentes">Ausentes</option>
-                                                <option value="Sopro Sistólico Ejetivo">Sopro Sistólico Ejetivo</option>
-                                                <option value="Sopro Sistólico Regurgitativo">Sopro Sistólico Regurgitativo</option>
-                                                <option value="Sopro Diastólico">Sopro Diastólico</option>
+                                                <option value="ausentes">ausentes</option>
+                                                <option value="sopro sistólico ejetivo">sopro sistólico ejetivo</option>
+                                                <option value="sopro sistólico regurgitativo">sopro sistólico regurgitativo</option>
+                                                <option value="sopro diastólico">sopro diastólico</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -847,8 +852,8 @@
                                             <label class="font-medium text-secondary">Turgência Jugular:</label>
                                             <select id="cardio-tj" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausente">Ausente</option>
-                                                <option value="Presente">Presente</option>
+                                                <option value="ausente">ausente</option>
+                                                <option value="presente">presente</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -860,9 +865,9 @@
                                             <label class="font-medium text-secondary">Ictus:</label>
                                             <select id="cardio-ictus" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Não Palpável">Não Palpável</option>
-                                                <option value="Palpável">Palpável</option>
-                                                <option value="Desviado">Desviado</option>
+                                                <option value="não palpável">não palpável</option>
+                                                <option value="palpável">palpável</option>
+                                                <option value="desviado">desviado</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -886,10 +891,10 @@
                                             <label class="font-medium text-secondary">Padrão Respiratório:</label>
                                             <select id="resp-padrao" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Eupnéico">Eupnéico</option>
-                                                <option value="Taquipneico">Taquipneico</option>
-                                                <option value="Bradipneico">Bradipneico</option>
-                                                <option value="Hiperpneico">Hiperpneico</option>
+                                                <option value="eupnéico">eupnéico</option>
+                                                <option value="taquipneico">taquipneico</option>
+                                                <option value="bradipneico">bradipneico</option>
+                                                <option value="hiperpneico">hiperpneico</option>
                                                 <option value="Kussmaul">Kussmaul</option>
                                                 <option value="Cheyne-Stokes">Cheyne-Stokes</option>
                                                 <option value="outro">Outro</option>
@@ -903,9 +908,9 @@
                                             <label class="font-medium text-secondary">Ausculta Pulmonar:</label>
                                             <select id="ausculta-resp" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Murmúrio Vesicular Presente">Murmúrio Vesicular Presente</option>
-                                                <option value="Murmúrio Vesicular Diminuído">Murmúrio Vesicular Diminuído</option>
-                                                <option value="Murmúrio Vesicular Abolido">Murmúrio Vesicular Abolido</option>
+                                                <option value="murmúrio vesicular presente bilateralmente">murmúrio vesicular presente bilateralmente</option>
+                                                <option value="murmúrio vesicular diminuído">murmúrio vesicular diminuído</option>
+                                                <option value="murmúrio vesicular abolido">murmúrio vesicular abolido</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -917,12 +922,12 @@
                                             <label class="font-medium text-secondary">Ruídos Adventícios:</label>
                                             <select id="ra-resp" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausentes">Ausentes</option>
-                                                <option value="Crepitações">Crepitações</option>
-                                                <option value="Estertores Bolhosos">Estertores Bolhosos</option>
-                                                <option value="Sibilos">Sibilos</option>
-                                                <option value="Roncos">Roncos</option>
-                                                <option value="Atrito Pleural">Atrito Pleural</option>
+                                                <option value="ausentes">ausentes</option>
+                                                <option value="crepitações">crepitações</option>
+                                                <option value="estertores bolhosos">estertores bolhosos</option>
+                                                <option value="sibilos">sibilos</option>
+                                                <option value="roncos">roncos</option>
+                                                <option value="atrito pleural">atrito pleural</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -938,11 +943,11 @@
                                             <label class="font-medium text-secondary">Dispneia:</label>
                                             <select id="ef-resp-dispneia" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausente">Ausente</option>
-                                                <option value="Aos Grandes Esforços">Aos Grandes Esforços</option>
-                                                <option value="Aos Médios Esforços">Aos Médios Esforços</option>
-                                                <option value="Aos Pequenos Esforços">Aos Pequenos Esforços</option>
-                                                <option value="Em Reposo">Em Repouso</option>
+                                                <option value="ausente">ausente</option>
+                                                <option value="aos grandes esforços">aos grandes esforços</option>
+                                                <option value="aos médios esforços">aos médios esforços</option>
+                                                <option value="aos pequenos esforços">aos pequenos esforços</option>
+                                                <option value="em repouso">em repouso</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -962,8 +967,8 @@
                                             <label class="font-medium text-secondary">Tipo de Tosse:</label>
                                             <select id="ef-resp-tosse" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Tosse Seca">Tosse Seca</option>
-                                                <option value="Tosse Produtiva">Tosse Produtiva</option>
+                                                <option value="seca">seca</option>
+                                                <option value="produtiva">produtiva</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -987,10 +992,10 @@
                                             <label class="font-medium text-secondary">Forma:</label>
                                             <select id="ef-abd-forma" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Plano">Plano</option>
-                                                <option value="Globoso">Globoso</option>
-                                                <option value="Semigloboso">Semigloboso</option>
-                                                <option value="Escavado">Escavado</option>
+                                                <option value="plano">plano</option>
+                                                <option value="globoso">globoso</option>
+                                                <option value="semigloboso">semigloboso</option>
+                                                <option value="escavado">escavado</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1002,9 +1007,9 @@
                                             <label class="font-medium text-secondary">Consistência:</label>
                                             <select id="ef-abd-consistencia" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Flácido">Flácido</option>
-                                                <option value="Depressível">Depressível</option>
-                                                <option value="Tenso">Tenso</option>
+                                                <option value="flácido">flácido</option>
+                                                <option value="depressível">depressível</option>
+                                                <option value="tenso">tenso</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1016,9 +1021,9 @@
                                             <label class="font-medium text-secondary">Dor à Palpação:</label>
                                             <select id="ef-abd-dor" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Indolor">Indolor</option>
-                                                <option value="Doloroso">Doloroso</option>
-                                                <option value="Dor à Descompressão Brusca">Dor à Descompressão Brusca</option>
+                                                <option value="indolor">indolor</option>
+                                                <option value="doloroso">doloroso</option>
+                                                <option value="com dor à descompressão brusca">com dor à descompressão brusca</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1030,10 +1035,10 @@
                                             <label class="font-medium text-secondary">Visceromegalias:</label>
                                             <select id="ef-abd-viscero" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Ausentes">Ausentes</option>
-                                                <option value="Hepatomegalia">Hepatomegalia</option>
-                                                <option value="Esplenomegalia">Esplenomegalia</option>
-                                                <option value="Massa Palpável">Massa Palpável</option>
+                                                <option value="ausentes">ausentes</option>
+                                                <option value="hepatomegalia">hepatomegalia</option>
+                                                <option value="esplenomegalia">esplenomegalia</option>
+                                                <option value="massa palpável">massa palpável</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1045,10 +1050,10 @@
                                             <label class="font-medium text-secondary">Ruídos Hidroaéreos:</label>
                                             <select id="ef-abd-sons" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Presentes">Presentes</option>
-                                                <option value="Aumentados">Aumentados</option>
-                                                <option value="Diminuídos">Diminuídos</option>
-                                                <option value="Ausentes">Ausentes</option>
+                                                <option value="presentes">presentes</option>
+                                                <option value="aumentados">aumentados</option>
+                                                <option value="diminuídos">diminuídos</option>
+                                                <option value="ausentes">ausentes</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1072,8 +1077,8 @@
                                             <label class="font-medium text-secondary">Temperatura:</label>
                                             <select id="pele-temp" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Aquecidas">Aquecidas</option>
-                                                <option value="Frias">Frias</option>
+                                                <option value="aquecidas">aquecidas</option>
+                                                <option value="frias">frias</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1085,8 +1090,8 @@
                                             <label class="font-medium text-secondary">Turgor:</label>
                                             <select id="pele-turgor" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Preservado">Preservado</option>
-                                                <option value="Diminuído">Diminuído</option>
+                                                <option value="preservado">preservado</option>
+                                                <option value="diminuído">diminuído</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1123,9 +1128,9 @@
                                             <label class="font-medium text-secondary">Pulsos:</label>
                                             <select id="pele-pulsos" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Simétricos e Cheios">Simétricos e Cheios</option>
-                                                <option value="Diminuídos">Diminuídos</option>
-                                                <option value="Filiformes">Filiformes</option>
+                                                <option value="simétricos e cheios">simétricos e cheios</option>
+                                                <option value="diminuídos">diminuídos</option>
+                                                <option value="filiformes">filiformes</option>
                                                 <option value="outro">Outro</option>
                                             </select>
                                         </div>
@@ -1137,9 +1142,9 @@
                                             <label class="font-medium text-secondary">Integridade da pele:</label>
                                             <select id="pele-integridade" class="form-select mt-1 w-full">
                                                 <option value="">-- Selecione --</option>
-                                                <option value="Íntegra">Íntegra</option>
-                                                <option value="Icterícia">Icterícia</option>
-                                                <option value="Cianose">Cianose</option>
+                                                <option value="íntegra">íntegra</option>
+                                                <option value="com icterícia">com icterícia</option>
+                                                <option value="com cianose">com cianose</option>
                                                 <option value="Úlcera de Pressão">Úlcera de Pressão</option>
                                                 <option value="Com Lesões">Com Lesões</option>
                                                 <option value="outro">Outro</option>
@@ -1369,13 +1374,13 @@
                     showHide('neuro-pares-detalhes-container', value === 'Alterados');
                     break;
                 case 'neuro-forca-motora':
-                    showHide('neuro-forca-motora-detalhes-container', ['Paresia (localizar)', 'Plegia (localizar)'].includes(value));
+                    showHide('neuro-forca-motora-detalhes-container', ['Paresia', 'Plegia'].includes(value));
                     break;
                 case 'cardio-sopros':
-                    showHide('cardio-sopros-detalhes-container', value !== 'Ausentes' && value !== '' && value !== 'outro');
+                    showHide('cardio-sopros-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
                     break;
                 case 'ra-resp':
-                    showHide('ra-resp-detalhes-container', value !== 'Ausentes' && value !== '' && value !== 'outro');
+                    showHide('ra-resp-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
                     break;
                 case 'pele-integridade':
                     showHide('pele-integridade-detalhes-container', ['Com Lesões', 'Úlcera de Pressão'].includes(value));
@@ -1384,11 +1389,14 @@
         });
 
         // --- Geração de Resumo e Cópia ---
-        // Adiciona um pequeno delay para capturar todas as mudanças e evitar recálculos excessivos
         let summaryTimeout;
         form.addEventListener('input', () => {
             clearTimeout(summaryTimeout);
             summaryTimeout = setTimeout(generateSummary, 200);
+        });
+        form.addEventListener('change', () => { // Also trigger on select changes
+             clearTimeout(summaryTimeout);
+             summaryTimeout = setTimeout(generateSummary, 200);
         });
 
         document.getElementById('copy-btn').addEventListener('click', () => {
@@ -1401,12 +1409,11 @@
             }).catch(err => console.error('Falha ao copiar texto:', err));
         });
 
-        // Gera o resumo inicial (com campos vazios)
         generateSummary();
     });
 
     // ====================================================================================
-    // FUNÇÃO DE GERAÇÃO DE RESUMO - OTIMIZADA E OBJETIVA
+    // NOVA FUNÇÃO DE GERAÇÃO DE RESUMO - TEXTO DISCURSIVO (VERSÃO COMPLETA E CORRIGIDA)
     // ====================================================================================
     function generateSummary() {
         // --- FUNÇÕES HELPER ---
@@ -1414,382 +1421,249 @@
         const getSelectValue = id => document.getElementById(id)?.value || '';
         const getCheckboxStatus = id => document.getElementById(id)?.checked || false;
 
-        // Processa selects que podem ter opção 'outro', retornando o valor ou 'outro (detalhes)'
-        const processSelect = (id) => {
-            const value = getSelectValue(id);
-            if (value === 'outro') {
-                return getInputValue(`${id}-outro`) ? `Outro (${getInputValue(`${id}-outro`)})` : 'Outro (não especificado)';
+        const joinWithCommasAndAnd = (arr) => {
+            const filtered = arr.filter(Boolean);
+            if (filtered.length === 0) return '';
+            if (filtered.length === 1) return filtered[0];
+            if (filtered.length === 2) return filtered.join(' e ');
+            return `${filtered.slice(0, -1).join(', ')} e ${filtered.slice(-1)}`;
+        };
+        
+        const joinWithCommasOrOr = (arr, useNem = false) => {
+            const filtered = arr.filter(Boolean);
+            if (filtered.length === 0) return '';
+            if (filtered.length === 1) return filtered[0];
+            const connector = useNem ? ' nem ' : ' ou ';
+            if (filtered.length === 2) return filtered.join(connector);
+            return `${filtered.slice(0, -1).join(', ')}${connector}${filtered.slice(-1)}`;
+        };
+
+        const processSelect = (selectId) => {
+            const value = getSelectValue(selectId);
+            if (value && value.toLowerCase() === 'outro') {
+                return getInputValue(`${selectId}-outro`) || 'outro (não especificado)';
             }
             return value;
         };
-
-        // Formata detalhes para campos como Força Motora e Sopros, substituindo placeholders ou adicionando detalhes
-        const formatDetail = (selectId, detailId, placeholder, prefix = '') => {
-            const value = getSelectValue(selectId);
-            const detail = getInputValue(detailId);
-            if (!value) return '';
-
-            if (value.includes(placeholder) && detail) {
-                return `${prefix}${value.replace(placeholder, `em ${detail}`)}`;
-            } else if (value.includes(placeholder)) { // If placeholder exists but no detail, remove placeholder
-                 return `${prefix}${value.replace(` (${placeholder})`, '')}`;
-            }
-            return `${prefix}${value}`;
+        
+        const buildSentence = (parts) => {
+            const sentence = parts.filter(p => p && p.trim() !== '').join(' ').trim();
+            if (!sentence) return '';
+            return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
         };
+        
+        const buildParagraph = (sentences) => {
+            return sentences.filter(s => s && s.trim() !== '').join(' ');
+        }
 
-        let resumo = '';
-        const addSection = (title, contentArray) => {
-            if (contentArray && contentArray.length > 0) {
-                // Ensure contentArray is flat for main sections, and nested for EF subsections
-                const formattedContent = contentArray.map(item => {
-                    // If an item itself contains newlines (e.g., for EF subsections), keep its formatting
-                    if (item.includes('\n')) {
-                        return item; // Already formatted as a sub-section
-                    }
-                    return `- ${item}`; // Standard list item
-                }).join('\n');
-                resumo += `${title}\n${formattedContent}\n\n`;
+        let finalResumo = '';
+        const addSection = (title, content) => {
+            if (content && content.trim() !== '') {
+                finalResumo += `${title}\n${content.trim()}\n\n`;
             }
         };
 
         // --- 1. SITUAÇÃO GERAL E ANAMNESE ---
-        let anamneseItems = [];
-
+        let anamneseSentences = [];
         const setor = getInputValue('setor');
         const leito = getInputValue('leito');
-        if (setor || leito) anamneseItems.push(`Localização: Setor ${setor || 'N/A'}, Leito ${leito || 'N/A'}`);
-
+        if (setor || leito) anamneseSentences.push(buildSentence([`Paciente em acompanhamento no setor de ${setor || 'setor não informado'}, leito ${leito || 'não informado'}`]));
+        
         const evolucaoClinica = getSelectValue('evolucao-clinica');
-        if (evolucaoClinica) anamneseItems.push(`Evolução Clínica: ${evolucaoClinica}`);
-
         const evolucaoHemo = getSelectValue('evolucao-hemo');
-        if (evolucaoHemo) anamneseItems.push(`Evolução Hemodinâmica: ${evolucaoHemo}`);
+        let evolutionParts = [];
+        if (evolucaoClinica) evolutionParts.push(`clinicamente ${evolucaoClinica}`);
+        if (evolucaoHemo) evolutionParts.push(`hemodinamicamente ${evolucaoHemo}`);
+        if(evolutionParts.length > 0) anamneseSentences.push(buildSentence([`Encontra-se`, joinWithCommasAndAnd(evolutionParts)]));
 
         const estadoGeral = getSelectValue('estado-geral');
-        if (estadoGeral) anamneseItems.push(`Estado Geral: ${estadoGeral}`);
-
+        if (estadoGeral) anamneseSentences.push(buildSentence([`Em ${estadoGeral} estado geral`]));
+        
         const queixas = getSelectValue('queixas');
-        if (queixas === 'Sim') anamneseItems.push(`Queixas nas 24h: Sim (${getInputValue('queixas-obs') || 'não especificadas'})`);
-        else if (queixas === 'Não') anamneseItems.push(`Queixas nas 24h: Não`);
+        if (queixas === 'Sim') {
+            const queixasObs = getInputValue('queixas-obs');
+            anamneseSentences.push(buildSentence([`Refere ${queixasObs || 'queixas não especificadas'} nas últimas 24h`]));
+        } else if (queixas === 'Não') {
+            anamneseSentences.push(buildSentence(['Nega queixas nas últimas 24h']));
+        }
 
-        const distermias = getSelectValue('distermias');
-        if (distermias) anamneseItems.push(`Distermias: ${distermias}`);
-
-        const disglicemias = getSelectValue('disglicemias');
-        if (disglicemias) anamneseItems.push(`Disglicemias: ${disglicemias}`);
-
-        const altPa = getSelectValue('alt-pa');
-        if (altPa) anamneseItems.push(`Alterações de PA: ${altPa}`);
-
-        const altLab = getSelectValue('alt-lab');
-        if (altLab) anamneseItems.push(`Alterações Lab: ${altLab}`);
+        let eventosPositivos = [], eventosNegativos = [];
+        const eventosMap = { 'distermias': 'distermias', 'disglicemias': 'disglicemias', 'alt-pa': 'alterações de pressão arterial', 'alt-lab': 'alterações laboratoriais' };
+        for (const [id, desc] of Object.entries(eventosMap)) {
+            const value = getSelectValue(id);
+            if (value === 'Sim') eventosPositivos.push(desc);
+            else if (value === 'Não') eventosNegativos.push(desc);
+        }
+        if (eventosPositivos.length > 0) anamneseSentences.push(buildSentence(['Apresentou', joinWithCommasAndAnd(eventosPositivos)]));
+        if (eventosNegativos.length > 0) anamneseSentences.push(buildSentence(['Não apresentou', joinWithCommasOrOr(eventosNegativos, true)]));
 
         const obsGeraisAnamnese = getInputValue('obs-gerais');
-        if (obsGeraisAnamnese) anamneseItems.push(`Observações gerais: ${obsGeraisAnamnese}`);
-
-        addSection('1. SITUAÇÃO GERAL E ANAMNESE', anamneseItems);
+        if (obsGeraisAnamnese) anamneseSentences.push(buildSentence([obsGeraisAnamnese]));
+        
+        addSection('1. SITUAÇÃO GERAL E ANAMNESE', buildParagraph(anamneseSentences));
 
         // --- 2. PARÂMETROS VITAIS E SUPORTE ---
-        let paramsItems = [];
-
+        let paramsSentences = [];
         const vitais = [
-            getInputValue('pa') && `PA: ${getInputValue('pa')} mmHg`,
-            getInputValue('fc') && `FC: ${getInputValue('fc')} bpm`,
-            getInputValue('fr') && `FR: ${getInputValue('fr')} irpm`,
-            getInputValue('temp') && `Temp: ${getInputValue('temp')} °C`,
-            getInputValue('sato2') && `SatO₂: ${getInputValue('sato2')}%`,
-            getInputValue('dor-escala') && `Dor: ${getInputValue('dor-escala')}/10`
-        ].filter(Boolean);
-        if (vitais.length) paramsItems.push(`Dados Vitais: ${vitais.join(' | ')}`);
+            getInputValue('pa') && `PA de ${getInputValue('pa')} mmHg`, getInputValue('fc') && `FC de ${getInputValue('fc')} bpm`,
+            getInputValue('fr') && `FR de ${getInputValue('fr')} irpm`, getInputValue('temp') && `temperatura de ${getInputValue('temp')}°C`,
+            getInputValue('sato2') && `SatO₂ de ${getInputValue('sato2')}%` ].filter(Boolean);
+        if (vitais.length > 0) paramsSentences.push(buildSentence(['Apresenta-se com os seguintes parâmetros vitais:', joinWithCommasAndAnd(vitais)]));
+        const dorEscala = getInputValue('dor-escala');
+        if (dorEscala) paramsSentences.push(buildSentence([`Refere dor de intensidade ${dorEscala}/10`]));
 
         const suporteVent = getSelectValue('suporte-vent');
         if (suporteVent) {
-            let ventDetails = processSelect('suporte-vent');
             if (suporteVent === 'VM') {
-                const vmParams = [
-                    getInputValue('vm-modo') && `Modo: ${getInputValue('vm-modo')}`,
-                    getInputValue('vm-fio2') && `FiO₂: ${getInputValue('vm-fio2')}%`,
-                    getInputValue('vm-peep') && `PEEP: ${getInputValue('vm-peep')} cmH₂O`,
-                    getInputValue('vm-fr') && `FR: ${getInputValue('vm-fr')} irpm`,
-                    getInputValue('vm-pva') && `Pva: ${getInputValue('vm-pva')} cmH₂O`,
-                    getInputValue('vm-tidal-vol') && `VT: ${getInputValue('vm-tidal-vol')} mL`,
-                    getInputValue('vm-outros-params') && `Outros: ${getInputValue('vm-outros-params')}`
-                ].filter(Boolean);
-                if (vmParams.length) ventDetails += ` (${vmParams.join(', ')})`;
+                const vmParams = [ getInputValue('vm-modo') && `modo ${getInputValue('vm-modo')}`, getInputValue('vm-fio2') && `FiO₂ de ${getInputValue('vm-fio2')}%`,
+                    getInputValue('vm-peep') && `PEEP de ${getInputValue('vm-peep')} cmH₂O`, getInputValue('vm-fr') && `FR de ${getInputValue('vm-fr')} irpm`,
+                    getInputValue('vm-pva') && `Pva de ${getInputValue('vm-pva')} cmH₂O`, getInputValue('vm-tidal-vol') && `VT de ${getInputValue('vm-tidal-vol')} mL` ].filter(Boolean);
+                let vmSentence = `Em ventilação mecânica invasiva`;
+                if(vmParams.length > 0) vmSentence += `, com os seguintes parâmetros: ${joinWithCommasAndAnd(vmParams)}`;
+                const vmOutros = getInputValue('vm-outros-params');
+                if (vmOutros) vmSentence += `, e ${vmOutros}`;
+                paramsSentences.push(buildSentence([vmSentence]));
+            } else {
+                 paramsSentences.push(buildSentence([suporteVent === 'Ar Ambiente' ? 'Em ar ambiente' : `Em uso de suporte ventilatório com ${processSelect('suporte-vent')}`]));
             }
-            paramsItems.push(`Ventilação: ${ventDetails}`);
         }
-
+        
         const dvaStatus = getSelectValue('dva');
-        if (dvaStatus === 'Sim') paramsItems.push(`Uso de DVA: Sim (${getInputValue('dva-obs') || 'não especificada'})`);
-        else if (dvaStatus === 'Não') paramsItems.push(`Uso de DVA: Não`);
+        if (dvaStatus === 'Sim') paramsSentences.push(buildSentence([`Em uso de droga vasoativa (${getInputValue('dva-obs') || 'não especificada'})`]));
+        else if (dvaStatus === 'Não') paramsSentences.push(buildSentence(['Sem uso de drogas vasoativas']));
 
         const dieta = processSelect('dieta-tipo');
         if (dieta) {
-            let dietaText = `Dieta: ${dieta}`;
-            if (dieta.toLowerCase() !== 'jejum' && getSelectValue('dieta-tipo') !== 'Jejum') { // Check original select value for 'Jejum'
+            if (dieta.toLowerCase() === 'jejum') paramsSentences.push(buildSentence(['Mantido em jejum']));
+            else {
+                let dietaSentence = `Dieta via ${dieta}`;
                 const aceitacao = getSelectValue('dieta-aceitacao');
-                if (aceitacao) dietaText += ` (Aceitação: ${aceitacao})`;
+                if (aceitacao) dietaSentence += `, com ${aceitacao} aceitação`;
+                paramsSentences.push(buildSentence([dietaSentence]));
             }
-            paramsItems.push(dietaText);
         }
+        
+        let eliminacoesParts = [];
+        const diureseTipo = processSelect('diurese-tipo'); const diureseQtde = getInputValue('diurese');
+        if(diureseTipo) eliminacoesParts.push(`diurese ${diureseTipo}${diureseQtde ? ` com débito de ${diureseQtde} mL/24h` : ''}`);
+        const evacuacoesTipo = processSelect('evacuacoes-tipo'); const evacuacoesQtde = getInputValue('evacuacoes');
+        if(evacuacoesTipo) eliminacoesParts.push(`evacuações ${evacuacoesTipo}${evacuacoesQtde ? `, ${evacuacoesQtde} episódios/24h` : ''}`);
+        if(eliminacoesParts.length > 0) paramsSentences.push(buildSentence([`Eliminações fisiológicas presentes, com`, joinWithCommasAndAnd(eliminacoesParts)]));
 
-        const diureseTipo = processSelect('diurese-tipo');
-        const diureseQtde = getInputValue('diurese');
-        if (diureseTipo) paramsItems.push(`Diurese: ${diureseTipo}${diureseQtde ? ` (${diureseQtde} mL/24h)` : ''}`);
-
-        const evacuacoesTipo = processSelect('evacuacoes-tipo');
-        const evacuacoesQtde = getInputValue('evacuacoes');
-        if (evacuacoesTipo) paramsItems.push(`Evacuações: ${evacuacoesTipo}${evacuacoesQtde ? ` (${evacuacoesQtde}x/24h)` : ''}`);
-
-        // Picos e Eventos
         let picosEventos = [];
-        const addPicoEvento = (label, valueId, hourId) => {
-            const value = getInputValue(valueId);
-            const hour = getInputValue(hourId);
-            if (value) picosEventos.push(`${label} ${value}${hour ? ` às ${hour}` : ''}`);
-        };
+        const addPicoEvento = (label, valId, hId) => { if(getInputValue(valId)) picosEventos.push(`${label} de ${getInputValue(valId)}${getInputValue(hId) ? ` às ${getInputValue(hId)}h` : ''}`); };
+        addPicoEvento('pico hipertensivo', 'pico-pa', 'pico-pa-hora'); addPicoEvento('hipotensão', 'queda-pa', 'queda-pa-hora');
+        addPicoEvento('pico febril', 'pico-temp', 'pico-temp-hora'); addPicoEvento('hipotermia', 'queda-temp', 'queda-temp-hora');
+        addPicoEvento('pico glicêmico', 'pico-glicemia', 'pico-glicemia-hora'); addPicoEvento('hipoglicemia', 'queda-glicemia', 'queda-glicemia-hora');
+        addPicoEvento('dessaturação', 'queda-sato2', 'queda-sato2-hora');
+        if (picosEventos.length > 0) paramsSentences.push(buildSentence([`Nas últimas 24h, apresentou`, joinWithCommasAndAnd(picosEventos)]));
+        const eventosObs = getInputValue('eventos-obs');
+        if (eventosObs) paramsSentences.push(buildSentence(['Observações de eventos:', eventosObs]));
 
-        addPicoEvento('Pico PA', 'pico-pa', 'pico-pa-hora');
-        addPicoEvento('Queda PA', 'queda-pa', 'queda-pa-hora');
-        addPicoEvento('Pico Temp', 'pico-temp', 'pico-temp-hora');
-        addPicoEvento('Queda Temp', 'queda-temp', 'queda-temp-hora');
-        addPicoEvento('Pico Glicêmico', 'pico-glicemia', 'pico-glicemia-hora');
-        addPicoEvento('Queda Glicêmica', 'queda-glicemia', 'queda-glicemia-hora');
-        addPicoEvento('Pico SatO₂', 'pico-sato2', 'pico-sato2-hora');
-        addPicoEvento('Queda SatO₂', 'queda-sato2', 'queda-sato2-hora');
 
-        if (picosEventos.length) paramsItems.push(`Picos e Eventos nas 24h: ${picosEventos.join(', ')}`);
-
-        addSection('2. PARÂMETROS VITAIS E SUPORTE', paramsItems);
-
+        addSection('2. PARÂMETROS VITAIS E SUPORTE', buildParagraph(paramsSentences));
+        
         // --- 3. EXAME FÍSICO ---
-        let exameFisicoContent = []; // Este será um array de subseções formatadas
+        let efSentences = [];
+        let geralParts = [], geralSecondaryParts = [];
+        const aparenciaGeral = processSelect('ef-aparencia-geral'); if (aparenciaGeral) geralParts.push(`em ${aparenciaGeral} aparência geral`);
+        const estadoNutricional = processSelect('ef-estado-nutricional'); if (estadoNutricional) geralParts.push(estadoNutricional);
+        const geralAdj = [getCheckboxStatus('ef-corado') && 'corado(a)', getCheckboxStatus('ef-hidratado') && 'hidratado(a)', getCheckboxStatus('ef-anictérico') && 'anictérico(a)', getCheckboxStatus('ef-acianotico') && 'acianótico(a)', getCheckboxStatus('ef-afebril') && 'afebril', getCheckboxStatus('ef-eupneico') && 'eupnéico(a)'].filter(Boolean);
+        if(geralAdj.length > 0) geralParts.push(joinWithCommasAndAnd(geralAdj));
+        const contato = processSelect('ef-contato'); if (contato) geralParts.push(contato);
+        const decubito = processSelect('ef-decubito'); if (decubito) geralParts.push(decubito);
+        if(geralParts.length > 0) efSentences.push(buildSentence(['Ao exame físico, paciente', joinWithCommasAndAnd(geralParts)]));
 
-        const addSubSectionToList = (title, itemsArray) => {
-            if (itemsArray && itemsArray.length > 0) {
-                exameFisicoContent.push(`${title.toUpperCase()}\n${itemsArray.map(item => `  - ${item}`).join('\n')}`);
-            }
-        };
+        const facies = processSelect('ef-facies'); if (facies) geralSecondaryParts.push(buildSentence([`Apresenta fácies ${facies}`]));
+        const desconforto = processSelect('ef-desconforto'); if (desconforto) geralSecondaryParts.push(buildSentence([`Com sinais de desconforto ${desconforto}`]));
+        const efDispositivos = getInputValue('ef-dispositivos'); if (efDispositivos) geralSecondaryParts.push(buildSentence(['Em uso dos seguintes dispositivos:', efDispositivos]));
+        const efGeralObs = getInputValue('ef-geral-obs'); if (efGeralObs) geralSecondaryParts.push(buildSentence([efGeralObs]));
+        if (geralSecondaryParts.length > 0) efSentences.push(buildParagraph(geralSecondaryParts));
 
-        // Geral
-        let geralItems = [];
-        const efAparenciaGeral = processSelect('ef-aparencia-geral');
-        if (efAparenciaGeral) geralItems.push(`Aparência Geral: ${efAparenciaGeral}`);
-
-        const efFacies = processSelect('ef-facies');
-        if (efFacies) geralItems.push(`Expressão Facial / Fácies: ${efFacies}`);
-
-        const efDesconforto = processSelect('ef-desconforto');
-        if (efDesconforto) geralItems.push(`Sinais de Desconforto/Sofrimento: ${efDesconforto}`);
-
-        const efContato = processSelect('ef-contato');
-        if (efContato) geralItems.push(`Contato / Interação: ${efContato}`);
-
-        const geralNutri = processSelect('ef-estado-nutricional');
-        if (geralNutri) geralItems.push(`Estado Nutricional: ${geralNutri}`);
-
-        const geralDecub = processSelect('ef-decubito');
-        if (geralDecub) geralItems.push(`Decúbito/Mobilidade: ${geralDecub}`);
-
-        const efDispositivos = getInputValue('ef-dispositivos');
-        if (efDispositivos) geralItems.push(`Dispositivos: ${efDispositivos}`);
-
-        const geralAdj = [
-            getCheckboxStatus('ef-corado') && 'Corado',
-            getCheckboxStatus('ef-hidratado') && 'Hidratado',
-            getCheckboxStatus('ef-anictérico') && 'Anictérico',
-            getCheckboxStatus('ef-acianotico') && 'Acianótico',
-            getCheckboxStatus('ef-afebril') && 'Afebril',
-            getCheckboxStatus('ef-eupneico') && 'Eupnéico'
-        ].filter(Boolean);
-        if (geralAdj.length) geralItems.push(`Aspectos Gerais: ${geralAdj.join(', ')}`);
-
-        const efGeralObs = getInputValue('ef-geral-obs');
-        if (efGeralObs) geralItems.push(`Outras Observações: ${efGeralObs}`);
-        addSubSectionToList('Geral', geralItems);
-
-        // Neurológico
-        let neuroItems = [];
-        const neuroConsc = processSelect('neuro-consciencia-ef');
-        if (neuroConsc) neuroItems.push(`Nível de Consciência: ${neuroConsc}`);
-
-        const rass = getSelectValue('neuro-rass');
-        if (rass) neuroItems.push(`RASS: ${rass}`);
-
-        const glasgow = getInputValue('glasgow');
-        if (glasgow) neuroItems.push(`Glasgow: ${glasgow}`);
-
-        const pupilas = processSelect('neuro-pupilas');
-        if (pupilas) neuroItems.push(`Pupilas: ${pupilas}`);
-
+        let neuroParts = [];
+        const neuroConsc = processSelect('neuro-consciencia-ef'); if (neuroConsc) neuroParts.push(neuroConsc);
+        const rass = getSelectValue('neuro-rass'); if (rass) neuroParts.push(`RASS ${rass}`);
+        const glasgow = getInputValue('glasgow'); if (glasgow) neuroParts.push(`Escala de Coma de Glasgow ${glasgow}`);
+        const pupilas = processSelect('neuro-pupilas'); if (pupilas) neuroParts.push(`pupilas ${pupilas}`);
         const pares = getSelectValue('neuro-pares');
-        if (pares === 'Alterados') neuroItems.push(`Pares Cranianos: Alterados (${getInputValue('neuro-pares-detalhes') || 'não especificado'})`);
-        else if (pares && pares !== 'outro') neuroItems.push(`Pares Cranianos: ${pares}`);
-        else if (getInputValue('neuro-pares-outro')) neuroItems.push(`Pares Cranianos: Outro (${getInputValue('neuro-pares-outro')})`);
+        if (pares === 'Alterados') neuroParts.push(`pares cranianos com alterações (${getInputValue('neuro-pares-detalhes') || 'não especificado'})`);
+        else if (pares) neuroParts.push(`pares cranianos ${processSelect('neuro-pares')}`);
+        const forca = getSelectValue('neuro-forca-motora'); const forcaDetalhes = getInputValue('neuro-forca-motora-detalhes');
+        if (['Paresia', 'Plegia'].includes(forca)) neuroParts.push(`${forca.toLowerCase()} em ${forcaDetalhes || 'local não especificado'}`);
+        else if (forca) neuroParts.push(`força motora ${processSelect('neuro-forca-motora')}`);
+        const sensibilidade = processSelect('neuro-sensibilidade'); if(sensibilidade) neuroParts.push(`sensibilidade ${sensibilidade}`);
+        const reflexos = processSelect('neuro-reflexos'); if(reflexos) neuroParts.push(`reflexos ${reflexos}`);
+        const meningeos = getSelectValue('neuro-meningeos'); if (meningeos) neuroParts.push(`sinais meníngeos ${meningeos}`);
+        if(neuroParts.length > 0) efSentences.push(buildSentence(['Neurológico:', joinWithCommasAndAnd(neuroParts)]));
+        const neuroObs = getInputValue('neuro-obs'); if(neuroObs) efSentences.push(buildSentence([neuroObs]));
 
-        const forca = formatDetail('neuro-forca-motora', 'neuro-forca-motora-detalhes', '(localizar)', 'Força Motora: ');
-        if (forca) neuroItems.push(forca);
-        else if (getSelectValue('neuro-forca-motora') && getSelectValue('neuro-forca-motora') !== 'outro') neuroItems.push(`Força Motora: ${getSelectValue('neuro-forca-motora')}`);
-        else if (getInputValue('neuro-forca-motora-outro')) neuroItems.push(`Força Motora: Outro (${getInputValue('neuro-forca-motora-outro')})`);
+        let cardioParts = [];
+        const ritmo = processSelect('cardio-ritmo'); const bulhas = processSelect('cardio-bulhas'); const tempos = processSelect('cardio-bulhas-tempos');
+        let cardioAusculta = [];
+        if(ritmo) cardioAusculta.push(`ritmo cardíaco ${ritmo}`);
+        if(bulhas || tempos) cardioAusculta.push(`bulhas ${bulhas || ''} ${tempos || ''}`.trim());
+        if(cardioAusculta.length > 0) cardioParts.push(joinWithCommasAndAnd(cardioAusculta));
+        const soproValue = getSelectValue('cardio-sopros');
+        if (soproValue === 'ausentes') cardioParts.push('sem sopros audíveis');
+        else if (soproValue) { const soproDetails = getInputValue('cardio-sopros-detalhes'); cardioParts.push(`presença de ${processSelect('cardio-sopros')}${soproDetails ? ` (${soproDetails})` : ''}`); }
+        const tj = processSelect('cardio-tj'); if(tj) cardioParts.push(`turgência jugular ${tj}`);
+        const ictus = processSelect('cardio-ictus'); if(ictus) cardioParts.push(`ictus ${ictus}`);
+        if(cardioParts.length > 0) efSentences.push(buildSentence(['Aparelho cardiovascular:', joinWithCommasAndAnd(cardioParts)]));
+        const cardioObs = getInputValue('ef-cardio-obs'); if(cardioObs) efSentences.push(buildSentence([cardioObs]));
+        
+        let respParts = [];
+        const respPadrao = processSelect('resp-padrao'); if(respPadrao) respParts.push(`padrão respiratório ${respPadrao}`);
+        const auscultaResp = processSelect('ausculta-resp'); let auscultaCompleta = []; if (auscultaResp) auscultaCompleta.push(auscultaResp);
+        const raValue = getSelectValue('ra-resp');
+        if (raValue === 'ausentes') auscultaCompleta.push('sem ruídos adventícios');
+        else if (raValue) { const raDetails = getInputValue('ra-resp-detalhes'); auscultaCompleta.push(`com ${processSelect('ra-resp')}${raDetails ? ` em ${raDetails}` : ''}`); }
+        if(auscultaCompleta.length > 0) respParts.push(joinWithCommasAndAnd(auscultaCompleta));
+        const dispneia = processSelect('ef-resp-dispneia'); if (dispneia) respParts.push(`dispneia ${dispneia}`);
+        const tosseGeral = getSelectValue('ef-resp-tosse-geral');
+        if (tosseGeral === 'Não') respParts.push('sem tosse');
+        else if (tosseGeral === 'Sim') { respParts.push(`presença de tosse ${processSelect('ef-resp-tosse')}${getInputValue('ef-resp-tosse-outro') ? ` (${getInputValue('ef-resp-tosse-outro')})` : ''}`); }
+        if(respParts.length > 0) efSentences.push(buildSentence(['Aparelho respiratório:', joinWithCommasAndAnd(respParts)]));
+        const respObs = getInputValue('ef-resp-obs'); if(respObs) efSentences.push(buildSentence([respObs]));
+        
+        let abdParts = [processSelect('ef-abd-forma'), processSelect('ef-abd-consistencia'), processSelect('ef-abd-dor')].filter(Boolean);
+        const viscero = processSelect('ef-abd-viscero');
+        if (viscero === 'ausentes') abdParts.push('sem visceromegalias palpáveis'); else if (viscero) abdParts.push(`com ${viscero}`);
+        const rha = processSelect('ef-abd-sons'); if(rha) abdParts.push(`ruídos hidroaéreos ${rha}`);
+        if(abdParts.length > 0) efSentences.push(buildSentence(['Abdome:', joinWithCommasAndAnd(abdParts)]));
+        const abdObs = getInputValue('ef-abd-obs'); if(abdObs) efSentences.push(buildSentence([abdObs]));
 
-
-        const sensibilidade = processSelect('neuro-sensibilidade');
-        if (sensibilidade) neuroItems.push(`Sensibilidade: ${sensibilidade}`);
-
-        const reflexos = processSelect('neuro-reflexos');
-        if (reflexos) neuroItems.push(`Reflexos: ${reflexos}`);
-
-        const meningeos = getSelectValue('neuro-meningeos');
-        if (meningeos) neuroItems.push(`Sinais Meníngeos: ${meningeos}`);
-
-        const neuroObs = getInputValue('neuro-obs');
-        if (neuroObs) neuroItems.push(`Observações: ${neuroObs}`);
-        addSubSectionToList('Neurológico', neuroItems);
-
-        // Cardiovascular
-        let cardioItems = [];
-        const ritmo = processSelect('cardio-ritmo');
-        if (ritmo) cardioItems.push(`Ritmo: ${ritmo}`);
-
-        const bulhas = processSelect('cardio-bulhas');
-        const tempos = processSelect('cardio-bulhas-tempos');
-        if (bulhas || tempos) cardioItems.push(`Bulhas: ${bulhas || 'N/A'}${tempos ? ` ${tempos}` : ''}`);
-
-        const sopro = getSelectValue('cardio-sopros');
-        if (sopro === 'Ausentes') cardioItems.push(`Sopros: Ausentes`);
-        else if (sopro && sopro !== 'outro') cardioItems.push(`Sopros: ${formatDetail('cardio-sopros', 'cardio-sopros-detalhes', 'Sopro')}`);
-        else if (getInputValue('cardio-sopros-outro')) cardioItems.push(`Sopros: Outro (${getInputValue('cardio-sopros-outro')})`);
-
-        const tj = processSelect('cardio-tj');
-        if (tj) cardioItems.push(`Turgência Jugular: ${tj}`);
-
-        const ictus = processSelect('cardio-ictus');
-        if (ictus) cardioItems.push(`Ictus: ${ictus}`);
-
-        const efCardioObs = getInputValue('ef-cardio-obs');
-        if (efCardioObs) cardioItems.push(`Observações: ${efCardioObs}`);
-        addSubSectionToList('Cardiovascular', cardioItems);
-
-        // Respiratório
-        let respItems = [];
-        const respPadrao = processSelect('resp-padrao');
-        if (respPadrao) respItems.push(`Padrão Respiratório: ${respPadrao}`);
-
-        const auscultaResp = processSelect('ausculta-resp');
-        if (auscultaResp) respItems.push(`Ausculta Pulmonar: ${auscultaResp}`);
-
-        const ra = getSelectValue('ra-resp');
-        if (ra === 'Ausentes') respItems.push(`Ruídos Adventícios: Ausentes`);
-        else if (ra && ra !== 'outro') respItems.push(`Ruídos Adventícios: ${formatDetail('ra-resp', 'ra-resp-detalhes', 's')}`);
-        else if (getInputValue('ra-resp-outro')) respItems.push(`Ruídos Adventícios: Outro (${getInputValue('ra-resp-outro')})`);
-
-        const efRespDispneia = processSelect('ef-resp-dispneia');
-        if (efRespDispneia) respItems.push(`Dispneia: ${efRespDispneia}`);
-
-        const efRespTosseGeral = getSelectValue('ef-resp-tosse-geral');
-        if (efRespTosseGeral === 'Sim') {
-            const tipoTosse = processSelect('ef-resp-tosse');
-            respItems.push(`Tosse: Sim (${tipoTosse}${getInputValue('ef-resp-tosse-outro') ? `, ${getInputValue('ef-resp-tosse-outro')}` : ''})`);
-        } else if (efRespTosseGeral === 'Não') {
-            respItems.push(`Tosse: Não`);
-        }
-
-        const efRespObs = getInputValue('ef-resp-obs');
-        if (efRespObs) respItems.push(`Observações: ${efRespObs}`);
-        addSubSectionToList('Respiratório', respItems);
-
-        // Abdominal
-        let abdItems = [];
-        const formaAbd = processSelect('ef-abd-forma');
-        if (formaAbd) abdItems.push(`Forma: ${formaAbd}`);
-
-        const consistenciaAbd = processSelect('ef-abd-consistencia');
-        if (consistenciaAbd) abdItems.push(`Consistência: ${consistenciaAbd}`);
-
-        const dorAbd = processSelect('ef-abd-dor');
-        if (dorAbd) abdItems.push(`Dor à Palpação: ${dorAbd}`);
-
-        const viscero = getSelectValue('ef-abd-viscero');
-        if (viscero === 'Ausentes') abdItems.push(`Visceromegalias: Ausentes`);
-        else if (viscero && viscero !== 'outro') abdItems.push(`Visceromegalias: ${viscero}`);
-        else if (getInputValue('ef-abd-viscero-outro')) abdItems.push(`Visceromegalias: Outro (${getInputValue('ef-abd-viscero-outro')})`);
-
-        const efAbdSons = processSelect('ef-abd-sons');
-        if (efAbdSons) abdItems.push(`Ruídos Hidroaéreos: ${efAbdSons}`);
-
-        const efAbdObs = getInputValue('ef-abd-obs');
-        if (efAbdObs) abdItems.push(`Observações: ${efAbdObs}`);
-        addSubSectionToList('Abdominal', abdItems);
-
-        // Pele e Periférico
-        let peleItems = [];
-        const peleTemp = processSelect('pele-temp');
-        if (peleTemp) peleItems.push(`Temperatura: ${peleTemp}`);
-
-        const peleTurgor = processSelect('pele-turgor');
-        if (peleTurgor) peleItems.push(`Turgor: ${peleTurgor}`);
-
+        let peleParts = [];
+        const peleTemp = processSelect('pele-temp'); const pelePulsos = processSelect('pele-pulsos'); if(peleTemp && pelePulsos) peleParts.push(`extremidades ${peleTemp}, com pulsos ${pelePulsos}`);
+        const peleTec = processSelect('pele-tec'); if(peleTec) peleParts.push(`perfusão capilar ${peleTec}`);
+        const peleTurgor = processSelect('pele-turgor'); if(peleTurgor) peleParts.push(`turgor ${peleTurgor}`);
         const peleEdema = getSelectValue('pele-edema');
-        if (peleEdema === 'Presente') peleItems.push(`Edema: Presente (${getInputValue('pele-edema-detalhes') || 'não especificado'})`);
-        else if (peleEdema === 'Ausente') peleItems.push(`Edema: Ausente`);
+        if (peleEdema === 'Ausente') peleParts.push('ausência de edema');
+        else if (peleEdema === 'Presente') peleParts.push(`presença de edema (${getInputValue('pele-edema-detalhes') || 'não especificado'})`);
+        const integridadeValue = getSelectValue('pele-integridade');
+        if (['Úlcera de Pressão', 'Com Lesões'].includes(integridadeValue)) { peleParts.push(`pele com ${integridadeValue.toLowerCase()} (${getInputValue('pele-integridade-detalhes') || 'não descrito'})`); }
+        else if (integridadeValue) { peleParts.push(`pele ${processSelect('pele-integridade')}`); }
+        if(peleParts.length > 0) efSentences.push(buildSentence(['Pele e extremidades:', joinWithCommasAndAnd(peleParts)]));
+        const peleObs = getInputValue('pele-obs'); if(peleObs) efSentences.push(buildSentence([peleObs]));
 
-        const peleTec = processSelect('pele-tec');
-        if (peleTec) peleItems.push(`Perfusão Capilar: ${peleTec}`);
+        const outroSistemaNome = getInputValue('ef-outro-sistema-nome'); const outroSistemaDesc = getInputValue('ef-outro-sistema-descricao');
+        if (outroSistemaNome && outroSistemaDesc) efSentences.push(buildSentence([`${outroSistemaNome}:`, outroSistemaDesc]));
+        
+        addSection('3. EXAME FÍSICO', buildParagraph(efSentences));
 
-        const pelePulsos = processSelect('pele-pulsos');
-        if (pelePulsos) peleItems.push(`Pulsos: ${pelePulsos}`);
-
-        const peleIntegridade = getSelectValue('pele-integridade');
-        if (peleIntegridade === 'Íntegra') peleItems.push(`Integridade da Pele: Íntegra`);
-        else if (['Úlcera de Pressão', 'Com Lesões'].includes(peleIntegridade)) peleItems.push(`Integridade da Pele: ${peleIntegridade} (${getInputValue('pele-integridade-detalhes') || 'não descrito'})`);
-        else if (peleIntegridade && peleIntegridade !== 'outro') peleItems.push(`Integridade da Pele: ${peleIntegridade}`);
-        else if (getInputValue('pele-integridade-outro')) peleItems.push(`Integridade da Pele: Outro (${getInputValue('pele-integridade-outro')})`);
-
-
-        const peleObs = getInputValue('pele-obs');
-        if (peleObs) peleItems.push(`Observações: ${peleObs}`);
-        addSubSectionToList('Pele e Periférico', peleItems);
-
-        // Outro Sistema
-        const outroSistemaNome = getInputValue('ef-outro-sistema-nome');
-        const outroSistemaDesc = getInputValue('ef-outro-sistema-descricao');
-        if (outroSistemaNome && outroSistemaDesc) {
-            addSubSectionToList(outroSistemaNome.toUpperCase(), [outroSistemaDesc]);
-        }
-
-        // Adiciona todas as subseções do exame físico como um bloco
-        addSection('3. EXAME FÍSICO', exameFisicoContent);
-
-        // --- SEÇÕES FINAIS (FORMATO DE LISTA É APROPRIADO) ---
-        const createListSection = (title, items) => {
-            const content = items.map(item => item.value ? `- ${item.label}: ${item.value}` : null).filter(Boolean);
+        // --- SEÇÕES FINAIS ---
+        const createDiscursiveSection = (title, items) => {
+            const content = items.map(item => item.value ? buildSentence([item.label, item.value]) : null).filter(Boolean).join(' ');
             addSection(title, content);
         };
-
-        createListSection('4. INTERCORRÊNCIAS E CONDUTAS', [
-            { label: 'Intercorrências Clínicas', value: getInputValue('intercorrencias') },
-            { label: 'Ajustes Terapêuticos / Prescrições', value: getInputValue('ajustes') }
-        ]);
-
-        createListSection('5. EXAMES E RESULTADOS', [
-            { label: 'Laboratoriais', value: getInputValue('exames-lab') },
-            { label: 'De Imagem', value: getInputValue('exames-imagem') },
-            { label: 'Outros', value: getInputValue('exames-outros') }
-        ]);
-
-        createListSection('6. CONDUTA E PLANEJAMENTO', [
-            { label: 'Conduta para as Próximas 24 horas', value: getInputValue('conduta') },
-            { label: 'Outras Considerações', value: getInputValue('planejamento') },
-            { label: 'Profilaxias (TVP/TEV, Úlcera de Estresse)', value: getInputValue('profilaxias') }
-        ]);
+        createDiscursiveSection('4. INTERCORRÊNCIAS E CONDUTAS', [{ label: 'Intercorrências clínicas:', value: getInputValue('intercorrencias') }, { label: 'Ajustes terapêuticos:', value: getInputValue('ajustes') }]);
+        createDiscursiveSection('5. EXAMES E RESULTADOS', [{ label: 'Exames laboratoriais:', value: getInputValue('exames-lab') }, { label: 'Exames de imagem:', value: getInputValue('exames-imagem') }, { label: 'Outros exames:', value: getInputValue('exames-outros') }]);
+        createDiscursiveSection('6. CONDUTA E PLANEJAMENTO', [{ label: 'Conduta:', value: getInputValue('conduta') }, { label: 'Planejamento:', value: getInputValue('planejamento') }, { label: 'Profilaxias:', value: getInputValue('profilaxias') }]);
 
         // --- Final Output ---
         const outputElement = document.getElementById('summary-output');
-        outputElement.innerText = resumo.trim() ? resumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
+        outputElement.innerText = finalResumo.trim() ? finalResumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
     }
 </script>
-
 
 </body>
 </html>
