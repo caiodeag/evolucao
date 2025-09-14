@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -77,10 +77,7 @@
         .form-select {
             border: none;
             border-bottom: 1px solid var(--md-divider);
-            padding-left: 0.25rem;
-            padding-right: 0.25rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding: 0.5rem 0.25rem;
             background-color: transparent;
             color: var(--md-on-background);
             transition: border-bottom-color 0.2s ease-in-out;
@@ -173,17 +170,19 @@
                 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
                 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
         }
-        
+
         .md-button-secondary {
             background-color: #6c757d;
         }
+
         .md-button-secondary:hover {
             background-color: #5a6268;
         }
-        
+
         .md-button-tertiary {
             background-color: #4a5568;
         }
+
         .md-button-tertiary:hover {
             background-color: #2d3748;
         }
@@ -237,6 +236,7 @@
                 <i class="fas fa-moon text-xl text-secondary"></i>
             </button>
         </header>
+
         <main id="evolution-form" class="md-card p-4 md:p-8 space-y-4">
             <div id="accordion-container" class="space-y-4">
 
@@ -1343,25 +1343,26 @@
             <div class="generated-summary text-secondary" id="summary-output" style="white-space: pre-wrap;">
                 Comece a preencher os campos para gerar o resumo.
             </div>
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                    <i class="fas fa-copy mr-2"></i>
-                    Copiar Resumo
-                </button>
-                <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                    <i class="fas fa-print mr-2"></i>
-                    Gerar Impressão
-                </button>
-                <button id="download-blank-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                    <i class="fas fa-file-pdf mr-2"></i>
-                    Baixar Formulário em Branco
-                </button>
-            </div>
         </section>
+
+        <!-- Botões movidos para fora da seção de resumo automático -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 p-4 md:p-8 md-card">
+            <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                <i class="fas fa-copy mr-2"></i>
+                Copiar Resumo
+            </button>
+            <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                <i class="fas fa-print mr-2"></i>
+                Gerar Impressão
+            </button>
+            <button id="download-blank-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                <i class="fas fa-file-pdf mr-2"></i>
+                Baixar Formulário em Branco
+            </button>
+        </div>
     </div>
 
     <script>
-        // SCRIPT ORIGINAL PARA FUNCIONALIDADE DA PÁGINA
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('evolution-form');
 
@@ -1381,10 +1382,9 @@
                             input.checked = false;
                         } else if (input.tagName === 'SELECT') {
                             input.value = '';
-                            const event = new Event('change', {
+                            input.dispatchEvent(new Event('change', {
                                 bubbles: true
-                            });
-                            input.dispatchEvent(event);
+                            }));
                         } else {
                             input.value = '';
                         }
@@ -1392,113 +1392,125 @@
                 }
             }
 
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeIcon = themeToggleBtn.querySelector('i');
-            const userTheme = localStorage.getItem('theme');
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const setupTheme = () => {
+                const themeToggleBtn = document.getElementById('theme-toggle');
+                const themeIcon = themeToggleBtn.querySelector('i');
+                const userTheme = localStorage.getItem('theme');
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            const applyTheme = (theme) => {
-                if (theme === 'dark') {
-                    document.documentElement.classList.add('dark');
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                    localStorage.setItem('theme', 'dark');
+                const applyTheme = (theme) => {
+                    if (theme === 'dark') {
+                        document.documentElement.classList.add('dark');
+                        themeIcon.classList.replace('fa-moon', 'fa-sun');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        themeIcon.classList.replace('fa-sun', 'fa-moon');
+                        localStorage.setItem('theme', 'light');
+                    }
+                };
+
+                if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+                    applyTheme('dark');
                 } else {
-                    document.documentElement.classList.remove('dark');
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                    localStorage.setItem('theme', 'light');
+                    applyTheme('light');
                 }
+                themeToggleBtn.addEventListener('click', () => {
+                    applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+                });
             };
 
-            if (userTheme === 'dark' || (!userTheme && systemTheme)) {
-                applyTheme('dark');
-            } else {
-                applyTheme('light');
-            }
-            themeToggleBtn.addEventListener('click', () => {
-                applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
-            });
+            const setupAccordions = () => {
+                document.querySelectorAll('.js-accordion-header').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const chevron = header.querySelector('.chevron-icon');
+                        const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
-            document.querySelectorAll('.js-accordion-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const chevron = header.querySelector('.chevron-icon');
-                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
-
-                    header.setAttribute('aria-expanded', !isExpanded);
-                    content.classList.toggle('hidden');
-                    chevron?.classList.toggle('rotate-180');
+                        header.setAttribute('aria-expanded', !isExpanded);
+                        content.classList.toggle('hidden');
+                        chevron?.classList.toggle('rotate-180');
+                    });
                 });
-            });
+            };
 
-            form.addEventListener('change', (event) => {
-                const {
-                    id,
-                    value
-                } = event.target;
+            const setupFormChangeHandlers = () => {
+                form.addEventListener('change', (event) => {
+                    const { id, value } = event.target;
 
-                if (document.getElementById(`${id}-outro-container`)) {
-                    showHide(`${id}-outro-container`, value === 'outro');
-                }
+                    if (document.getElementById(`${id}-outro-container`)) {
+                        showHide(`${id}-outro-container`, value === 'outro');
+                    }
 
-                switch (id) {
-                    case 'queixas':
-                        showHide('queixas-obs-container', value === 'Sim');
-                        break;
-                    case 'suporte-vent':
-                        showHide('vm-parameters-container', value === 'VM');
-                        break;
-                    case 'dva':
-                        showHide('dva-obs-container', value === 'Sim');
-                        break;
-                    case 'dieta-tipo':
-                        showHide('dieta-aceitacao-container', value !== 'Jejum' && value !== '');
-                        break;
-                    case 'ef-resp-tosse-geral':
-                        showHide('ef-resp-tosse-detalhes-container', value === 'Sim');
-                        if (value !== 'Sim') showHide('ef-resp-tosse-outro-container', false);
-                        break;
-                    case 'pele-edema':
-                        showHide('pele-edema-detalhes-container', value === 'Presente');
-                        break;
-                    case 'neuro-pares':
-                        showHide('neuro-pares-detalhes-container', value === 'Alterados');
-                        break;
-                    case 'neuro-forca-motora':
-                        showHide('neuro-forca-motora-detalhes-container', ['Paresia', 'Plegia'].includes(value));
-                        break;
-                    case 'cardio-sopros':
-                        showHide('cardio-sopros-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
-                        break;
-                    case 'ra-resp':
-                        showHide('ra-resp-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
-                        break;
-                    case 'pele-integridade':
-                        showHide('pele-integridade-detalhes-container', ['Com Lesões', 'Úlcera de Pressão'].includes(value));
-                        break;
-                }
-            });
+                    switch (id) {
+                        case 'queixas':
+                            showHide('queixas-obs-container', value === 'Sim');
+                            break;
+                        case 'suporte-vent':
+                            showHide('vm-parameters-container', value === 'VM');
+                            break;
+                        case 'dva':
+                            showHide('dva-obs-container', value === 'Sim');
+                            break;
+                        case 'dieta-tipo':
+                            showHide('dieta-aceitacao-container', value !== 'Jejum' && value !== '');
+                            break;
+                        case 'ef-resp-tosse-geral':
+                            showHide('ef-resp-tosse-detalhes-container', value === 'Sim');
+                            if (value !== 'Sim') showHide('ef-resp-tosse-outro-container', false);
+                            break;
+                        case 'pele-edema':
+                            showHide('pele-edema-detalhes-container', value === 'Presente');
+                            break;
+                        case 'neuro-pares':
+                            showHide('neuro-pares-detalhes-container', value === 'Alterados');
+                            break;
+                        case 'neuro-forca-motora':
+                            showHide('neuro-forca-motora-detalhes-container', ['Paresia', 'Plegia'].includes(value));
+                            break;
+                        case 'cardio-sopros':
+                            showHide('cardio-sopros-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
+                            break;
+                        case 'ra-resp':
+                            showHide('ra-resp-detalhes-container', value !== 'ausentes' && value !== '' && value !== 'outro');
+                            break;
+                        case 'pele-integridade':
+                            showHide('pele-integridade-detalhes-container', ['Com Lesões', 'Úlcera de Pressão'].includes(value));
+                            break;
+                    }
+                });
+            };
 
-            let summaryTimeout;
-            form.addEventListener('input', () => {
-                clearTimeout(summaryTimeout);
-                summaryTimeout = setTimeout(generateSummary, 200);
-            });
-            form.addEventListener('change', () => {
-                clearTimeout(summaryTimeout);
-                summaryTimeout = setTimeout(generateSummary, 200);
-            });
+            const setupSummaryGeneration = () => {
+                let summaryTimeout;
+                const updateSummary = () => {
+                    clearTimeout(summaryTimeout);
+                    summaryTimeout = setTimeout(generateSummary, 200);
+                };
+                form.addEventListener('input', updateSummary);
+                form.addEventListener('change', updateSummary);
+            };
 
-            document.getElementById('copy-btn').addEventListener('click', () => {
-                const textToCopy = document.getElementById('summary-output').innerText;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const copyBtn = document.getElementById('copy-btn');
-                    const originalText = copyBtn.innerHTML;
-                    copyBtn.innerHTML = `<i class="fas fa-check mr-2"></i> Copiado!`;
-                    setTimeout(() => {
-                        copyBtn.innerHTML = originalText;
-                    }, 2000);
-                }).catch(err => console.error('Falha ao copiar texto:', err));
-            });
+            const setupActionButtons = () => {
+                document.getElementById('copy-btn').addEventListener('click', () => {
+                    const textToCopy = document.getElementById('summary-output').innerText;
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const copyBtn = document.getElementById('copy-btn');
+                        const originalText = copyBtn.innerHTML;
+                        copyBtn.innerHTML = `<i class="fas fa-check mr-2"></i> Copiado!`;
+                        setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
+                    }).catch(err => console.error('Falha ao copiar texto:', err));
+                });
+                
+                document.getElementById('print-btn').addEventListener('click', gerarImpressaoAutomatica);
+                document.getElementById('download-blank-btn').addEventListener('click', gerarFormularioEmBranco);
+            };
+            
+            setupTheme();
+            setupAccordions();
+            setupFormChangeHandlers();
+            setupSummaryGeneration();
+            setupActionButtons();
 
             generateSummary();
         });
@@ -1539,9 +1551,7 @@
                 return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
             };
 
-            const buildParagraph = (sentences) => {
-                return sentences.filter(s => s && s.trim() !== '').join(' ');
-            }
+            const buildParagraph = (sentences) => sentences.filter(s => s && s.trim() !== '').join(' ');
 
             let finalResumo = '';
             const addSection = (title, content) => {
@@ -1552,42 +1562,32 @@
             
             const nomePaciente = getInputValue('paciente_nome');
             const prontuario = getInputValue('paciente_prontuario');
-            let resumoHeader = '';
-            if (nomePaciente || prontuario) {
-                resumoHeader += `Paciente: ${nomePaciente || 'Não informado'} - Prontuário: ${prontuario || 'Não informado'}\n\n`;
-            }
+            let resumoHeader = (nomePaciente || prontuario) ? `Paciente: ${nomePaciente || 'Não informado'} - Prontuário: ${prontuario || 'Não informado'}\n\n` : '';
 
             let anamneseSentences = [];
             const setor = getInputValue('setor');
             const leito = getInputValue('leito');
             if (setor || leito) anamneseSentences.push(buildSentence([`Paciente em acompanhamento no(a) ${setor || 'setor não informado'}, leito ${leito || 'não informado'}`]));
-
+            
             const evolucaoClinica = getSelectValue('evolucao-clinica');
             const evolucaoHemo = getSelectValue('evolucao-hemo');
             let evolutionParts = [];
             if (evolucaoClinica) evolutionParts.push(`clinicamente ${evolucaoClinica}`);
             if (evolucaoHemo) evolutionParts.push(`hemodinamicamente ${evolucaoHemo}`);
             if (evolutionParts.length > 0) anamneseSentences.push(buildSentence([`Encontra-se`, joinWithCommasAndAnd(evolutionParts)]));
-
+            
             const estadoGeral = getSelectValue('estado-geral');
             if (estadoGeral) anamneseSentences.push(buildSentence([`Em ${estadoGeral} estado geral`]));
 
             const queixas = getSelectValue('queixas');
             if (queixas === 'Sim') {
-                const queixasObs = getInputValue('queixas-obs');
-                anamneseSentences.push(buildSentence([`Refere ${queixasObs || 'queixas não especificadas'} nas últimas 24h`]));
+                anamneseSentences.push(buildSentence([`Refere ${getInputValue('queixas-obs') || 'queixas não especificadas'} nas últimas 24h`]));
             } else if (queixas === 'Não') {
                 anamneseSentences.push(buildSentence(['Nega queixas nas últimas 24h']));
             }
-
-            let eventosPositivos = [],
-                eventosNegativos = [];
-            const eventosMap = {
-                'distermias': 'distermias',
-                'disglicemias': 'disglicemias',
-                'alt-pa': 'alterações de pressão arterial',
-                'alt-lab': 'alterações laboratoriais'
-            };
+            
+            let eventosPositivos = [], eventosNegativos = [];
+            const eventosMap = { 'distermias': 'distermias', 'disglicemias': 'disglicemias', 'alt-pa': 'alterações de pressão arterial', 'alt-lab': 'alterações laboratoriais' };
             for (const [id, desc] of Object.entries(eventosMap)) {
                 const value = getSelectValue(id);
                 if (value === 'Sim') eventosPositivos.push(desc);
@@ -1598,33 +1598,22 @@
 
             const obsGeraisAnamnese = getInputValue('obs-gerais');
             if (obsGeraisAnamnese) anamneseSentences.push(buildSentence([obsGeraisAnamnese]));
-
             addSection('Situação Geral e Anamnese', buildParagraph(anamneseSentences));
 
             let paramsSentences = [];
-            const vitais = [
-                getInputValue('pa') && `PA de ${getInputValue('pa')} mmHg`, getInputValue('fc') && `FC de ${getInputValue('fc')} bpm`,
-                getInputValue('fr') && `FR de ${getInputValue('fr')} irpm`, getInputValue('temp') && `temperatura de ${getInputValue('temp')}°C`,
-                getInputValue('sato2') && `SatO₂ de ${getInputValue('sato2')}%`
-            ].filter(Boolean);
+            const vitais = [ getInputValue('pa') && `PA de ${getInputValue('pa')} mmHg`, getInputValue('fc') && `FC de ${getInputValue('fc')} bpm`, getInputValue('fr') && `FR de ${getInputValue('fr')} irpm`, getInputValue('temp') && `temperatura de ${getInputValue('temp')}°C`, getInputValue('sato2') && `SatO₂ de ${getInputValue('sato2')}%` ].filter(Boolean);
             if (vitais.length > 0) paramsSentences.push(buildSentence(['Apresenta-se com os seguintes parâmetros vitais:', joinWithCommasAndAnd(vitais)]));
-            const dorEscala = getInputValue('dor-escala');
-            if (dorEscala) paramsSentences.push(buildSentence([`Refere dor de intensidade ${dorEscala}/10`]));
-            const parametrosObs = getInputValue('parametros-obs');
-            if (parametrosObs) paramsSentences.push(buildSentence([parametrosObs]));
-
+            
+            if (getInputValue('dor-escala')) paramsSentences.push(buildSentence([`Refere dor de intensidade ${getInputValue('dor-escala')}/10`]));
+            if (getInputValue('parametros-obs')) paramsSentences.push(buildSentence([getInputValue('parametros-obs')]));
 
             const suporteVent = getSelectValue('suporte-vent');
             if (suporteVent) {
                 if (suporteVent === 'VM') {
-                    const vmParams = [getInputValue('vm-modo') && `modo ${getInputValue('vm-modo')}`, getInputValue('vm-fio2') && `FiO₂ de ${getInputValue('vm-fio2')}%`,
-                        getInputValue('vm-peep') && `PEEP de ${getInputValue('vm-peep')} cmH₂O`, getInputValue('vm-fr') && `FR de ${getInputValue('vm-fr')} irpm`,
-                        getInputValue('vm-pva') && `Pva de ${getInputValue('vm-pva')} cmH₂O`, getInputValue('vm-tidal-vol') && `VT de ${getInputValue('vm-tidal-vol')} mL`
-                    ].filter(Boolean);
+                    const vmParams = [ getInputValue('vm-modo') && `modo ${getInputValue('vm-modo')}`, getInputValue('vm-fio2') && `FiO₂ de ${getInputValue('vm-fio2')}%`, getInputValue('vm-peep') && `PEEP de ${getInputValue('vm-peep')} cmH₂O`, getInputValue('vm-fr') && `FR de ${getInputValue('vm-fr')} irpm`, getInputValue('vm-pva') && `Pva de ${getInputValue('vm-pva')} cmH₂O`, getInputValue('vm-tidal-vol') && `VT de ${getInputValue('vm-tidal-vol')} mL` ].filter(Boolean);
                     let vmSentence = `Em ventilação mecânica invasiva`;
                     if (vmParams.length > 0) vmSentence += `, com os seguintes parâmetros: ${joinWithCommasAndAnd(vmParams)}`;
-                    const vmOutros = getInputValue('vm-outros-params');
-                    if (vmOutros) vmSentence += `, e ${vmOutros}`;
+                    if (getInputValue('vm-outros-params')) vmSentence += `, e ${getInputValue('vm-outros-params')}`;
                     paramsSentences.push(buildSentence([vmSentence]));
                 } else {
                     paramsSentences.push(buildSentence([suporteVent === 'Ar Ambiente' ? 'Em ar ambiente' : `Em uso de suporte ventilatório com ${processSelect('suporte-vent')}`]));
@@ -1645,17 +1634,14 @@
                     paramsSentences.push(buildSentence([dietaSentence]));
                 }
             }
-
+            
             let eliminacoesParts = [];
             const diureseTipo = processSelect('diurese-tipo');
-            const diureseQtde = getInputValue('diurese');
-            if (diureseTipo) eliminacoesParts.push(`diurese ${diureseTipo}${diureseQtde ? ` com débito de ${diureseQtde} mL/24h` : ''}`);
+            if (diureseTipo) eliminacoesParts.push(`diurese ${diureseTipo}${getInputValue('diurese') ? ` com débito de ${getInputValue('diurese')} mL/24h` : ''}`);
             const evacuacoesTipo = processSelect('evacuacoes-tipo');
-            const evacuacoesQtde = getInputValue('evacuacoes');
-            if (evacuacoesTipo) eliminacoesParts.push(`evacuações ${evacuacoesTipo}${evacuacoesQtde ? `, ${evacuacoesQtde} episódios/24h` : ''}`);
+            if (evacuacoesTipo) eliminacoesParts.push(`evacuações ${evacuacoesTipo}${getInputValue('evacuacoes') ? `, ${getInputValue('evacuacoes')} episódios/24h` : ''}`);
             if (eliminacoesParts.length > 0) paramsSentences.push(buildSentence([`Eliminações fisiológicas presentes, com`, joinWithCommasAndAnd(eliminacoesParts)]));
-            const suporteObs = getInputValue('suporte-obs');
-            if (suporteObs) paramsSentences.push(buildSentence([suporteObs]));
+            if (getInputValue('suporte-obs')) paramsSentences.push(buildSentence([getInputValue('suporte-obs')]));
 
             let picosEventos = [];
             const addPicoEvento = (label, valId, hId) => {
@@ -1669,126 +1655,82 @@
             addPicoEvento('hipoglicemia', 'queda-glicemia', 'queda-glicemia-hora');
             addPicoEvento('dessaturação', 'queda-sato2', 'queda-sato2-hora');
             if (picosEventos.length > 0) paramsSentences.push(buildSentence([`Nas últimas 24h, apresentou`, joinWithCommasAndAnd(picosEventos)]));
-            const eventosObs = getInputValue('eventos-obs');
-            if (eventosObs) paramsSentences.push(buildSentence(['Observações de eventos:', eventosObs]));
-
+            if (getInputValue('eventos-obs')) paramsSentences.push(buildSentence(['Observações de eventos:', getInputValue('eventos-obs')]));
+            
             addSection('Parâmetros Vitais e Suporte', buildParagraph(paramsSentences));
 
             let efSentences = [];
-            let geralParts = [],
-                geralSecondaryParts = [];
-            const aparenciaGeral = processSelect('ef-aparencia-geral');
-            if (aparenciaGeral) geralParts.push(`em ${aparenciaGeral} aparência geral`);
-            const estadoNutricional = processSelect('ef-estado-nutricional');
-            if (estadoNutricional) geralParts.push(estadoNutricional);
+            let geralParts = [], geralSecondaryParts = [];
+            if (processSelect('ef-aparencia-geral')) geralParts.push(`em ${processSelect('ef-aparencia-geral')} aparência geral`);
+            if (processSelect('ef-estado-nutricional')) geralParts.push(processSelect('ef-estado-nutricional'));
             const geralAdj = [getCheckboxStatus('ef-corado') && 'corado(a)', getCheckboxStatus('ef-hidratado') && 'hidratado(a)', getCheckboxStatus('ef-anictérico') && 'anictérico(a)', getCheckboxStatus('ef-acianotico') && 'acianótico(a)', getCheckboxStatus('ef-afebril') && 'afebril', getCheckboxStatus('ef-eupneico') && 'eupnéico(a)'].filter(Boolean);
             if (geralAdj.length > 0) geralParts.push(joinWithCommasAndAnd(geralAdj));
-            const contato = processSelect('ef-contato');
-            if (contato) geralParts.push(contato);
-            const decubito = processSelect('ef-decubito');
-            if (decubito) geralParts.push(decubito);
+            if (processSelect('ef-contato')) geralParts.push(processSelect('ef-contato'));
+            if (processSelect('ef-decubito')) geralParts.push(processSelect('ef-decubito'));
             if (geralParts.length > 0) efSentences.push(buildSentence(['Ao exame físico, paciente', joinWithCommasAndAnd(geralParts)]));
-
-            const facies = processSelect('ef-facies');
-            if (facies) geralSecondaryParts.push(buildSentence([`Apresenta fácies ${facies}`]));
-            const desconforto = processSelect('ef-desconforto');
-            if (desconforto) geralSecondaryParts.push(buildSentence([`Com sinais de desconforto ${desconforto}`]));
-            const efDispositivos = getInputValue('ef-dispositivos');
-            if (efDispositivos) geralSecondaryParts.push(buildSentence(['Em uso dos seguintes dispositivos:', efDispositivos]));
-            const efGeralObs = getInputValue('ef-geral-obs');
-            if (efGeralObs) geralSecondaryParts.push(buildSentence([efGeralObs]));
+            if (processSelect('ef-facies')) geralSecondaryParts.push(buildSentence([`Apresenta fácies ${processSelect('ef-facies')}`]));
+            if (processSelect('ef-desconforto')) geralSecondaryParts.push(buildSentence([`Com sinais de desconforto ${processSelect('ef-desconforto')}`]));
+            if (getInputValue('ef-dispositivos')) geralSecondaryParts.push(buildSentence(['Em uso dos seguintes dispositivos:', getInputValue('ef-dispositivos')]));
+            if (getInputValue('ef-geral-obs')) geralSecondaryParts.push(buildSentence([getInputValue('ef-geral-obs')]));
             if (geralSecondaryParts.length > 0) efSentences.push(buildParagraph(geralSecondaryParts));
 
             let neuroParts = [];
-            const neuroConsc = processSelect('neuro-consciencia-ef');
-            if (neuroConsc) neuroParts.push(neuroConsc);
-            const rass = getSelectValue('neuro-rass');
-            if (rass) neuroParts.push(`RASS ${rass}`);
-            const glasgow = getInputValue('glasgow');
-            if (glasgow) neuroParts.push(`Escala de Coma de Glasgow ${glasgow}`);
-            const pupilas = processSelect('neuro-pupilas');
-            if (pupilas) neuroParts.push(`pupilas ${pupilas}`);
+            if (processSelect('neuro-consciencia-ef')) neuroParts.push(processSelect('neuro-consciencia-ef'));
+            if (getSelectValue('neuro-rass')) neuroParts.push(`RASS ${getSelectValue('neuro-rass')}`);
+            if (getInputValue('glasgow')) neuroParts.push(`Escala de Coma de Glasgow ${getInputValue('glasgow')}`);
+            if (processSelect('neuro-pupilas')) neuroParts.push(`pupilas ${processSelect('neuro-pupilas')}`);
             const pares = getSelectValue('neuro-pares');
             if (pares === 'Alterados') neuroParts.push(`pares cranianos com alterações (${getInputValue('neuro-pares-detalhes') || 'não especificado'})`);
             else if (pares) neuroParts.push(`pares cranianos ${processSelect('neuro-pares')}`);
             const forca = getSelectValue('neuro-forca-motora');
-            const forcaDetalhes = getInputValue('neuro-forca-motora-detalhes');
-            if (['Paresia', 'Plegia'].includes(forca)) neuroParts.push(`${forca.toLowerCase()} em ${forcaDetalhes || 'local não especificado'}`);
+            if (['Paresia', 'Plegia'].includes(forca)) neuroParts.push(`${forca.toLowerCase()} em ${getInputValue('neuro-forca-motora-detalhes') || 'local não especificado'}`);
             else if (forca) neuroParts.push(`força motora ${processSelect('neuro-forca-motora')}`);
-            const sensibilidade = processSelect('neuro-sensibilidade');
-            if (sensibilidade) neuroParts.push(`sensibilidade ${sensibilidade}`);
-            const reflexos = processSelect('neuro-reflexos');
-            if (reflexos) neuroParts.push(`reflexos ${reflexos}`);
-            const meningeos = getSelectValue('neuro-meningeos');
-            if (meningeos) neuroParts.push(`sinais meníngeos ${meningeos}`);
+            if (processSelect('neuro-sensibilidade')) neuroParts.push(`sensibilidade ${processSelect('neuro-sensibilidade')}`);
+            if (processSelect('neuro-reflexos')) neuroParts.push(`reflexos ${processSelect('neuro-reflexos')}`);
+            if (getSelectValue('neuro-meningeos')) neuroParts.push(`sinais meníngeos ${getSelectValue('neuro-meningeos')}`);
             if (neuroParts.length > 0) efSentences.push(buildSentence(['Neurológico:', joinWithCommasAndAnd(neuroParts)]));
-            const neuroObs = getInputValue('neuro-obs');
-            if (neuroObs) efSentences.push(buildSentence([neuroObs]));
+            if (getInputValue('neuro-obs')) efSentences.push(buildSentence([getInputValue('neuro-obs')]));
 
             let cardioParts = [];
-            const ritmo = processSelect('cardio-ritmo');
-            const bulhas = processSelect('cardio-bulhas');
-            const tempos = processSelect('cardio-bulhas-tempos');
             let cardioAusculta = [];
-            if (ritmo) cardioAusculta.push(`ritmo cardíaco ${ritmo}`);
-            if (bulhas || tempos) cardioAusculta.push(`bulhas ${bulhas || ''} ${tempos || ''}`.trim());
+            if (processSelect('cardio-ritmo')) cardioAusculta.push(`ritmo cardíaco ${processSelect('cardio-ritmo')}`);
+            if (processSelect('cardio-bulhas') || processSelect('cardio-bulhas-tempos')) cardioAusculta.push(`bulhas ${processSelect('cardio-bulhas') || ''} ${processSelect('cardio-bulhas-tempos') || ''}`.trim());
             if (cardioAusculta.length > 0) cardioParts.push(joinWithCommasAndAnd(cardioAusculta));
             const soproValue = getSelectValue('cardio-sopros');
             if (soproValue === 'ausentes') cardioParts.push('sem sopros audíveis');
-            else if (soproValue) {
-                const soproDetails = getInputValue('cardio-sopros-detalhes');
-                cardioParts.push(`presença de ${processSelect('cardio-sopros')}${soproDetails ? ` (${soproDetails})` : ''}`);
-            }
-            const tj = processSelect('cardio-tj');
-            if (tj) cardioParts.push(`turgência jugular ${tj}`);
-            const ictus = processSelect('cardio-ictus');
-            if (ictus) cardioParts.push(`ictus ${ictus}`);
+            else if (soproValue) cardioParts.push(`presença de ${processSelect('cardio-sopros')}${getInputValue('cardio-sopros-detalhes') ? ` (${getInputValue('cardio-sopros-detalhes')})` : ''}`);
+            if (processSelect('cardio-tj')) cardioParts.push(`turgência jugular ${processSelect('cardio-tj')}`);
+            if (processSelect('cardio-ictus')) cardioParts.push(`ictus ${processSelect('cardio-ictus')}`);
             if (cardioParts.length > 0) efSentences.push(buildSentence(['Aparelho cardiovascular:', joinWithCommasAndAnd(cardioParts)]));
-            const cardioObs = getInputValue('ef-cardio-obs');
-            if (cardioObs) efSentences.push(buildSentence([cardioObs]));
+            if (getInputValue('ef-cardio-obs')) efSentences.push(buildSentence([getInputValue('ef-cardio-obs')]));
 
             let respParts = [];
-            const respPadrao = processSelect('resp-padrao');
-            if (respPadrao) respParts.push(`padrão respiratório ${respPadrao}`);
-            const auscultaResp = processSelect('ausculta-resp');
+            if (processSelect('resp-padrao')) respParts.push(`padrão respiratório ${processSelect('resp-padrao')}`);
             let auscultaCompleta = [];
-            if (auscultaResp) auscultaCompleta.push(auscultaResp);
+            if (processSelect('ausculta-resp')) auscultaCompleta.push(processSelect('ausculta-resp'));
             const raValue = getSelectValue('ra-resp');
             if (raValue === 'ausentes') auscultaCompleta.push('sem ruídos adventícios');
-            else if (raValue) {
-                const raDetails = getInputValue('ra-resp-detalhes');
-                auscultaCompleta.push(`com ${processSelect('ra-resp')}${raDetails ? ` em ${raDetails}` : ''}`);
-            }
+            else if (raValue) auscultaCompleta.push(`com ${processSelect('ra-resp')}${getInputValue('ra-resp-detalhes') ? ` em ${getInputValue('ra-resp-detalhes')}` : ''}`);
             if (auscultaCompleta.length > 0) respParts.push(joinWithCommasAndAnd(auscultaCompleta));
-            const dispneia = processSelect('ef-resp-dispneia');
-            if (dispneia) respParts.push(`dispneia ${dispneia}`);
+            if (processSelect('ef-resp-dispneia')) respParts.push(`dispneia ${processSelect('ef-resp-dispneia')}`);
             const tosseGeral = getSelectValue('ef-resp-tosse-geral');
             if (tosseGeral === 'Não') respParts.push('sem tosse');
-            else if (tosseGeral === 'Sim') {
-                respParts.push(`presença de tosse ${processSelect('ef-resp-tosse')}${getInputValue('ef-resp-tosse-outro') ? ` (${getInputValue('ef-resp-tosse-outro')})` : ''}`);
-            }
+            else if (tosseGeral === 'Sim') respParts.push(`presença de tosse ${processSelect('ef-resp-tosse')}${getInputValue('ef-resp-tosse-outro') ? ` (${getInputValue('ef-resp-tosse-outro')})` : ''}`);
             if (respParts.length > 0) efSentences.push(buildSentence(['Aparelho respiratório:', joinWithCommasAndAnd(respParts)]));
-            const respObs = getInputValue('ef-resp-obs');
-            if (respObs) efSentences.push(buildSentence([respObs]));
+            if (getInputValue('ef-resp-obs')) efSentences.push(buildSentence([getInputValue('ef-resp-obs')]));
 
             let abdParts = [processSelect('ef-abd-forma'), processSelect('ef-abd-consistencia'), processSelect('ef-abd-dor')].filter(Boolean);
             const viscero = processSelect('ef-abd-viscero');
             if (viscero === 'ausentes') abdParts.push('sem visceromegalias palpáveis');
             else if (viscero) abdParts.push(`com ${viscero}`);
-            const rha = processSelect('ef-abd-sons');
-            if (rha) abdParts.push(`ruídos hidroaéreos ${rha}`);
+            if (processSelect('ef-abd-sons')) abdParts.push(`ruídos hidroaéreos ${processSelect('ef-abd-sons')}`);
             if (abdParts.length > 0) efSentences.push(buildSentence(['Abdome:', joinWithCommasAndAnd(abdParts)]));
-            const abdObs = getInputValue('ef-abd-obs');
-            if (abdObs) efSentences.push(buildSentence([abdObs]));
+            if (getInputValue('ef-abd-obs')) efSentences.push(buildSentence([getInputValue('ef-abd-obs')]));
 
             let peleParts = [];
-            const peleTemp = processSelect('pele-temp');
-            const pelePulsos = processSelect('pele-pulsos');
-            if (peleTemp && pelePulsos) peleParts.push(`extremidades ${peleTemp}, com pulsos ${pelePulsos}`);
-            const peleTec = processSelect('pele-tec');
-            if (peleTec) peleParts.push(`perfusão capilar ${peleTec}`);
-            const peleTurgor = processSelect('pele-turgor');
-            if (peleTurgor) peleParts.push(`turgor ${peleTurgor}`);
+            if (processSelect('pele-temp') && processSelect('pele-pulsos')) peleParts.push(`extremidades ${processSelect('pele-temp')}, com pulsos ${processSelect('pele-pulsos')}`);
+            if (processSelect('pele-tec')) peleParts.push(`perfusão capilar ${processSelect('pele-tec')}`);
+            if (processSelect('pele-turgor')) peleParts.push(`turgor ${processSelect('pele-turgor')}`);
             const peleEdema = getSelectValue('pele-edema');
             if (peleEdema === 'Ausente') peleParts.push('ausência de edema');
             else if (peleEdema === 'Presente') peleParts.push(`presença de edema (${getInputValue('pele-edema-detalhes') || 'não especificado'})`);
@@ -1799,56 +1741,22 @@
                 peleParts.push(`pele ${processSelect('pele-integridade')}`);
             }
             if (peleParts.length > 0) efSentences.push(buildSentence(['Pele e extremidades:', joinWithCommasAndAnd(peleParts)]));
-            const peleObs = getInputValue('pele-obs');
-            if (peleObs) efSentences.push(buildSentence([peleObs]));
-
-            const outroSistemaNome = getInputValue('ef-outro-sistema-nome');
-            const outroSistemaDesc = getInputValue('ef-outro-sistema-descricao');
-            if (outroSistemaNome && outroSistemaDesc) efSentences.push(buildSentence([`${outroSistemaNome}:`, outroSistemaDesc]));
-
+            if (getInputValue('pele-obs')) efSentences.push(buildSentence([getInputValue('pele-obs')]));
+            if (getInputValue('ef-outro-sistema-nome') && getInputValue('ef-outro-sistema-descricao')) efSentences.push(buildSentence([`${getInputValue('ef-outro-sistema-nome')}:`, getInputValue('ef-outro-sistema-descricao')]));
+            
             addSection('Exame Físico', buildParagraph(efSentences));
 
             const createDiscursiveSection = (title, items) => {
                 const content = items.map(item => item.value ? buildSentence([item.label, item.value]) : null).filter(Boolean).join(' ');
                 addSection(title, content);
             };
-            createDiscursiveSection('Intercorrências e Condutas', [{
-                label: 'Intercorrências clínicas:',
-                value: getInputValue('intercorrencias')
-            }, {
-                label: 'Ajustes terapêuticos:',
-                value: getInputValue('ajustes')
-            }]);
-            createDiscursiveSection('Exames e Resultados', [{
-                label: 'Exames laboratoriais:',
-                value: getInputValue('exames-lab')
-            }, {
-                label: 'Exames de imagem:',
-                value: getInputValue('exames-imagem')
-            }, {
-                label: 'Outros exames:',
-                value: getInputValue('exames-outros')
-            }]);
-            createDiscursiveSection('Conduta e Planejamento', [{
-                label: 'Conduta:',
-                value: getInputValue('conduta')
-            }, {
-                label: 'Planejamento:',
-                value: getInputValue('planejamento')
-            }, {
-                label: 'Profilaxias:',
-                value: getInputValue('profilaxias')
-            }]);
+            createDiscursiveSection('Intercorrências e Condutas', [{ label: 'Intercorrências clínicas:', value: getInputValue('intercorrencias') }, { label: 'Ajustes terapêuticos:', value: getInputValue('ajustes') }]);
+            createDiscursiveSection('Exames e Resultados', [{ label: 'Exames laboratoriais:', value: getInputValue('exames-lab') }, { label: 'Exames de imagem:', value: getInputValue('exames-imagem') }, { label: 'Outros exames:', value: getInputValue('exames-outros') }]);
+            createDiscursiveSection('Conduta e Planejamento', [{ label: 'Conduta:', value: getInputValue('conduta') }, { label: 'Planejamento:', value: getInputValue('planejamento') }, { label: 'Profilaxias:', value: getInputValue('profilaxias') }]);
 
             const outputElement = document.getElementById('summary-output');
             outputElement.innerText = finalResumo.trim() ? resumoHeader + finalResumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
         }
-    </script>
-
-    <!-- SCRIPTS DE IMPRESSÃO -->
-    <script>
-        document.getElementById('print-btn').addEventListener('click', gerarImpressaoAutomatica);
-        document.getElementById('download-blank-btn').addEventListener('click', gerarFormularioEmBranco);
 
         function gerarImpressaoAutomatica() {
             const reportData = coletarDadosImpressao();
@@ -1858,87 +1766,66 @@
 
         function gerarFormularioEmBranco() {
             const blankFormHtml = construirHtmlFormularioBranco();
+            console.log("HTML do Formulário em Branco Gerado:", blankFormHtml); // Log para depuração
             abrirJanelaDeImpressao(blankFormHtml);
         }
 
         function coletarDadosImpressao() {
             const sections = [];
             document.querySelectorAll('[data-print-section]').forEach(sectionEl => {
-                const sectionData = {
-                    title: sectionEl.getAttribute('data-print-section'),
-                    subsections: []
-                };
-
+                const sectionData = { title: sectionEl.getAttribute('data-print-section'), subsections: [] };
                 const subsections = sectionEl.querySelectorAll('[data-print-subsection]');
                 if (subsections.length > 0) {
                     subsections.forEach(subEl => {
-                        const subData = {
-                            title: subEl.getAttribute('data-print-subsection'),
-                            fields: []
-                        };
-                        subEl.querySelectorAll('.printable').forEach(fieldEl => {
-                            processField(fieldEl, subData.fields);
-                        });
-                        if (subData.fields.length > 0) {
-                            sectionData.subsections.push(subData);
-                        }
+                        const subData = { title: subEl.getAttribute('data-print-subsection'), fields: [] };
+                        subEl.querySelectorAll('.printable').forEach(fieldEl => processField(fieldEl, subData.fields));
+                        if (subData.fields.length > 0) sectionData.subsections.push(subData);
                     });
                 } else {
                     const defaultSubData = { title: '', fields: [] };
-                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => {
-                        processField(fieldEl, defaultSubData.fields);
-                    });
-                    if (defaultSubData.fields.length > 0) {
-                        sectionData.subsections.push(defaultSubData);
-                    }
+                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => processField(fieldEl, defaultSubData.fields));
+                    if (defaultSubData.fields.length > 0) sectionData.subsections.push(defaultSubData);
                 }
-
-                if (sectionData.subsections.length > 0) {
-                    sections.push(sectionData);
-                }
+                if (sectionData.subsections.length > 0) sections.push(sectionData);
             });
             
             const headerData = {
                 nome: document.getElementById('paciente_nome').value,
                 prontuario: document.getElementById('paciente_prontuario').value,
+                setor: document.getElementById('setor').value,
+                leito: document.getElementById('leito').value,
                 data: new Date().toLocaleDateString('pt-BR'),
                 hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
             };
             
-            const summaryText = document.getElementById('summary-output').innerText;
-
-            return { header: headerData, sections, summary: summaryText };
+            return { header: headerData, sections, summary: document.getElementById('summary-output').innerText };
         }
 
         function processField(fieldEl, fieldsArray) {
+            // Verifica se o elemento está visível no DOM antes de processar para impressão preenchida
+            if (fieldEl.offsetParent === null) return; 
             let value = '';
             const label = fieldEl.getAttribute('data-print-label');
             const type = fieldEl.getAttribute('data-print-type');
 
-            if (fieldEl.offsetParent === null) return;
+            if (['Nome do Paciente', 'Prontuário', 'Setor', 'Leito'].includes(label)) return;
 
             if (type === 'checkbox-group') {
                 const checkedItems = [];
                 fieldEl.querySelectorAll('input[type="checkbox"]:checked').forEach(item => {
                     const labelWrapper = item.closest('label');
-                    if (labelWrapper) {
-                        checkedItems.push(labelWrapper.innerText.trim());
-                    }
+                    if (labelWrapper) checkedItems.push(labelWrapper.innerText.trim());
                 });
                 value = checkedItems.join(', ');
-            } else if (fieldEl.tagName === 'INPUT') {
-                value = fieldEl.value;
             } else if (fieldEl.tagName === 'SELECT') {
                 if (fieldEl.value && fieldEl.selectedIndex > -1) {
                     value = fieldEl.options[fieldEl.selectedIndex].text;
                     if (fieldEl.value === 'outro') {
                         const outroInput = document.getElementById(`${fieldEl.id}-outro`);
-                        if (outroInput && outroInput.value) {
-                            value = `Outro: ${outroInput.value}`;
-                        }
+                        if (outroInput && outroInput.value) value = `Outro: ${outroInput.value}`;
                     }
                 }
-            } else if (fieldEl.tagName === 'TEXTAREA') {
+            } else if (fieldEl.tagName === 'INPUT' || fieldEl.tagName === 'TEXTAREA') {
                 value = fieldEl.value;
             }
 
@@ -1953,68 +1840,21 @@
                 let sectionContent = '';
                 section.subsections.forEach(sub => {
                     if (sub.fields.length > 0) {
-                        if(sub.title) {
-                           sectionContent += `<h3>${sub.title}</h3>`;
-                        }
+                        if (sub.title) sectionContent += `<h3>${sub.title}</h3>`;
                         sub.fields.forEach(field => {
-                            const formattedValue = field.value.replace(/\n/g, '<br>');
-                            sectionContent += `<div class="field"><span class="label">${field.label}:</span> <span class="value">${formattedValue}</span></div>`;
+                            sectionContent += `<div class="field"><span class="label">${field.label}:</span> <span class="value">${field.value.replace(/\n/g, '<br>')}</span></div>`;
                         });
                     }
                 });
-
-                if (sectionContent) {
-                    bodyContent += `<h2>${section.title}</h2><div class="section-content">${sectionContent}</div>`;
-                }
+                if (sectionContent) bodyContent += `<h2>${section.title}</h2><div class="section-content">${sectionContent}</div>`;
             });
 
             const placeholder = 'Comece a preencher os campos para gerar o resumo.';
             if (data.summary && data.summary.trim() !== placeholder) {
-                bodyContent += `<h2>Resumo da Evolução</h2>`;
-                bodyContent += `<div class="summary-content">${data.summary.replace(/\n/g, '<br>')}</div>`;
+                bodyContent += `<h2>Resumo da Evolução</h2><div class="summary-content">${data.summary.replace(/\n/g, '<br>')}</div>`;
             }
 
-            return `
-                <!DOCTYPE html>
-                <html lang="pt-BR">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Relatório de Evolução Médica</title>
-                    <style>
-                        body { 
-                            font-family: Arial, sans-serif; 
-                            font-size: 11px; 
-                            line-height: 1.5; 
-                            color: #333; 
-                            margin: 20mm; 
-                            -webkit-print-color-adjust: exact;
-                            color-adjust: exact;
-                        }
-                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
-                        .header h1 { margin: 0; font-size: 20px; }
-                        .patient-info { display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px; font-size: 12px; padding: 10px; background-color: #f9f9f9; border-radius: 4px; }
-                        .patient-info span { min-width: 200px; margin-bottom: 5px; }
-                        h2 { font-size: 14px; font-weight: bold; color: #fff; background-color: #334155; padding: 6px 10px; margin: 24px 0 10px 0; border-radius: 3px; page-break-before: auto; page-break-after: avoid; }
-                        h3 { font-size: 12px; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin: 15px 0 8px 0; page-break-after: avoid; }
-                        .section-content { page-break-inside: avoid; }
-                        .field { display: flex; margin-bottom: 6px; page-break-inside: avoid; }
-                        .label { font-weight: bold; min-width: 180px; flex-shrink: 0; }
-                        .value { }
-                        .summary-content { padding: 10px; background-color: #f9f9f9; border-radius: 4px; white-space: pre-wrap; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header"><h1>Relatório de Evolução Médica</h1></div>
-                    <div class="patient-info">
-                        <span><strong>Paciente:</strong> ${data.header.nome || 'Não informado'}</span>
-                        <span><strong>Prontuário:</strong> ${data.header.prontuario || 'Não informado'}</span>
-                        <span><strong>Data:</strong> ${data.header.data}</span>
-                        <span><strong>Hora:</strong> ${data.header.hora}</span>
-                    </div>
-                    ${bodyContent}
-                </body>
-                </html>
-            `;
+            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Relatório de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.5;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;padding:10px;background-color:#f9f9f9;border-radius:4px}.patient-info span{min-width:200px;margin-bottom:5px}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;margin-bottom:6px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0}.value{}.summary-content{padding:10px;background-color:#f9f9f9;border-radius:4px;white-space:pre-wrap}</style></head><body><div class="header"><h1>Relatório de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> ${data.header.nome||'Não informado'}</span><span><strong>Prontuário:</strong> ${data.header.prontuario||'Não informado'}</span><span><strong>Setor:</strong> ${data.header.setor||'Não informado'}</span><span><strong>Leito:</strong> ${data.header.leito||'Não informado'}</span><span><strong>Data:</strong> ${data.header.data}</span><span><strong>Hora:</strong> ${data.header.hora}</span></div>${bodyContent}</body></html>`;
         }
 
         function construirHtmlFormularioBranco() {
@@ -2022,76 +1862,31 @@
             document.querySelectorAll('[data-print-section]').forEach(sectionEl => {
                 let sectionContent = '';
                 const title = sectionEl.getAttribute('data-print-section');
-
                 const subsections = sectionEl.querySelectorAll('[data-print-subsection]');
                 if (subsections.length > 0) {
                     subsections.forEach(subEl => {
                         const subTitle = subEl.getAttribute('data-print-subsection');
                         let subContent = '';
-                        subEl.querySelectorAll('.printable').forEach(fieldEl => {
-                            subContent += processBlankField(fieldEl);
-                        });
-                        if (subContent) {
-                            sectionContent += `<h3>${subTitle}</h3>${subContent}`;
-                        }
+                        subEl.querySelectorAll('.printable').forEach(fieldEl => { subContent += processBlankField(fieldEl); });
+                        if (subContent) sectionContent += `<h3>${subTitle}</h3>${subContent}`;
                     });
                 } else {
-                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => {
-                        sectionContent += processBlankField(fieldEl);
-                    });
+                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => { sectionContent += processBlankField(fieldEl); });
                 }
-                
-                if (sectionContent) {
-                    bodyContent += `<h2>${title}</h2><div class="section-content">${sectionContent}</div>`;
-                }
+                if (sectionContent) bodyContent += `<h2>${title}</h2><div class="section-content">${sectionContent}</div>`;
             });
 
-            return `
-                <!DOCTYPE html>
-                <html lang="pt-BR">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Formulário de Evolução Médica</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; font-size: 11px; line-height: 1.6; color: #333; margin: 20mm; -webkit-print-color-adjust: exact; color-adjust: exact; }
-                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
-                        .header h1 { margin: 0; font-size: 20px; }
-                        .patient-info { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 12px; }
-                        h2 { font-size: 14px; font-weight: bold; color: #fff; background-color: #334155; padding: 6px 10px; margin: 24px 0 10px 0; border-radius: 3px; page-break-before: auto; page-break-after: avoid; }
-                        h3 { font-size: 12px; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin: 15px 0 8px 0; page-break-after: avoid; }
-                        .section-content { page-break-inside: avoid; }
-                        .field { display: flex; align-items: baseline; margin-bottom: 12px; page-break-inside: avoid; }
-                        .label { font-weight: bold; min-width: 180px; flex-shrink: 0; padding-right: 10px; }
-                        .line { flex-grow: 1; border-bottom: 1px dotted #888; height: 16px; }
-                        .field-group { margin-bottom: 12px; page-break-inside: avoid; }
-                        .checkbox-options { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 5px; }
-                        .checkbox-item { font-size: 11px; }
-                        .textarea-box { height: 60px; border: 1px dotted #888; border-radius: 3px; margin-top: 5px; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header"><h1>Formulário de Evolução Médica</h1></div>
-                    <div class="patient-info">
-                        <span><strong>Paciente:</strong> _________________________________________</span>
-                        <span><strong>Prontuário:</strong> _________________</span>
-                    </div>
-                    ${bodyContent}
-                </body>
-                </html>
-            `;
+            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Formulário de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;row-gap:8px}.patient-info span{flex-basis:48%}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;align-items:baseline;margin-bottom:12px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0;padding-right:10px}.line{flex-grow:1;border-bottom:1px dotted #888;height:16px}.field-group{margin-bottom:12px;page-break-inside:avoid}.checkbox-options{display:flex;flex-wrap:wrap;gap:15px;margin-top:5px}.checkbox-item{font-size:11px}.textarea-box{height:60px;border:1px dotted #888;border-radius:3px;margin-top:5px}</style></head><body><div class="header"><h1>Formulário de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> _________________</span><span><strong>Prontuário:</strong> __________</span><span><strong>Setor:</strong> _________________</span><span><strong>Leito:</strong> __________</span></div>${bodyContent}</body></html>`;
         }
 
         function processBlankField(fieldEl) {
             const labelText = fieldEl.getAttribute('data-print-label');
-            if (!labelText) return '';
-
+            if (!labelText || ['Nome do Paciente', 'Prontuário', 'Setor', 'Leito'].includes(labelText)) return '';
             let html = '';
             if (fieldEl.tagName === 'SELECT') {
                 html += `<div class="field-group"><div class="label">${labelText}:</div><div class="checkbox-options">`;
                 fieldEl.querySelectorAll('option').forEach(opt => {
-                    if (opt.value) {
-                        html += `<span class="checkbox-item">&#9744; ${opt.text}</span>`;
-                    }
+                    if (opt.value) html += `<span class="checkbox-item">&#9744; ${opt.text}</span>`;
                 });
                 html += `</div></div>`;
             } else if (fieldEl.getAttribute('data-print-type') === 'checkbox-group') {
@@ -2103,41 +1898,68 @@
             } else if (fieldEl.tagName === 'TEXTAREA') {
                 html += `<div class="field-group"><div class="label">${labelText}:</div><div class="textarea-box"></div></div>`;
             } else {
-                html += `<div class="field"><span class="label">${labelText}:</span> <span class="line"></span></div>`;
+                html += `<div class="field"><span class="label">${labelText}:</span><span class="line"></span></div>`;
             }
             return html;
         }
 
         function abrirJanelaDeImpressao(html) {
+            console.log("Tentando abrir janela de impressão.");
             const oldFrame = document.getElementById('printFrame');
             if (oldFrame) {
                 oldFrame.remove();
+                console.log("printFrame antigo removido.");
             }
 
             const printFrame = document.createElement('iframe');
             printFrame.id = 'printFrame';
-            printFrame.style.position = 'absolute';
-            printFrame.style.width = '0';
-            printFrame.style.height = '0';
-            printFrame.style.border = '0';
-            
+            // Torna o iframe invisível, mas presente no DOM
+            printFrame.style.cssText = 'position:absolute;width:1px;height:1px;border:0;left:-9999px;top:-9999px;';
             document.body.appendChild(printFrame);
+            console.log("Novo printFrame criado.");
 
             const frameDoc = printFrame.contentWindow.document;
             frameDoc.open();
             frameDoc.write(html);
             frameDoc.close();
+            console.log("HTML escrito no printFrame.");
 
-            printFrame.onload = function() {
+            let printAttempted = false;
+
+            const triggerPrint = () => {
+                if (printAttempted) return; // Evita múltiplas chamadas de print()
+                printAttempted = true;
                 try {
                     printFrame.contentWindow.focus();
                     printFrame.contentWindow.print();
+                    console.log("Função print() chamada com sucesso.");
                 } catch (e) {
                     console.error("Erro ao imprimir:", e);
+                } finally {
+                    // Opcional: remover o iframe após a tentativa de impressão
+                    // setTimeout(() => {
+                    //     if (printFrame && printFrame.parentNode) {
+                    //         printFrame.parentNode.removeChild(printFrame);
+                    //         console.log("printFrame removido após impressão.");
+                    //     }
+                    // }, 1000); 
                 }
             };
+
+            // Tenta imprimir quando o iframe carrega (abordagem padrão)
+            printFrame.onload = function() {
+                console.log("printFrame carregado via evento onload.");
+                triggerPrint();
+            };
+
+            // Fallback: Tenta imprimir após um pequeno atraso, caso o onload não dispare ou seja lento
+            setTimeout(() => {
+                console.log("Tentando imprimir via fallback setTimeout.");
+                triggerPrint();
+            }, 500); // Atraso de 500ms
         }
     </script>
 
 </body>
+
 </html>
