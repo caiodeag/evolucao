@@ -180,6 +180,13 @@
         .md-button-secondary:hover {
             background-color: #5a6268;
         }
+        
+        .md-button-tertiary {
+            background-color: #4a5568;
+        }
+        .md-button-tertiary:hover {
+            background-color: #2d3748;
+        }
 
         .md-button:active {
             transform: scale(0.98);
@@ -1336,7 +1343,7 @@
             <div class="generated-summary text-secondary" id="summary-output" style="white-space: pre-wrap;">
                 Comece a preencher os campos para gerar o resumo.
             </div>
-            <div class="mt-6 flex flex-col md:flex-row gap-4">
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
                     <i class="fas fa-copy mr-2"></i>
                     Copiar Resumo
@@ -1344,6 +1351,10 @@
                 <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
                     <i class="fas fa-print mr-2"></i>
                     Gerar Impressão
+                </button>
+                <button id="download-blank-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-file-pdf mr-2"></i>
+                    Baixar Formulário em Branco
                 </button>
             </div>
         </section>
@@ -1834,14 +1845,20 @@
         }
     </script>
 
-    <!-- SCRIPT DE IMPRESSÃO AUTOMÁTICA -->
+    <!-- SCRIPTS DE IMPRESSÃO -->
     <script>
         document.getElementById('print-btn').addEventListener('click', gerarImpressaoAutomatica);
+        document.getElementById('download-blank-btn').addEventListener('click', gerarFormularioEmBranco);
 
         function gerarImpressaoAutomatica() {
             const reportData = coletarDadosImpressao();
             const reportHtml = construirHtmlImpressao(reportData);
             abrirJanelaDeImpressao(reportHtml);
+        }
+
+        function gerarFormularioEmBranco() {
+            const blankFormHtml = construirHtmlFormularioBranco();
+            abrirJanelaDeImpressao(blankFormHtml);
         }
 
         function coletarDadosImpressao() {
@@ -2000,14 +2017,103 @@
             `;
         }
 
+        function construirHtmlFormularioBranco() {
+            let bodyContent = '';
+            document.querySelectorAll('[data-print-section]').forEach(sectionEl => {
+                let sectionContent = '';
+                const title = sectionEl.getAttribute('data-print-section');
+
+                const subsections = sectionEl.querySelectorAll('[data-print-subsection]');
+                if (subsections.length > 0) {
+                    subsections.forEach(subEl => {
+                        const subTitle = subEl.getAttribute('data-print-subsection');
+                        let subContent = '';
+                        subEl.querySelectorAll('.printable').forEach(fieldEl => {
+                            subContent += processBlankField(fieldEl);
+                        });
+                        if (subContent) {
+                            sectionContent += `<h3>${subTitle}</h3>${subContent}`;
+                        }
+                    });
+                } else {
+                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => {
+                        sectionContent += processBlankField(fieldEl);
+                    });
+                }
+                
+                if (sectionContent) {
+                    bodyContent += `<h2>${title}</h2><div class="section-content">${sectionContent}</div>`;
+                }
+            });
+
+            return `
+                <!DOCTYPE html>
+                <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Formulário de Evolução Médica</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; font-size: 11px; line-height: 1.6; color: #333; margin: 20mm; -webkit-print-color-adjust: exact; color-adjust: exact; }
+                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
+                        .header h1 { margin: 0; font-size: 20px; }
+                        .patient-info { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 12px; }
+                        h2 { font-size: 14px; font-weight: bold; color: #fff; background-color: #334155; padding: 6px 10px; margin: 24px 0 10px 0; border-radius: 3px; page-break-before: auto; page-break-after: avoid; }
+                        h3 { font-size: 12px; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin: 15px 0 8px 0; page-break-after: avoid; }
+                        .section-content { page-break-inside: avoid; }
+                        .field { display: flex; align-items: baseline; margin-bottom: 12px; page-break-inside: avoid; }
+                        .label { font-weight: bold; min-width: 180px; flex-shrink: 0; padding-right: 10px; }
+                        .line { flex-grow: 1; border-bottom: 1px dotted #888; height: 16px; }
+                        .field-group { margin-bottom: 12px; page-break-inside: avoid; }
+                        .checkbox-options { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 5px; }
+                        .checkbox-item { font-size: 11px; }
+                        .textarea-box { height: 60px; border: 1px dotted #888; border-radius: 3px; margin-top: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header"><h1>Formulário de Evolução Médica</h1></div>
+                    <div class="patient-info">
+                        <span><strong>Paciente:</strong> _________________________________________</span>
+                        <span><strong>Prontuário:</strong> _________________</span>
+                    </div>
+                    ${bodyContent}
+                </body>
+                </html>
+            `;
+        }
+
+        function processBlankField(fieldEl) {
+            const labelText = fieldEl.getAttribute('data-print-label');
+            if (!labelText) return '';
+
+            let html = '';
+            if (fieldEl.tagName === 'SELECT') {
+                html += `<div class="field-group"><div class="label">${labelText}:</div><div class="checkbox-options">`;
+                fieldEl.querySelectorAll('option').forEach(opt => {
+                    if (opt.value) {
+                        html += `<span class="checkbox-item">&#9744; ${opt.text}</span>`;
+                    }
+                });
+                html += `</div></div>`;
+            } else if (fieldEl.getAttribute('data-print-type') === 'checkbox-group') {
+                html += `<div class="field-group"><div class="label">${labelText}:</div><div class="checkbox-options">`;
+                fieldEl.querySelectorAll('label span.ml-1').forEach(checkLabel => {
+                    html += `<span class="checkbox-item">&#9744; ${checkLabel.innerText.trim()}</span>`;
+                });
+                html += `</div></div>`;
+            } else if (fieldEl.tagName === 'TEXTAREA') {
+                html += `<div class="field-group"><div class="label">${labelText}:</div><div class="textarea-box"></div></div>`;
+            } else {
+                html += `<div class="field"><span class="label">${labelText}:</span> <span class="line"></span></div>`;
+            }
+            return html;
+        }
+
         function abrirJanelaDeImpressao(html) {
-            // Remove o iframe antigo se existir, para garantir uma impressão limpa
             const oldFrame = document.getElementById('printFrame');
             if (oldFrame) {
                 oldFrame.remove();
             }
 
-            // Cria um novo iframe invisível
             const printFrame = document.createElement('iframe');
             printFrame.id = 'printFrame';
             printFrame.style.position = 'absolute';
@@ -2022,10 +2128,13 @@
             frameDoc.write(html);
             frameDoc.close();
 
-            // Espera o iframe carregar completamente o conteúdo antes de imprimir
             printFrame.onload = function() {
-                printFrame.contentWindow.focus();
-                printFrame.contentWindow.print();
+                try {
+                    printFrame.contentWindow.focus();
+                    printFrame.contentWindow.print();
+                } catch (e) {
+                    console.error("Erro ao imprimir:", e);
+                }
             };
         }
     </script>
