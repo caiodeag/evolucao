@@ -173,6 +173,13 @@
                 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
                 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
         }
+        
+        .md-button-secondary {
+            background-color: #6c757d;
+        }
+        .md-button-secondary:hover {
+            background-color: #5a6268;
+        }
 
         .md-button:active {
             transform: scale(0.98);
@@ -226,56 +233,64 @@
         <main id="evolution-form" class="md-card p-4 md:p-8 space-y-4">
             <div id="accordion-container" class="space-y-4">
 
-                <div class="md-card">
-                    <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
+                <div class="md-card" data-print-section="Situação Geral e Anamnese">
+                    <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="true">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-user-md text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">1. Situação Geral e Anamnese</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Situação Geral e Anamnese</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
-                    <div class="accordion-content p-4 md:p-6 border-t hidden">
+                    <div class="accordion-content p-4 md:p-6 border-t">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="font-medium text-secondary">Nome do Paciente:</label>
+                                <input type="text" id="paciente_nome" placeholder="Nome completo do paciente" class="form-input w-full mt-1 printable" data-print-label="Nome do Paciente">
+                            </div>
+                            <div>
+                                <label class="font-medium text-secondary">Prontuário:</label>
+                                <input type="text" id="paciente_prontuario" placeholder="Número do prontuário" class="form-input w-full mt-1 printable" data-print-label="Prontuário">
+                            </div>
                             <div>
                                 <label class="font-medium text-secondary">Setor:</label>
-                                <input type="text" id="setor" placeholder="Ex: CTI, Enfermaria" class="form-input w-full mt-1">
+                                <input type="text" id="setor" placeholder="Ex: CTI, Enfermaria" class="form-input w-full mt-1 printable" data-print-label="Setor">
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Leito:</label>
-                                <input type="text" id="leito" placeholder="Ex: CTI 3" class="form-input w-full mt-1">
+                                <input type="text" id="leito" placeholder="Ex: CTI 3" class="form-input w-full mt-1 printable" data-print-label="Leito">
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Evolução Clínica:</label>
-                                <select id="evolucao-clinica" class="form-select w-full mt-1">
+                                <select id="evolucao-clinica" class="form-select w-full mt-1 printable" data-print-label="Evolução Clínica">
                                     <option value="">-- Selecione --</option>
-                                    <option value="estável">estável</option>
-                                    <option value="mantendo o quadro">mantendo o quadro</option>
-                                    <option value="com melhora clínica">com melhora clínica</option>
-                                    <option value="com piora clínica">com piora clínica</option>
-                                    <option value="instável">instável</option>
+                                    <option value="estável">Estável</option>
+                                    <option value="mantendo o quadro">Mantendo o quadro</option>
+                                    <option value="com melhora clínica">Com melhora clínica</option>
+                                    <option value="com piora clínica">Com piora clínica</option>
+                                    <option value="instável">Instável</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Evolução Hemodinâmica:</label>
-                                <select id="evolucao-hemo" class="form-select w-full mt-1">
+                                <select id="evolucao-hemo" class="form-select w-full mt-1 printable" data-print-label="Evolução Hemodinâmica">
                                     <option value="">-- Selecione --</option>
-                                    <option value="estável">estável</option>
-                                    <option value="instável">instável</option>
+                                    <option value="estável">Estável</option>
+                                    <option value="instável">Instável</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Estado Geral:</label>
-                                <select id="estado-geral" class="form-select w-full mt-1">
+                                <select id="estado-geral" class="form-select w-full mt-1 printable" data-print-label="Estado Geral">
                                     <option value="">-- Selecione --</option>
-                                    <option value="bom">bom</option>
-                                    <option value="regular">regular</option>
-                                    <option value="ruim">ruim</option>
-                                    <option value="grave">grave</option>
+                                    <option value="bom">Bom</option>
+                                    <option value="regular">Regular</option>
+                                    <option value="ruim">Ruim</option>
+                                    <option value="grave">Grave</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="font-medium text-secondary">Queixas nas 24h:</label>
-                                <select id="queixas" class="form-select w-full mt-1">
+                                <select id="queixas" class="form-select w-full mt-1 printable" data-print-label="Queixas nas 24h">
                                     <option value="">-- Selecione --</option>
                                     <option value="Sim">Sim</option>
                                     <option value="Não">Não</option>
@@ -283,12 +298,12 @@
                             </div>
                             <div id="queixas-obs-container" class="col-span-full hidden">
                                 <label class="font-medium text-secondary">Descrição das queixas:</label>
-                                <textarea id="queixas-obs" rows="1" class="form-textarea w-full mt-1" placeholder="Ex: Refere dor abdominal em cólica"></textarea>
+                                <textarea id="queixas-obs" rows="1" class="form-textarea w-full mt-1 printable" data-print-label="Descrição das Queixas" placeholder="Ex: Refere dor abdominal em cólica"></textarea>
                             </div>
                             <div class="col-span-full grid grid-cols-2 lg:grid-cols-4 gap-6">
                                 <div class="form-group-flex">
                                     <label class="font-medium text-secondary">Distermias:</label>
-                                    <select id="distermias" class="form-select flex-1">
+                                    <select id="distermias" class="form-select flex-1 printable" data-print-label="Distermias">
                                         <option value="">-- Sel --</option>
                                         <option value="Sim">Sim</option>
                                         <option value="Não">Não</option>
@@ -296,7 +311,7 @@
                                 </div>
                                 <div class="form-group-flex">
                                     <label class="font-medium text-secondary">Disglicemias:</label>
-                                    <select id="disglicemias" class="form-select flex-1">
+                                    <select id="disglicemias" class="form-select flex-1 printable" data-print-label="Disglicemias">
                                         <option value="">-- Sel --</option>
                                         <option value="Sim">Sim</option>
                                         <option value="Não">Não</option>
@@ -304,7 +319,7 @@
                                 </div>
                                 <div class="form-group-flex">
                                     <label class="font-medium text-secondary">Alt. de PA:</label>
-                                    <select id="alt-pa" class="form-select flex-1">
+                                    <select id="alt-pa" class="form-select flex-1 printable" data-print-label="Alterações de PA">
                                         <option value="">-- Sel --</option>
                                         <option value="Sim">Sim</option>
                                         <option value="Não">Não</option>
@@ -312,7 +327,7 @@
                                 </div>
                                 <div class="form-group-flex">
                                     <label class="font-medium text-secondary">Alterações Lab:</label>
-                                    <select id="alt-lab" class="form-select flex-1">
+                                    <select id="alt-lab" class="form-select flex-1 printable" data-print-label="Alterações Laboratoriais">
                                         <option value="">-- Sel --</option>
                                         <option value="Sim">Sim</option>
                                         <option value="Não">Não</option>
@@ -321,22 +336,22 @@
                             </div>
                             <div class="col-span-full mt-2">
                                 <label class="font-medium text-secondary">Observações gerais (Anamnese):</label>
-                                <textarea id="obs-gerais" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Paciente em oxigenoterapia por cateter nasal"></textarea>
+                                <textarea id="obs-gerais" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Observações Gerais (Anamnese)" placeholder="Ex: Paciente em oxigenoterapia por cateter nasal"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="md-card">
+                <div class="md-card" data-print-section="Parâmetros Vitais e Suporte">
                     <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-heart-pulse text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">2. Parâmetros Vitais e Suporte</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Parâmetros Vitais e Suporte</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content border-t hidden">
-                        <div>
+                        <div data-print-subsection="Parâmetros Atuais">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Parâmetros Atuais</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -345,37 +360,37 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">PA:</label>
-                                        <input type="text" id="pa" placeholder="mmHg" class="form-input w-full mt-1">
+                                        <input type="text" id="pa" placeholder="mmHg" class="form-input w-full mt-1 printable" data-print-label="PA">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">FC:</label>
-                                        <input type="text" id="fc" placeholder="bpm" class="form-input w-full mt-1">
+                                        <input type="text" id="fc" placeholder="bpm" class="form-input w-full mt-1 printable" data-print-label="FC">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">FR:</label>
-                                        <input type="text" id="fr" placeholder="irpm" class="form-input w-full mt-1">
+                                        <input type="text" id="fr" placeholder="irpm" class="form-input w-full mt-1 printable" data-print-label="FR">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Temp:</label>
-                                        <input type="text" id="temp" placeholder="°C" class="form-input w-full mt-1">
+                                        <input type="text" id="temp" placeholder="°C" class="form-input w-full mt-1 printable" data-print-label="Temperatura">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">SatO₂:</label>
-                                        <input type="text" id="sato2" placeholder="%" class="form-input w-full mt-1">
+                                        <input type="text" id="sato2" placeholder="%" class="form-input w-full mt-1 printable" data-print-label="SatO₂">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Dor (Escala 1-10):</label>
-                                        <input type="text" id="dor-escala" placeholder="0 a 10" class="form-input w-full mt-1">
+                                        <input type="text" id="dor-escala" placeholder="0 a 10" class="form-input w-full mt-1 printable" data-print-label="Dor (0-10)">
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label class="font-medium text-secondary">Outras observações (Parâmetros Atuais):</label>
-                                    <textarea id="parametros-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Mantendo boa saturação durante o banho no leito."></textarea>
+                                    <textarea id="parametros-obs" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Observações (Parâmetros)" placeholder="Ex: Mantendo boa saturação durante o banho no leito."></textarea>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Suporte e Balanço">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Suporte e Balanço</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -384,7 +399,7 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Ventilação:</label>
-                                        <select id="suporte-vent" class="form-select w-full mt-1">
+                                        <select id="suporte-vent" class="form-select w-full mt-1 printable" data-print-label="Suporte Ventilatório">
                                             <option value="">-- Selecione --</option>
                                             <option value="Ar Ambiente">Ar Ambiente</option>
                                             <option value="Cateter Nasal">Cateter Nasal</option>
@@ -403,36 +418,36 @@
                                         <h4 class="col-span-full text-lg font-semibold text-primary mb-2">Parâmetros de Ventilação Mecânica</h4>
                                         <div>
                                             <label class="font-medium text-secondary">Modo VM:</label>
-                                            <input type="text" id="vm-modo" placeholder="Ex: VCV, PCV, PSV" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-modo" placeholder="Ex: VCV, PCV, PSV" class="form-input w-full mt-1 printable" data-print-label="Modo VM">
                                         </div>
                                         <div>
                                             <label class="font-medium text-secondary">FiO₂:</label>
-                                            <input type="text" id="vm-fio2" placeholder="%" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-fio2" placeholder="%" class="form-input w-full mt-1 printable" data-print-label="FiO₂">
                                         </div>
                                         <div>
                                             <label class="font-medium text-secondary">PEEP:</label>
-                                            <input type="text" id="vm-peep" placeholder="cmH₂O" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-peep" placeholder="cmH₂O" class="form-input w-full mt-1 printable" data-print-label="PEEP">
                                         </div>
                                         <div>
                                             <label class="font-medium text-secondary">FR (Ventilador):</label>
-                                            <input type="text" id="vm-fr" placeholder="irpm" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-fr" placeholder="irpm" class="form-input w-full mt-1 printable" data-print-label="FR (VM)">
                                         </div>
                                         <div>
                                             <label class="font-medium text-secondary">Pressão de Pico (Pva):</label>
-                                            <input type="text" id="vm-pva" placeholder="cmH₂O" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-pva" placeholder="cmH₂O" class="form-input w-full mt-1 printable" data-print-label="Pva">
                                         </div>
                                         <div>
                                             <label class="font-medium text-secondary">Volume Corrente (VT):</label>
-                                            <input type="text" id="vm-tidal-vol" placeholder="mL" class="form-input w-full mt-1">
+                                            <input type="text" id="vm-tidal-vol" placeholder="mL" class="form-input w-full mt-1 printable" data-print-label="Volume Corrente (VT)">
                                         </div>
                                         <div class="col-span-full">
                                             <label class="font-medium text-secondary">Outros Parâmetros VM:</label>
-                                            <textarea id="vm-outros-params" rows="1" class="form-textarea w-full mt-1" placeholder="Ex: Plateau, I:E, Fluxo"></textarea>
+                                            <textarea id="vm-outros-params" rows="1" class="form-textarea w-full mt-1 printable" data-print-label="Outros Parâmetros VM" placeholder="Ex: Plateau, I:E, Fluxo"></textarea>
                                         </div>
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Uso de DVA:</label>
-                                        <select id="dva" class="form-select w-full mt-1">
+                                        <select id="dva" class="form-select w-full mt-1 printable" data-print-label="Uso de DVA">
                                             <option value="">-- Selecione --</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
@@ -440,11 +455,11 @@
                                     </div>
                                     <div id="dva-obs-container" class="col-span-full hidden">
                                         <label class="font-medium text-secondary">Detalhes DVA:</label>
-                                        <input type="text" id="dva-obs" placeholder="Ex: Noradrenalina 5 mcg/min" class="form-input w-full mt-1">
+                                        <input type="text" id="dva-obs" placeholder="Ex: Noradrenalina 5 mcg/min" class="form-input w-full mt-1 printable" data-print-label="Detalhes DVA">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Dieta (Via):</label>
-                                        <select id="dieta-tipo" class="form-select w-full mt-1">
+                                        <select id="dieta-tipo" class="form-select w-full mt-1 printable" data-print-label="Dieta (Via)">
                                             <option value="">-- Selecione --</option>
                                             <option value="Oral">Oral</option>
                                             <option value="Enteral">Enteral</option>
@@ -459,19 +474,19 @@
                                     </div>
                                     <div id="dieta-aceitacao-container">
                                         <label class="font-medium text-secondary">Aceitação da dieta:</label>
-                                        <select id="dieta-aceitacao" class="form-select w-full mt-1">
+                                        <select id="dieta-aceitacao" class="form-select w-full mt-1 printable" data-print-label="Aceitação da Dieta">
                                             <option value="">-- Selecione --</option>
-                                            <option value="boa">boa</option>
-                                            <option value="regular">regular</option>
-                                            <option value="ruim">ruim</option>
+                                            <option value="boa">Boa</option>
+                                            <option value="regular">Regular</option>
+                                            <option value="ruim">Ruim</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Diurese (Tipo):</label>
-                                        <select id="diurese-tipo" class="form-select w-full mt-1">
+                                        <select id="diurese-tipo" class="form-select w-full mt-1 printable" data-print-label="Diurese (Tipo)">
                                             <option value="">-- Selecione --</option>
-                                            <option value="espontânea">espontânea</option>
-                                            <option value="por Sonda Vesical de Demora">por Sonda Vesical de Demora</option>
+                                            <option value="espontânea">Espontânea</option>
+                                            <option value="por Sonda Vesical de Demora">Por Sonda Vesical de Demora</option>
                                             <option value="Anúria/Oligúria">Anúria/Oligúria</option>
                                             <option value="Ausente">Ausente</option>
                                             <option value="outro">Outro</option>
@@ -483,18 +498,18 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Diurese (Qtde):</label>
-                                        <input type="text" id="diurese" placeholder="mL/24h" class="form-input w-full mt-1">
+                                        <input type="text" id="diurese" placeholder="mL/24h" class="form-input w-full mt-1 printable" data-print-label="Diurese (mL/24h)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Evacuações (Tipo):</label>
-                                        <select id="evacuacoes-tipo" class="form-select w-full mt-1">
+                                        <select id="evacuacoes-tipo" class="form-select w-full mt-1 printable" data-print-label="Evacuações (Tipo)">
                                             <option value="">-- Selecione --</option>
-                                            <option value="presentes e fisiológicas">presentes e fisiológicas</option>
-                                            <option value="diarreia">diarreia</option>
-                                            <option value="constipação">constipação</option>
-                                            <option value="melena">melena</option>
-                                            <option value="hematoquezia">hematoquezia</option>
-                                            <option value="ausentes">ausentes</option>
+                                            <option value="presentes e fisiológicas">Presentes e fisiológicas</option>
+                                            <option value="diarreia">Diarreia</option>
+                                            <option value="constipação">Constipação</option>
+                                            <option value="melena">Melena</option>
+                                            <option value="hematoquezia">Hematoquezia</option>
+                                            <option value="ausentes">Ausentes</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -504,17 +519,17 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Evacuações (Qtde):</label>
-                                        <input type="text" id="evacuacoes" placeholder="nº/24h" class="form-input w-full mt-1">
+                                        <input type="text" id="evacuacoes" placeholder="nº/24h" class="form-input w-full mt-1 printable" data-print-label="Evacuações (nº/24h)">
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label class="font-medium text-secondary">Outras observações (Suporte e Balanço):</label>
-                                    <textarea id="suporte-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Sonda enteral progredida, aguardando raio-x de controle."></textarea>
+                                    <textarea id="suporte-obs" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Observações (Suporte)" placeholder="Ex: Sonda enteral progredida, aguardando raio-x de controle."></textarea>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Picos e Eventos nas 24h">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Picos e Eventos nas 24h</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -523,64 +538,64 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Pico PA (mmHg):</label>
-                                        <input type="text" id="pico-pa" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="pico-pa-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="pico-pa" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Pico PA">
+                                        <input type="time" id="pico-pa-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Pico PA)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Queda PA (mmHg):</label>
-                                        <input type="text" id="queda-pa" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="queda-pa-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="queda-pa" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Queda PA">
+                                        <input type="time" id="queda-pa-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Queda PA)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pico Temp (°C):</label>
-                                        <input type="text" id="pico-temp" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="pico-temp-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="pico-temp" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Pico Temperatura">
+                                        <input type="time" id="pico-temp-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Pico Temp.)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Queda Temp (°C):</label>
-                                        <input type="text" id="queda-temp" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="queda-temp-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="queda-temp" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Queda Temperatura">
+                                        <input type="time" id="queda-temp-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Queda Temp.)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pico Glicêmico (mg/dL):</label>
-                                        <input type="text" id="pico-glicemia" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="pico-glicemia-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="pico-glicemia" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Pico Glicêmico">
+                                        <input type="time" id="pico-glicemia-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Pico Glic.)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Queda Glicêmica (mg/dL):</label>
-                                        <input type="text" id="queda-glicemia" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="queda-glicemia-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="queda-glicemia" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Queda Glicêmica">
+                                        <input type="time" id="queda-glicemia-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Queda Glic.)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pico SatO₂ (%):</label>
-                                        <input type="text" id="pico-sato2" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="pico-sato2-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="pico-sato2" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Pico SatO₂">
+                                        <input type="time" id="pico-sato2-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Pico SatO₂)">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Queda SatO₂ (%):</label>
-                                        <input type="text" id="queda-sato2" placeholder="Valor" class="form-input w-full mt-1">
-                                        <input type="time" id="queda-sato2-hora" class="form-input w-full mt-1">
+                                        <input type="text" id="queda-sato2" placeholder="Valor" class="form-input w-full mt-1 printable" data-print-label="Queda SatO₂">
+                                        <input type="time" id="queda-sato2-hora" class="form-input w-full mt-1 printable" data-print-label="Hora (Queda SatO₂)">
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label class="font-medium text-secondary">Outras observações de eventos:</label>
-                                    <textarea id="eventos-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Apresentou episódio de vômito após dieta."></textarea>
+                                    <textarea id="eventos-obs" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Observações (Eventos)" placeholder="Ex: Apresentou episódio de vômito após dieta."></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="md-card">
+                <div class="md-card" data-print-section="Exame Físico">
                     <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-stethoscope text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">3. Exame Físico</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Exame Físico</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content border-t hidden">
-                        <div>
+                        <div data-print-subsection="Geral">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Geral</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -589,12 +604,12 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
                                     <div>
                                         <label class="font-medium text-secondary">Aparência Geral:</label>
-                                        <select id="ef-aparencia-geral" class="form-select mt-1 w-full">
+                                        <select id="ef-aparencia-geral" class="form-select mt-1 w-full printable" data-print-label="Aparência Geral">
                                             <option value="">-- Selecione --</option>
-                                            <option value="boa">boa</option>
-                                            <option value="regular">regular</option>
-                                            <option value="ruim">ruim</option>
-                                            <option value="grave">grave</option>
+                                            <option value="boa">Boa</option>
+                                            <option value="regular">Regular</option>
+                                            <option value="ruim">Ruim</option>
+                                            <option value="grave">Grave</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -604,12 +619,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Expressão Facialis / Fácies:</label>
-                                        <select id="ef-facies" class="form-select mt-1 w-full">
+                                        <select id="ef-facies" class="form-select mt-1 w-full printable" data-print-label="Fácies">
                                             <option value="">-- Selecione --</option>
-                                            <option value="atípica">atípica</option>
-                                            <option value="dolorosa">dolorosa</option>
-                                            <option value="ansiosa">ansiosa</option>
-                                            <option value="calma">calma</option>
+                                            <option value="atípica">Atípica</option>
+                                            <option value="dolorosa">Dolorosa</option>
+                                            <option value="ansiosa">Ansiosa</option>
+                                            <option value="calma">Calma</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -619,12 +634,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Sinais de Desconforto/Sofrimento:</label>
-                                        <select id="ef-desconforto" class="form-select mt-1 w-full">
+                                        <select id="ef-desconforto" class="form-select mt-1 w-full printable" data-print-label="Sinais de Desconforto">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausentes">ausentes</option>
-                                            <option value="leves">leves</option>
-                                            <option value="moderados">moderados</option>
-                                            <option value="intensos">intensos</option>
+                                            <option value="ausentes">Ausentes</option>
+                                            <option value="leves">Leves</option>
+                                            <option value="moderados">Moderados</option>
+                                            <option value="intensos">Intensos</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -634,13 +649,13 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Contato / Interação:</label>
-                                        <select id="ef-contato" class="form-select mt-1 w-full">
+                                        <select id="ef-contato" class="form-select mt-1 w-full printable" data-print-label="Contato/Interação">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ativo e cooperativo">ativo e cooperativo</option>
-                                            <option value="retraído">retraído</option>
-                                            <option value="irritável">irritável</option>
-                                            <option value="apático">apático</option>
-                                            <option value="ausente">ausente</option>
+                                            <option value="ativo e cooperativo">Ativo e cooperativo</option>
+                                            <option value="retraído">Retraído</option>
+                                            <option value="irritável">Irritável</option>
+                                            <option value="apático">Apático</option>
+                                            <option value="ausente">Ausente</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -650,12 +665,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Estado Nutricional:</label>
-                                        <select id="ef-estado-nutricional" class="form-select mt-1 w-full">
+                                        <select id="ef-estado-nutricional" class="form-select mt-1 w-full printable" data-print-label="Estado Nutricional">
                                             <option value="">-- Selecione --</option>
-                                            <option value="eutrófico">eutrófico</option>
-                                            <option value="desnutrido">desnutrido</option>
-                                            <option value="obeso">obeso</option>
-                                            <option value="caquético">caquético</option>
+                                            <option value="eutrófico">Eutrófico</option>
+                                            <option value="desnutrido">Desnutrido</option>
+                                            <option value="obeso">Obeso</option>
+                                            <option value="caquético">Caquético</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -665,15 +680,15 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Decúbito/Mobilidade:</label>
-                                        <select id="ef-decubito" class="form-select mt-1 w-full">
+                                        <select id="ef-decubito" class="form-select mt-1 w-full printable" data-print-label="Decúbito/Mobilidade">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ativo no leito">ativo no leito</option>
-                                            <option value="restrito ao leito">restrito ao leito</option>
-                                            <option value="em decúbito dorsal">em decúbito dorsal</option>
-                                            <option value="em decúbito lateral direito">em decúbito lateral direito</option>
-                                            <option value="em decúbito lateral esquerdo">em decúbito lateral esquerdo</option>
-                                            <option value="deambula com auxílio">deambula com auxílio</option>
-                                            <option value="deambula sem auxílio">deambula sem auxílio</option>
+                                            <option value="ativo no leito">Ativo no leito</option>
+                                            <option value="restrito ao leito">Restrito ao leito</option>
+                                            <option value="em decúbito dorsal">Em decúbito dorsal</option>
+                                            <option value="em decúbito lateral direito">Em decúbito lateral direito</option>
+                                            <option value="em decúbito lateral esquerdo">Em decúbito lateral esquerdo</option>
+                                            <option value="deambula com auxílio">Deambula com auxílio</option>
+                                            <option value="deambula sem auxílio">Deambula sem auxílio</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -683,10 +698,10 @@
                                     </div>
                                     <div class="col-span-full">
                                         <label class="font-medium text-secondary">Dispositivos, Sondas, Cateteres ou Drenos:</label>
-                                        <textarea id="ef-dispositivos" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Sonda vesical de demora, CVC em subclávia direita, dreno de tórax, acesso venoso periférico em MSE sem sinais flogísticos."></textarea>
+                                        <textarea id="ef-dispositivos" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Dispositivos" placeholder="Ex: Sonda vesical de demora, CVC em subclávia direita, dreno de tórax, acesso venoso periférico em MSE sem sinais flogísticos."></textarea>
                                     </div>
                                 </div>
-                                <div class="flex flex-wrap gap-x-6 gap-y-2 mb-4">
+                                <div class="flex flex-wrap gap-x-6 gap-y-2 mb-4 printable" data-print-label="Estado Geral" data-print-type="checkbox-group">
                                     <label class="flex items-center text-secondary"><input type="checkbox" id="ef-corado" class="form-checkbox"><span class="ml-1">Corado</span></label>
                                     <label class="flex items-center text-secondary"><input type="checkbox" id="ef-hidratado" class="form-checkbox"><span class="ml-1">Hidratado</span></label>
                                     <label class="flex items-center text-secondary"><input type="checkbox" id="ef-anictérico" class="form-checkbox"><span class="ml-1">Anictérico</span></label>
@@ -694,11 +709,11 @@
                                     <label class="flex items-center text-secondary"><input type="checkbox" id="ef-afebril" class="form-checkbox"><span class="ml-1">Afebril</span></label>
                                     <label class="flex items-center text-secondary"><input type="checkbox" id="ef-eupneico" class="form-checkbox"><span class="ml-1">Eupneico</span></label>
                                 </div>
-                                <textarea id="ef-geral-obs" rows="1" class="form-textarea w-full" placeholder="Outras observações gerais"></textarea>
+                                <textarea id="ef-geral-obs" rows="1" class="form-textarea w-full printable" data-print-label="Observações (Geral)" placeholder="Outras observações gerais"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Neurológico">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Neurológico</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -707,16 +722,16 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Nível de Consciência:</label>
-                                        <select id="neuro-consciencia-ef" class="form-select mt-1 w-full">
+                                        <select id="neuro-consciencia-ef" class="form-select mt-1 w-full printable" data-print-label="Nível de Consciência">
                                             <option value="">-- Selecione --</option>
-                                            <option value="lúcido e orientado em tempo e espaço">lúcido e orientado em tempo e espaço</option>
-                                            <option value="confuso">confuso</option>
-                                            <option value="agitado">agitado</option>
-                                            <option value="desorientado">desorientado</option>
-                                            <option value="sonolento">sonolento</option>
-                                            <option value="obnubilado">obnubilado</option>
-                                            <option value="estuporoso">estuporoso</option>
-                                            <option value="em coma">em coma</option>
+                                            <option value="lúcido e orientado em tempo e espaço">Lúcido e orientado em tempo e espaço</option>
+                                            <option value="confuso">Confuso</option>
+                                            <option value="agitado">Agitado</option>
+                                            <option value="desorientado">Desorientado</option>
+                                            <option value="sonolento">Sonolento</option>
+                                            <option value="obnubilado">Obnubilado</option>
+                                            <option value="estuporoso">Estuporoso</option>
+                                            <option value="em coma">Em coma</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -726,13 +741,13 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pupilas:</label>
-                                        <select id="neuro-pupilas" class="form-select mt-1 w-full">
+                                        <select id="neuro-pupilas" class="form-select mt-1 w-full printable" data-print-label="Pupilas">
                                             <option value="">-- Selecione --</option>
-                                            <option value="isocóricas e fotorreagentes">isocóricas e fotorreagentes</option>
-                                            <option value="lentamente fotorreagentes">lentamente fotorreagentes</option>
-                                            <option value="mióticas">mióticas</option>
-                                            <option value="midriáticas">midriáticas</option>
-                                            <option value="anisocóricas">anisocóricas</option>
+                                            <option value="isocóricas e fotorreagentes">Isocóricas e fotorreagentes</option>
+                                            <option value="lentamente fotorreagentes">Lentamente fotorreagentes</option>
+                                            <option value="mióticas">Mióticas</option>
+                                            <option value="midriáticas">Midriáticas</option>
+                                            <option value="anisocóricas">Anisocóricas</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -742,16 +757,16 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pares Cranianos:</label>
-                                        <select id="neuro-pares" class="form-select mt-1 w-full">
+                                        <select id="neuro-pares" class="form-select mt-1 w-full printable" data-print-label="Pares Cranianos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="preservados">preservados</option>
+                                            <option value="preservados">Preservados</option>
                                             <option value="Alterados">Alterados</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
                                     <div id="neuro-pares-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Pares):</label>
-                                        <input type="text" id="neuro-pares-detalhes" class="form-input w-full mt-1" placeholder="Descreva a alteração">
+                                        <input type="text" id="neuro-pares-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Pares Cranianos)" placeholder="Descreva a alteração">
                                     </div>
                                     <div id="neuro-pares-outro-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes:</label>
@@ -759,10 +774,10 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Força Motora:</label>
-                                        <select id="neuro-forca-motora" class="form-select mt-1 w-full">
+                                        <select id="neuro-forca-motora" class="form-select mt-1 w-full printable" data-print-label="Força Motora">
                                             <option value="">-- Selecione --</option>
-                                            <option value="preservada nos 4 membros">preservada nos 4 membros</option>
-                                            <option value="diminuída globalmente">diminuída globalmente</option>
+                                            <option value="preservada nos 4 membros">Preservada nos 4 membros</option>
+                                            <option value="diminuída globalmente">Diminuída globalmente</option>
                                             <option value="Paresia">Paresia</option>
                                             <option value="Plegia">Plegia</option>
                                             <option value="Hemiplegia">Hemiplegia</option>
@@ -772,7 +787,7 @@
                                     </div>
                                     <div id="neuro-forca-motora-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Força):</label>
-                                        <input type="text" id="neuro-forca-motora-detalhes" class="form-input w-full mt-1" placeholder="Localização e grau">
+                                        <input type="text" id="neuro-forca-motora-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Força Motora)" placeholder="Localização e grau">
                                     </div>
                                     <div id="neuro-forca-motora-outro-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes:</label>
@@ -780,11 +795,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Sensibilidade:</label>
-                                        <select id="neuro-sensibilidade" class="form-select mt-1 w-full">
+                                        <select id="neuro-sensibilidade" class="form-select mt-1 w-full printable" data-print-label="Sensibilidade">
                                             <option value="">-- Selecione --</option>
-                                            <option value="preservada">preservada</option>
-                                            <option value="diminuída">diminuída</option>
-                                            <option value="alterada">alterada</option>
+                                            <option value="preservada">Preservada</option>
+                                            <option value="diminuída">Diminuída</option>
+                                            <option value="alterada">Alterada</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -794,12 +809,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Reflexos:</label>
-                                        <select id="neuro-reflexos" class="form-select mt-1 w-full">
+                                        <select id="neuro-reflexos" class="form-select mt-1 w-full printable" data-print-label="Reflexos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="preservados">preservados</option>
-                                            <option value="com hiporreflexia">com hiporreflexia</option>
-                                            <option value="com arreflexia">com arreflexia</option>
-                                            <option value="com hiperreflexia">com hiperreflexia</option>
+                                            <option value="preservados">Preservados</option>
+                                            <option value="com hiporreflexia">Com hiporreflexia</option>
+                                            <option value="com arreflexia">Com arreflexia</option>
+                                            <option value="com hiperreflexia">Com hiperreflexia</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -809,19 +824,19 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Sinais Meníngeos:</label>
-                                        <select id="neuro-meningeos" class="form-select mt-1 w-full">
+                                        <select id="neuro-meningeos" class="form-select mt-1 w-full printable" data-print-label="Sinais Meníngeos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausentes">ausentes</option>
-                                            <option value="presentes">presentes</option>
+                                            <option value="ausentes">Ausentes</option>
+                                            <option value="presentes">Presentes</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Escore de Glasgow:</label>
-                                        <input type="text" id="glasgow" placeholder="E, V, M" class="form-input w-full mt-1">
+                                        <input type="text" id="glasgow" placeholder="E, V, M" class="form-input w-full mt-1 printable" data-print-label="Glasgow">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Escala de RASS:</label>
-                                        <select id="neuro-rass" class="form-select mt-1 w-full">
+                                        <select id="neuro-rass" class="form-select mt-1 w-full printable" data-print-label="RASS">
                                             <option value="">-- Selecione --</option>
                                             <option value="+4 (Combativo)">+4 (Combativo)</option>
                                             <option value="+3 (Muito Agitado)">+3 (Muito Agitado)</option>
@@ -836,11 +851,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <textarea id="neuro-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações neurológicas"></textarea>
+                                <textarea id="neuro-obs" rows="2" class="form-textarea w-full mt-4 printable" data-print-label="Observações (Neurológico)" placeholder="Outras observações neurológicas"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Cardiovascular">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Cardiovascular</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -849,10 +864,10 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Ritmo:</label>
-                                        <select id="cardio-ritmo" class="form-select mt-1 w-full">
+                                        <select id="cardio-ritmo" class="form-select mt-1 w-full printable" data-print-label="Ritmo Cardíaco">
                                             <option value="">-- Selecione --</option>
-                                            <option value="regular">regular</option>
-                                            <option value="irregular">irregular</option>
+                                            <option value="regular">Regular</option>
+                                            <option value="irregular">Irregular</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -862,12 +877,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Bulhas:</label>
-                                        <select id="cardio-bulhas" class="form-select mt-1 w-full">
+                                        <select id="cardio-bulhas" class="form-select mt-1 w-full printable" data-print-label="Bulhas">
                                             <option value="">-- Selecione --</option>
-                                            <option value="normofonéticas">normofonéticas</option>
-                                            <option value="hipofonéticas">hipofonéticas</option>
-                                            <option value="hiperfonéticas">hiperfonéticas</option>
-                                            <option value="desdobradas">desdobradas</option>
+                                            <option value="normofonéticas">Normofonéticas</option>
+                                            <option value="hipofonéticas">Hipofonéticas</option>
+                                            <option value="hiperfonéticas">Hiperfonéticas</option>
+                                            <option value="desdobradas">Desdobradas</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -877,10 +892,10 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Tempos:</label>
-                                        <select id="cardio-bulhas-tempos" class="form-select mt-1 w-full">
+                                        <select id="cardio-bulhas-tempos" class="form-select mt-1 w-full printable" data-print-label="Tempos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="em 2 tempos">em 2 tempos</option>
-                                            <option value="em 3 tempos">em 3 tempos</option>
+                                            <option value="em 2 tempos">Em 2 tempos</option>
+                                            <option value="em 3 tempos">Em 3 tempos</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -890,18 +905,18 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Sopros:</label>
-                                        <select id="cardio-sopros" class="form-select mt-1 w-full">
+                                        <select id="cardio-sopros" class="form-select mt-1 w-full printable" data-print-label="Sopros">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausentes">ausentes</option>
-                                            <option value="sopro sistólico ejetivo">sopro sistólico ejetivo</option>
-                                            <option value="sopro sistólico regurgitativo">sopro sistólico regurgitativo</option>
-                                            <option value="sopro diastólico">sopro diastólico</option>
+                                            <option value="ausentes">Ausentes</option>
+                                            <option value="sopro sistólico ejetivo">Sopro sistólico ejetivo</option>
+                                            <option value="sopro sistólico regurgitativo">Sopro sistólico regurgitativo</option>
+                                            <option value="sopro diastólico">Sopro diastólico</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
                                     <div id="cardio-sopros-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Sopros):</label>
-                                        <input type="text" id="cardio-sopros-detalhes" class="form-input w-full mt-1" placeholder="Foco, irradiação, intensidade">
+                                        <input type="text" id="cardio-sopros-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Sopros)" placeholder="Foco, irradiação, intensidade">
                                     </div>
                                     <div id="cardio-sopros-outro-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes:</label>
@@ -909,10 +924,10 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Turgência Jugular:</label>
-                                        <select id="cardio-tj" class="form-select mt-1 w-full">
+                                        <select id="cardio-tj" class="form-select mt-1 w-full printable" data-print-label="Turgência Jugular">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausente">ausente</option>
-                                            <option value="presente">presente</option>
+                                            <option value="ausente">Ausente</option>
+                                            <option value="presente">Presente</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -922,11 +937,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Ictus:</label>
-                                        <select id="cardio-ictus" class="form-select mt-1 w-full">
+                                        <select id="cardio-ictus" class="form-select mt-1 w-full printable" data-print-label="Ictus">
                                             <option value="">-- Selecione --</option>
-                                            <option value="não palpável">não palpável</option>
-                                            <option value="palpável">palpável</option>
-                                            <option value="desviado">desviado</option>
+                                            <option value="não palpável">Não palpável</option>
+                                            <option value="palpável">Palpável</option>
+                                            <option value="desviado">Desviado</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -935,11 +950,11 @@
                                         <input type="text" id="cardio-ictus-outro" class="form-input w-full mt-1" placeholder="Detalhe do ictus">
                                     </div>
                                 </div>
-                                <textarea id="ef-cardio-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações cardiovasculares"></textarea>
+                                <textarea id="ef-cardio-obs" rows="2" class="form-textarea w-full mt-4 printable" data-print-label="Observações (Cardiovascular)" placeholder="Outras observações cardiovasculares"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Respiratório">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Respiratório</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -948,12 +963,12 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Padrão Respiratório:</label>
-                                        <select id="resp-padrao" class="form-select mt-1 w-full">
+                                        <select id="resp-padrao" class="form-select mt-1 w-full printable" data-print-label="Padrão Respiratório">
                                             <option value="">-- Selecione --</option>
-                                            <option value="eupnéico">eupnéico</option>
-                                            <option value="taquipneico">taquipneico</option>
-                                            <option value="bradipneico">bradipneico</option>
-                                            <option value="hiperpneico">hiperpneico</option>
+                                            <option value="eupnéico">Eupnéico</option>
+                                            <option value="taquipneico">Taquipneico</option>
+                                            <option value="bradipneico">Bradipneico</option>
+                                            <option value="hiperpneico">Hiperpneico</option>
                                             <option value="Kussmaul">Kussmaul</option>
                                             <option value="Cheyne-Stokes">Cheyne-Stokes</option>
                                             <option value="outro">Outro</option>
@@ -965,11 +980,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Ausculta Pulmonar:</label>
-                                        <select id="ausculta-resp" class="form-select mt-1 w-full">
+                                        <select id="ausculta-resp" class="form-select mt-1 w-full printable" data-print-label="Ausculta Pulmonar">
                                             <option value="">-- Selecione --</option>
-                                            <option value="murmúrio vesicular presente bilateralmente">murmúrio vesicular presente bilateralmente</option>
-                                            <option value="murmúrio vesicular diminuído">murmúrio vesicular diminuído</option>
-                                            <option value="murmúrio vesicular abolido">murmúrio vesicular abolido</option>
+                                            <option value="murmúrio vesicular presente bilateralmente">Murmúrio vesicular presente bilateralmente</option>
+                                            <option value="murmúrio vesicular diminuído">Murmúrio vesicular diminuído</option>
+                                            <option value="murmúrio vesicular abolido">Murmúrio vesicular abolido</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -979,20 +994,20 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Ruídos Adventícios:</label>
-                                        <select id="ra-resp" class="form-select mt-1 w-full">
+                                        <select id="ra-resp" class="form-select mt-1 w-full printable" data-print-label="Ruídos Adventícios">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausentes">ausentes</option>
-                                            <option value="crepitações">crepitações</option>
-                                            <option value="estertores bolhosos">estertores bolhosos</option>
-                                            <option value="sibilos">sibilos</option>
-                                            <option value="roncos">roncos</option>
-                                            <option value="atrito pleural">atrito pleural</option>
+                                            <option value="ausentes">Ausentes</option>
+                                            <option value="crepitações">Crepitações</option>
+                                            <option value="estertores bolhosos">Estertores bolhosos</option>
+                                            <option value="sibilos">Sibilos</option>
+                                            <option value="roncos">Roncos</option>
+                                            <option value="atrito pleural">Atrito pleural</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
                                     <div id="ra-resp-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Ruídos):</label>
-                                        <input type="text" id="ra-resp-detalhes" class="form-input w-full mt-1" placeholder="Localização do ruído">
+                                        <input type="text" id="ra-resp-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Ruídos)" placeholder="Localização do ruído">
                                     </div>
                                     <div id="ra-resp-outro-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes:</label>
@@ -1000,13 +1015,13 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Dispneia:</label>
-                                        <select id="ef-resp-dispneia" class="form-select mt-1 w-full">
+                                        <select id="ef-resp-dispneia" class="form-select mt-1 w-full printable" data-print-label="Dispneia">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausente">ausente</option>
-                                            <option value="aos grandes esforços">aos grandes esforços</option>
-                                            <option value="aos médios esforços">aos médios esforços</option>
-                                            <option value="aos pequenos esforços">aos pequenos esforços</option>
-                                            <option value="em repouso">em repouso</option>
+                                            <option value="ausente">Ausente</option>
+                                            <option value="aos grandes esforços">Aos grandes esforços</option>
+                                            <option value="aos médios esforços">Aos médios esforços</option>
+                                            <option value="aos pequenos esforços">Aos pequenos esforços</option>
+                                            <option value="em repouso">Em repouso</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1016,7 +1031,7 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Tosse:</label>
-                                        <select id="ef-resp-tosse-geral" class="form-select mt-1 w-full">
+                                        <select id="ef-resp-tosse-geral" class="form-select mt-1 w-full printable" data-print-label="Tosse">
                                             <option value="">-- Selecione --</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
@@ -1024,10 +1039,10 @@
                                     </div>
                                     <div id="ef-resp-tosse-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Tipo de Tosse:</label>
-                                        <select id="ef-resp-tosse" class="form-select mt-1 w-full">
+                                        <select id="ef-resp-tosse" class="form-select mt-1 w-full printable" data-print-label="Tipo de Tosse">
                                             <option value="">-- Selecione --</option>
-                                            <option value="seca">seca</option>
-                                            <option value="produtiva">produtiva</option>
+                                            <option value="seca">Seca</option>
+                                            <option value="produtiva">Produtiva</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1036,11 +1051,11 @@
                                         <input type="text" id="ef-resp-tosse-outro" class="form-input w-full mt-1" placeholder="Ex: Expectoração hialina, etc.">
                                     </div>
                                 </div>
-                                <textarea id="ef-resp-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações respiratórias"></textarea>
+                                <textarea id="ef-resp-obs" rows="2" class="form-textarea w-full mt-4 printable" data-print-label="Observações (Respiratório)" placeholder="Outras observações respiratórias"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Abdominal">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Abdominal</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -1049,12 +1064,12 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Forma:</label>
-                                        <select id="ef-abd-forma" class="form-select mt-1 w-full">
+                                        <select id="ef-abd-forma" class="form-select mt-1 w-full printable" data-print-label="Forma Abdominal">
                                             <option value="">-- Selecione --</option>
-                                            <option value="plano">plano</option>
-                                            <option value="globoso">globoso</option>
-                                            <option value="semigloboso">semigloboso</option>
-                                            <option value="escavado">escavado</option>
+                                            <option value="plano">Plano</option>
+                                            <option value="globoso">Globoso</option>
+                                            <option value="semigloboso">Semigloboso</option>
+                                            <option value="escavado">Escavado</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1064,11 +1079,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Consistência:</label>
-                                        <select id="ef-abd-consistencia" class="form-select mt-1 w-full">
+                                        <select id="ef-abd-consistencia" class="form-select mt-1 w-full printable" data-print-label="Consistência Abdominal">
                                             <option value="">-- Selecione --</option>
-                                            <option value="flácido">flácido</option>
-                                            <option value="depressível">depressível</option>
-                                            <option value="tenso">tenso</option>
+                                            <option value="flácido">Flácido</option>
+                                            <option value="depressível">Depressível</option>
+                                            <option value="tenso">Tenso</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1078,11 +1093,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Dor à Palpação:</label>
-                                        <select id="ef-abd-dor" class="form-select mt-1 w-full">
+                                        <select id="ef-abd-dor" class="form-select mt-1 w-full printable" data-print-label="Dor à Palpação">
                                             <option value="">-- Selecione --</option>
-                                            <option value="indolor">indolor</option>
-                                            <option value="doloroso">doloroso</option>
-                                            <option value="com dor à descompressão brusca">com dor à descompressão brusca</option>
+                                            <option value="indolor">Indolor</option>
+                                            <option value="doloroso">Doloroso</option>
+                                            <option value="com dor à descompressão brusca">Com dor à descompressão brusca</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1092,12 +1107,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Visceromegalias:</label>
-                                        <select id="ef-abd-viscero" class="form-select mt-1 w-full">
+                                        <select id="ef-abd-viscero" class="form-select mt-1 w-full printable" data-print-label="Visceromegalias">
                                             <option value="">-- Selecione --</option>
-                                            <option value="ausentes">ausentes</option>
-                                            <option value="hepatomegalia">hepatomegalia</option>
-                                            <option value="esplenomegalia">esplenomegalia</option>
-                                            <option value="massa palpável">massa palpável</option>
+                                            <option value="ausentes">Ausentes</option>
+                                            <option value="hepatomegalia">Hepatomegalia</option>
+                                            <option value="esplenomegalia">Esplenomegalia</option>
+                                            <option value="massa palpável">Massa palpável</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1107,12 +1122,12 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Ruídos Hidroaéreos:</label>
-                                        <select id="ef-abd-sons" class="form-select mt-1 w-full">
+                                        <select id="ef-abd-sons" class="form-select mt-1 w-full printable" data-print-label="Ruídos Hidroaéreos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="presentes">presentes</option>
-                                            <option value="aumentados">aumentados</option>
-                                            <option value="diminuídos">diminuídos</option>
-                                            <option value="ausentes">ausentes</option>
+                                            <option value="presentes">Presentes</option>
+                                            <option value="aumentados">Aumentados</option>
+                                            <option value="diminuídos">Diminuídos</option>
+                                            <option value="ausentes">Ausentes</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1121,11 +1136,11 @@
                                         <input type="text" id="ef-abd-sons-outro" class="form-input w-full mt-1" placeholder="Detalhe dos sons abdominais">
                                     </div>
                                 </div>
-                                <textarea id="ef-abd-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações abdominais"></textarea>
+                                <textarea id="ef-abd-obs" rows="2" class="form-textarea w-full mt-4 printable" data-print-label="Observações (Abdominal)" placeholder="Outras observações abdominais"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Pele e Periférico">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Pele e Periférico</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -1134,10 +1149,10 @@
                                 <div class="grid-container">
                                     <div>
                                         <label class="font-medium text-secondary">Temperatura:</label>
-                                        <select id="pele-temp" class="form-select mt-1 w-full">
+                                        <select id="pele-temp" class="form-select mt-1 w-full printable" data-print-label="Temperatura (Pele)">
                                             <option value="">-- Selecione --</option>
-                                            <option value="aquecidas">aquecidas</option>
-                                            <option value="frias">frias</option>
+                                            <option value="aquecidas">Aquecidas</option>
+                                            <option value="frias">Frias</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1147,10 +1162,10 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Turgor:</label>
-                                        <select id="pele-turgor" class="form-select mt-1 w-full">
+                                        <select id="pele-turgor" class="form-select mt-1 w-full printable" data-print-label="Turgor">
                                             <option value="">-- Selecione --</option>
-                                            <option value="preservado">preservado</option>
-                                            <option value="diminuído">diminuído</option>
+                                            <option value="preservado">Preservado</option>
+                                            <option value="diminuído">Diminuído</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1160,7 +1175,7 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Edema:</label>
-                                        <select id="pele-edema" class="form-select mt-1 w-full">
+                                        <select id="pele-edema" class="form-select mt-1 w-full printable" data-print-label="Edema">
                                             <option value="">-- Selecione --</option>
                                             <option value="Presente">Presente</option>
                                             <option value="Ausente">Ausente</option>
@@ -1168,11 +1183,11 @@
                                     </div>
                                     <div id="pele-edema-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Edema):</label>
-                                        <input type="text" id="pele-edema-detalhes" class="form-input w-full mt-1" placeholder="Ex: +2/4 em MMII">
+                                        <input type="text" id="pele-edema-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Edema)" placeholder="Ex: +2/4 em MMII">
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Perf. Capilar:</label>
-                                        <select id="pele-tec" class="form-select mt-1 w-full">
+                                        <select id="pele-tec" class="form-select mt-1 w-full printable" data-print-label="Perfusão Capilar">
                                             <option value="">-- Selecione --</option>
                                             <option value="< 3s">&lt; 3s</option>
                                             <option value="> 3s">&gt; 3s</option>
@@ -1185,11 +1200,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Pulsos:</label>
-                                        <select id="pele-pulsos" class="form-select mt-1 w-full">
+                                        <select id="pele-pulsos" class="form-select mt-1 w-full printable" data-print-label="Pulsos">
                                             <option value="">-- Selecione --</option>
-                                            <option value="simétricos e cheios">simétricos e cheios</option>
-                                            <option value="diminuídos">diminuídos</option>
-                                            <option value="filiformes">filiformes</option>
+                                            <option value="simétricos e cheios">Simétricos e cheios</option>
+                                            <option value="diminuídos">Diminuídos</option>
+                                            <option value="filiformes">Filiformes</option>
                                             <option value="outro">Outro</option>
                                         </select>
                                     </div>
@@ -1199,11 +1214,11 @@
                                     </div>
                                     <div>
                                         <label class="font-medium text-secondary">Integridade da pele:</label>
-                                        <select id="pele-integridade" class="form-select mt-1 w-full">
+                                        <select id="pele-integridade" class="form-select mt-1 w-full printable" data-print-label="Integridade da Pele">
                                             <option value="">-- Selecione --</option>
-                                            <option value="íntegra">íntegra</option>
-                                            <option value="com icterícia">com icterícia</option>
-                                            <option value="com cianose">com cianose</option>
+                                            <option value="íntegra">Íntegra</option>
+                                            <option value="com icterícia">Com icterícia</option>
+                                            <option value="com cianose">Com cianose</option>
                                             <option value="Úlcera de Pressão">Úlcera de Pressão</option>
                                             <option value="Com Lesões">Com Lesões</option>
                                             <option value="outro">Outro</option>
@@ -1211,18 +1226,18 @@
                                     </div>
                                     <div id="pele-integridade-detalhes-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes (Pele):</label>
-                                        <input type="text" id="pele-integridade-detalhes" class="form-input w-full mt-1" placeholder="Descreva as lesões/achados">
+                                        <input type="text" id="pele-integridade-detalhes" class="form-input w-full mt-1 printable" data-print-label="Detalhes (Integridade da Pele)" placeholder="Descreva as lesões/achados">
                                     </div>
                                     <div id="pele-integridade-outro-container" class="hidden">
                                         <label class="font-medium text-secondary">Detalhes:</label>
                                         <input type="text" id="pele-integridade-outro" class="form-input w-full mt-1" placeholder="Detalhe da integridade da pele">
                                     </div>
                                 </div>
-                                <textarea id="pele-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações de pele e extremidades"></textarea>
+                                <textarea id="pele-obs" rows="2" class="form-textarea w-full mt-4 printable" data-print-label="Observações (Pele)" placeholder="Outras observações de pele e extremidades"></textarea>
                             </div>
                         </div>
 
-                        <div class="border-t border-[var(--md-divider)]">
+                        <div class="border-t border-[var(--md-divider)]" data-print-subsection="Outro Sistema">
                             <button class="js-accordion-header w-full flex justify-between items-center text-left p-4" aria-expanded="false">
                                 <span class="text-lg font-medium text-primary">Outro Sistema</span>
                                 <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
@@ -1231,11 +1246,11 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label for="ef-outro-sistema-nome" class="font-medium text-secondary">Sistema:</label>
-                                        <input type="text" id="ef-outro-sistema-nome" placeholder="Ex: Osteomuscular" class="form-input w-full mt-1">
+                                        <input type="text" id="ef-outro-sistema-nome" placeholder="Ex: Osteomuscular" class="form-input w-full mt-1 printable" data-print-label="Outro Sistema">
                                     </div>
                                     <div class="col-span-full">
                                         <label for="ef-outro-sistema-descricao" class="font-medium text-secondary">Descrição do exame físico:</label>
-                                        <textarea id="ef-outro-sistema-descricao" rows="2" class="form-textarea w-full mt-1" placeholder="Descreva os achados do exame físico para o sistema informado."></textarea>
+                                        <textarea id="ef-outro-sistema-descricao" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Descrição (Outro Sistema)" placeholder="Descreva os achados do exame físico para o sistema informado."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1243,70 +1258,70 @@
                     </div>
                 </div>
 
-                <div class="md-card">
+                <div class="md-card" data-print-section="Intercorrências e Condutas">
                     <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-file-medical-alt text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">4. Intercorrências e Condutas</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Intercorrências e Condutas</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content p-4 md:p-6 border-t hidden space-y-4">
                         <div>
                             <label class="font-medium text-secondary">Intercorrências clínicas:</label>
-                            <textarea id="intercorrencias" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Intercorrência de pico hipertensivo"></textarea>
+                            <textarea id="intercorrencias" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Intercorrências Clínicas" placeholder="Ex: Intercorrência de pico hipertensivo"></textarea>
                         </div>
                         <div>
                             <label class="font-medium text-secondary">Ajustes terapêuticos / prescrições:</label>
-                            <textarea id="ajustes" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Ajustado analgésico, iniciado antibiótico"></textarea>
+                            <textarea id="ajustes" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Ajustes Terapêuticos" placeholder="Ex: Ajustado analgésico, iniciado antibiótico"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="md-card">
+                <div class="md-card" data-print-section="Exames e Resultados">
                     <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-vial text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">5. Exames e Resultados</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Exames e Resultados</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content p-4 md:p-6 border-t hidden space-y-4">
                         <div>
                             <label class="font-medium text-secondary">Exames Laboratoriais:</label>
-                            <textarea id="exames-lab" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Hemograma, função renal, eletrólitos, etc."></textarea>
+                            <textarea id="exames-lab" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Exames Laboratoriais" placeholder="Ex: Hemograma, função renal, eletrólitos, etc."></textarea>
                         </div>
                         <div>
                             <label class="font-medium text-secondary">Exames de Imagem:</label>
-                            <textarea id="exames-imagem" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Raio-X de tórax, TC de abdome, etc."></textarea>
+                            <textarea id="exames-imagem" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Exames de Imagem" placeholder="Ex: Raio-X de tórax, TC de abdome, etc."></textarea>
                         </div>
                         <div>
                             <label class="font-medium text-secondary">Outros Exames:</label>
-                            <textarea id="exames-outros" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: ECG, gasometria, etc."></textarea>
+                            <textarea id="exames-outros" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Outros Exames" placeholder="Ex: ECG, gasometria, etc."></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="md-card">
+                <div class="md-card" data-print-section="Conduta e Planejamento">
                     <button class="js-accordion-header accordion-header w-full flex justify-between items-center p-4 md:p-5 text-left bg-md-surface hover:bg-gray-100 dark:hover:bg-opacity-5 rounded-lg" aria-expanded="false">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-clipboard-list text-xl text-blue-500"></i>
-                            <h2 class="text-lg md:text-xl font-medium text-primary">6. Conduta e Planejamento</h2>
+                            <h2 class="text-lg md:text-xl font-medium text-primary">Conduta e Planejamento</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content p-4 md:p-6 border-t hidden space-y-4">
                         <div>
                             <label class="font-medium text-secondary">Conduta para as próximas 24 horas:</label>
-                            <textarea id="conduta" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Manter conduta, reavaliar em 24h."></textarea>
+                            <textarea id="conduta" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Conduta" placeholder="Ex: Manter conduta, reavaliar em 24h."></textarea>
                         </div>
                         <div>
                             <label class="font-medium text-secondary">Outras considerações:</label>
-                            <textarea id="planejamento" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Solicitar avaliação da fonoaudiologia, considerar retirada de acesso venoso central amanhã."></textarea>
+                            <textarea id="planejamento" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Planejamento" placeholder="Ex: Solicitar avaliação da fonoaudiologia, considerar retirada de acesso venoso central amanhã."></textarea>
                         </div>
                         <div>
                             <label class="font-medium text-secondary">Profilaxias (TVP/TEV, Úlcera de estresse):</label>
-                            <textarea id="profilaxias" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: TVP com Enoxaparina 40mg SC 1x/dia, Úlcera de estresse com Pantoprazol 40mg EV 1x/dia."></textarea>
+                            <textarea id="profilaxias" rows="2" class="form-textarea w-full mt-1 printable" data-print-label="Profilaxias" placeholder="Ex: TVP com Enoxaparina 40mg SC 1x/dia, Úlcera de estresse com Pantoprazol 40mg EV 1x/dia."></textarea>
                         </div>
                     </div>
                 </div>
@@ -1321,14 +1336,21 @@
             <div class="generated-summary text-secondary" id="summary-output" style="white-space: pre-wrap;">
                 Comece a preencher os campos para gerar o resumo.
             </div>
-            <button id="copy-btn" class="mt-6 w-full flex items-center justify-center px-4 py-2 md:px-6 md:py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                <i class="fas fa-copy mr-2"></i>
-                Copiar Resumo
-            </button>
+            <div class="mt-6 flex flex-col md:flex-row gap-4">
+                <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-copy mr-2"></i>
+                    Copiar Resumo
+                </button>
+                <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-print mr-2"></i>
+                    Gerar Impressão
+                </button>
+            </div>
         </section>
     </div>
 
     <script>
+        // SCRIPT ORIGINAL PARA FUNCIONALIDADE DA PÁGINA
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('evolution-form');
 
@@ -1513,9 +1535,16 @@
             let finalResumo = '';
             const addSection = (title, content) => {
                 if (content && content.trim() !== '') {
-                    finalResumo += `${title}\n${content.trim()}\n\n`;
+                    finalResumo += `${title.toUpperCase()}\n${content.trim()}\n\n`;
                 }
             };
+            
+            const nomePaciente = getInputValue('paciente_nome');
+            const prontuario = getInputValue('paciente_prontuario');
+            let resumoHeader = '';
+            if (nomePaciente || prontuario) {
+                resumoHeader += `Paciente: ${nomePaciente || 'Não informado'} - Prontuário: ${prontuario || 'Não informado'}\n\n`;
+            }
 
             let anamneseSentences = [];
             const setor = getInputValue('setor');
@@ -1559,7 +1588,7 @@
             const obsGeraisAnamnese = getInputValue('obs-gerais');
             if (obsGeraisAnamnese) anamneseSentences.push(buildSentence([obsGeraisAnamnese]));
 
-            addSection('1. SITUAÇÃO GERAL E ANAMNESE', buildParagraph(anamneseSentences));
+            addSection('Situação Geral e Anamnese', buildParagraph(anamneseSentences));
 
             let paramsSentences = [];
             const vitais = [
@@ -1632,7 +1661,7 @@
             const eventosObs = getInputValue('eventos-obs');
             if (eventosObs) paramsSentences.push(buildSentence(['Observações de eventos:', eventosObs]));
 
-            addSection('2. PARÂMETROS VITAIS E SUPORTE', buildParagraph(paramsSentences));
+            addSection('Parâmetros Vitais e Suporte', buildParagraph(paramsSentences));
 
             let efSentences = [];
             let geralParts = [],
@@ -1766,20 +1795,20 @@
             const outroSistemaDesc = getInputValue('ef-outro-sistema-descricao');
             if (outroSistemaNome && outroSistemaDesc) efSentences.push(buildSentence([`${outroSistemaNome}:`, outroSistemaDesc]));
 
-            addSection('3. EXAME FÍSICO', buildParagraph(efSentences));
+            addSection('Exame Físico', buildParagraph(efSentences));
 
             const createDiscursiveSection = (title, items) => {
                 const content = items.map(item => item.value ? buildSentence([item.label, item.value]) : null).filter(Boolean).join(' ');
                 addSection(title, content);
             };
-            createDiscursiveSection('4. INTERCORRÊNCIAS E CONDUTAS', [{
+            createDiscursiveSection('Intercorrências e Condutas', [{
                 label: 'Intercorrências clínicas:',
                 value: getInputValue('intercorrencias')
             }, {
                 label: 'Ajustes terapêuticos:',
                 value: getInputValue('ajustes')
             }]);
-            createDiscursiveSection('5. EXAMES E RESULTADOS', [{
+            createDiscursiveSection('Exames e Resultados', [{
                 label: 'Exames laboratoriais:',
                 value: getInputValue('exames-lab')
             }, {
@@ -1789,7 +1818,7 @@
                 label: 'Outros exames:',
                 value: getInputValue('exames-outros')
             }]);
-            createDiscursiveSection('6. CONDUTA E PLANEJAMENTO', [{
+            createDiscursiveSection('Conduta e Planejamento', [{
                 label: 'Conduta:',
                 value: getInputValue('conduta')
             }, {
@@ -1801,10 +1830,187 @@
             }]);
 
             const outputElement = document.getElementById('summary-output');
-            outputElement.innerText = finalResumo.trim() ? finalResumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
+            outputElement.innerText = finalResumo.trim() ? resumoHeader + finalResumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
+        }
+    </script>
+
+    <!-- SCRIPT DE IMPRESSÃO AUTOMÁTICA -->
+    <script>
+        document.getElementById('print-btn').addEventListener('click', gerarImpressaoAutomatica);
+
+        function gerarImpressaoAutomatica() {
+            const reportData = coletarDadosImpressao();
+            const reportHtml = construirHtmlImpressao(reportData);
+            abrirJanelaDeImpressao(reportHtml);
+        }
+
+        function coletarDadosImpressao() {
+            const sections = [];
+            document.querySelectorAll('[data-print-section]').forEach(sectionEl => {
+                const sectionData = {
+                    title: sectionEl.getAttribute('data-print-section'),
+                    subsections: []
+                };
+
+                const subsections = sectionEl.querySelectorAll('[data-print-subsection]');
+                if (subsections.length > 0) {
+                    subsections.forEach(subEl => {
+                        const subData = {
+                            title: subEl.getAttribute('data-print-subsection'),
+                            fields: []
+                        };
+                        subEl.querySelectorAll('.printable').forEach(fieldEl => {
+                            processField(fieldEl, subData.fields);
+                        });
+                        if (subData.fields.length > 0) {
+                            sectionData.subsections.push(subData);
+                        }
+                    });
+                } else {
+                    const defaultSubData = { title: '', fields: [] };
+                    sectionEl.querySelectorAll('.printable').forEach(fieldEl => {
+                        processField(fieldEl, defaultSubData.fields);
+                    });
+                    if (defaultSubData.fields.length > 0) {
+                        sectionData.subsections.push(defaultSubData);
+                    }
+                }
+
+                if (sectionData.subsections.length > 0) {
+                    sections.push(sectionData);
+                }
+            });
+            
+            const headerData = {
+                nome: document.getElementById('paciente_nome').value,
+                prontuario: document.getElementById('paciente_prontuario').value,
+                data: new Date().toLocaleDateString('pt-BR'),
+                hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+            };
+            
+            const summaryText = document.getElementById('summary-output').innerText;
+
+            return { header: headerData, sections, summary: summaryText };
+        }
+
+        function processField(fieldEl, fieldsArray) {
+            let value = '';
+            const label = fieldEl.getAttribute('data-print-label');
+            const type = fieldEl.getAttribute('data-print-type');
+
+            if (fieldEl.offsetParent === null) return;
+
+            if (type === 'checkbox-group') {
+                const checkedItems = [];
+                fieldEl.querySelectorAll('input[type="checkbox"]:checked').forEach(item => {
+                    const labelWrapper = item.closest('label');
+                    if (labelWrapper) {
+                        checkedItems.push(labelWrapper.innerText.trim());
+                    }
+                });
+                value = checkedItems.join(', ');
+            } else if (fieldEl.tagName === 'INPUT') {
+                value = fieldEl.value;
+            } else if (fieldEl.tagName === 'SELECT') {
+                if (fieldEl.value && fieldEl.selectedIndex > -1) {
+                    value = fieldEl.options[fieldEl.selectedIndex].text;
+                    if (fieldEl.value === 'outro') {
+                        const outroInput = document.getElementById(`${fieldEl.id}-outro`);
+                        if (outroInput && outroInput.value) {
+                            value = `Outro: ${outroInput.value}`;
+                        }
+                    }
+                }
+            } else if (fieldEl.tagName === 'TEXTAREA') {
+                value = fieldEl.value;
+            }
+
+            if (label && value && value.trim() !== '') {
+                fieldsArray.push({ label, value });
+            }
+        }
+
+        function construirHtmlImpressao(data) {
+            let bodyContent = '';
+            data.sections.forEach(section => {
+                let sectionContent = '';
+                section.subsections.forEach(sub => {
+                    if (sub.fields.length > 0) {
+                        if(sub.title) {
+                           sectionContent += `<h3>${sub.title}</h3>`;
+                        }
+                        sub.fields.forEach(field => {
+                            const formattedValue = field.value.replace(/\n/g, '<br>');
+                            sectionContent += `<div class="field"><span class="label">${field.label}:</span> <span class="value">${formattedValue}</span></div>`;
+                        });
+                    }
+                });
+
+                if (sectionContent) {
+                    bodyContent += `<h2>${section.title}</h2><div class="section-content">${sectionContent}</div>`;
+                }
+            });
+
+            const placeholder = 'Comece a preencher os campos para gerar o resumo.';
+            if (data.summary && data.summary.trim() !== placeholder) {
+                bodyContent += `<h2>Resumo da Evolução</h2>`;
+                bodyContent += `<div class="summary-content">${data.summary.replace(/\n/g, '<br>')}</div>`;
+            }
+
+            return `
+                <!DOCTYPE html>
+                <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Relatório de Evolução Médica</title>
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            font-size: 11px; 
+                            line-height: 1.5; 
+                            color: #333; 
+                            margin: 20mm; 
+                            -webkit-print-color-adjust: exact; /* Força impressão de cores no Chrome/Safari */
+                            color-adjust: exact; /* Força impressão de cores no Firefox */
+                        }
+                        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
+                        .header h1 { margin: 0; font-size: 20px; }
+                        .patient-info { display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px; font-size: 12px; padding: 10px; background-color: #f9f9f9; border-radius: 4px; }
+                        .patient-info span { min-width: 200px; margin-bottom: 5px; }
+                        h2 { font-size: 14px; font-weight: bold; color: #fff; background-color: #334155; padding: 6px 10px; margin: 24px 0 10px 0; border-radius: 3px; page-break-before: auto; page-break-after: avoid; }
+                        h3 { font-size: 12px; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin: 15px 0 8px 0; page-break-after: avoid; }
+                        .section-content { page-break-inside: avoid; }
+                        .field { display: flex; margin-bottom: 6px; page-break-inside: avoid; }
+                        .label { font-weight: bold; min-width: 180px; flex-shrink: 0; }
+                        .value { }
+                        .summary-content { padding: 10px; background-color: #f9f9f9; border-radius: 4px; white-space: pre-wrap; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header"><h1>Relatório de Evolução Médica</h1></div>
+                    <div class="patient-info">
+                        <span><strong>Paciente:</strong> ${data.header.nome || 'Não informado'}</span>
+                        <span><strong>Prontuário:</strong> ${data.header.prontuario || 'Não informado'}</span>
+                        <span><strong>Data:</strong> ${data.header.data}</span>
+                        <span><strong>Hora:</strong> ${data.header.hora}</span>
+                    </div>
+                    ${bodyContent}
+                </body>
+                </html>
+            `;
+        }
+
+        function abrirJanelaDeImpressao(html) {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(html);
+            printWindow.document.close();
+            printWindow.onload = function() { // Espera o conteúdo carregar
+                printWindow.focus();
+                printWindow.print();
+                printWindow.close();
+            };
         }
     </script>
 
 </body>
-
 </html>
