@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auxiliar de Evolução Médica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Adicionando Font Awesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Adicionando Roboto, uma fonte padrão do Material Design -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Definindo variáveis CSS para cores Material Design */
@@ -154,19 +152,16 @@
         <main class="md-card p-6 md:p-8 space-y-4">
             <div id="accordion-container" class="space-y-4">
 
-                <!-- Seção 1: Situação Geral e Anamnese -->
-                <div class="md-card"> <!-- Use md-card para cada seção do accordion -->
-                    <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
+                <div class="md-card"> <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-user-md text-xl text-blue-500"></i>
                             <h2 class="text-xl font-medium text-primary">1. Situação Geral e Anamnese</h2>
                         </div>
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
-                    <div class="accordion-content p-6 border-t border-gray-200">
+                    <div class="accordion-content p-6 border-t border-gray-200 hidden">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                           <!-- Conteúdo da Seção 1 -->
-                            <div>
+                           <div>
                                 <label class="font-medium text-secondary">Setor:</label>
                                 <input type="text" id="setor" placeholder="Ex: CTI, Enfermaria" class="form-input w-full mt-1">
                             </div>
@@ -278,10 +273,7 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Fim da Seção 1 -->
-
-                <!-- Seção 2: Parâmetros Vitais e Suporte -->
-                <div class="md-card">
+                 <div class="md-card">
                     <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-heart-pulse text-xl text-blue-500"></i>
@@ -290,7 +282,6 @@
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content p-6 border-t border-gray-200 hidden">
-                        <!-- Conteúdo da Seção 2 -->
                         <h3 class="subsection-title">Parâmetros Atuais</h3>
                         <div class="grid-container mb-8">
                            <div>
@@ -338,7 +329,6 @@
                                 <input type="text" id="suporte-vent-outro" class="form-input w-full mt-1" placeholder="Detalhe do suporte ventilatório (outro)">
                             </div>
 
-                            <!-- NOVOS CAMPOS: Parâmetros de Ventilação Mecânica (VM) -->
                             <div id="vm-parameters-container" class="col-span-full hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 p-4 md-card bg-gray-50">
                                 <h4 class="col-span-full text-lg font-semibold text-primary mb-2">Parâmetros de Ventilação Mecânica</h4>
                                 <div>
@@ -370,8 +360,6 @@
                                     <textarea id="vm-outros-params" rows="1" class="form-textarea w-full mt-1" placeholder="Ex: Plateau, I:E, Fluxo"></textarea>
                                 </div>
                             </div>
-                            <!-- FIM NOVOS CAMPOS: Parâmetros de Ventilação Mecânica (VM) -->
-
                             <div>
                                 <label class="font-medium text-secondary">Uso de DVA:</label>
                                 <select id="dva" class="form-select w-full mt-1">
@@ -495,10 +483,7 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Fim da Seção 2 -->
-                
-                <!-- Seção 3: Exame Físico -->
-                <div class="md-card">
+                 <div class="md-card">
                     <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-stethoscope text-xl text-blue-500"></i>
@@ -507,7 +492,6 @@
                         <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                     </button>
                     <div class="accordion-content p-6 border-t border-gray-200 hidden space-y-8">
-                       <!-- Geral -->
                        <div>
                             <h3 class="subsection-title">Geral</h3>
                              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
@@ -576,7 +560,6 @@
                             </div>
                             <textarea id="ef-geral-obs" rows="1" class="form-textarea w-full mt-4" placeholder="Outras observações gerais, como fácies ou expressão."></textarea>
                        </div>
-                       <!-- Neurológico -->
                        <div>
                             <h3 class="subsection-title">Neurológico</h3>
                             <div class="grid-container">
@@ -611,7 +594,7 @@
                                         <option value="outro">Outro</option>
                                     </select>
                                 </div>
-                                   <div id="neuro-pupilas-outro-container" class="hidden">
+                                 <div id="neuro-pupilas-outro-container" class="hidden">
                                     <label class="font-medium text-secondary">Detalhes:</label>
                                     <input type="text" id="neuro-pupilas-outro" class="form-input w-full mt-1" placeholder="Detalhe das pupilas">
                                 </div>
@@ -694,7 +677,6 @@
                                     <label class="font-medium text-secondary">Escore de Glasgow:</label>
                                     <input type="text" id="glasgow" placeholder="E, V, M" class="form-input w-full mt-1">
                                 </div>
-                                <!-- NOVO CAMPO: Escala de RASS -->
                                 <div>
                                     <label class="font-medium text-secondary">Escala de RASS:</label>
                                     <select id="neuro-rass" class="form-select mt-1 w-full">
@@ -711,15 +693,12 @@
                                         <option value="-5 Não Despertável">-5 Não Despertável</option>
                                     </select>
                                 </div>
-                                <!-- FIM NOVO CAMPO: Escala de RASS -->
-                            </div>
+                                </div>
                             <textarea id="neuro-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações neurológicas"></textarea>
                        </div>
-                       <!-- Cardiovascular -->
                        <div>
                             <h3 class="subsection-title">Cardiovascular</h3>
                             <div class="grid-container">
-                                <!-- Conteúdo Cardio... -->
                                 <div>
                                     <label class="font-medium text-secondary">Ritmo:</label>
                                     <select id="cardio-ritmo" class="form-select mt-1 w-full">
@@ -776,7 +755,7 @@
                                     <label class="font-medium text-secondary">Detalhes (Sopros):</label>
                                     <input type="text" id="cardio-sopros-detalhes" class="form-input w-full mt-1" placeholder="Foco, irradiação, intensidade">
                                 </div>
-                                   <div id="cardio-sopros-outro-container" class="hidden">
+                                 <div id="cardio-sopros-outro-container" class="hidden">
                                     <label class="font-medium text-secondary">Detalhes:</label>
                                     <input type="text" id="cardio-sopros-outro" class="form-input w-full mt-1" placeholder="Detalhe dos sopros">
                                 </div>
@@ -789,7 +768,7 @@
                                         <option value="outro">Outro</option>
                                     </select>
                                 </div>
-                                   <div id="cardio-tj-outro-container" class="hidden">
+                                 <div id="cardio-tj-outro-container" class="hidden">
                                     <label class="font-medium text-secondary">Detalhes:</label>
                                     <input type="text" id="cardio-tj-outro" class="form-input w-full mt-1" placeholder="Detalhe da turgência jugular">
                                 </div>
@@ -803,7 +782,7 @@
                                         <option value="outro">Outro</option>
                                     </select>
                                 </div>
-                                   <div id="cardio-ictus-outro-container" class="hidden">
+                                 <div id="cardio-ictus-outro-container" class="hidden">
                                     <label class="font-medium text-secondary">Detalhes:</label>
                                     <input type="text" id="cardio-ictus-outro" class="form-input w-full mt-1" placeholder="Detalhe do ictus">
                                 </div>
@@ -824,11 +803,9 @@
                             </div>
                             <textarea id="ef-cardio-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações cardiovasculares"></textarea>
                        </div>
-                       <!-- Respiratório -->
                        <div>
                             <h3 class="subsection-title">Respiratório</h3>
                             <div class="grid-container">
-                                <!-- Conteúdo Resp... -->
                                 <div>
                                     <label class="font-medium text-secondary">Padrão Respiratório:</label>
                                     <select id="resp-padrao" class="form-select mt-1 w-full">
@@ -921,11 +898,9 @@
                             </div>
                              <textarea id="ef-resp-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações respiratórias"></textarea>
                        </div>
-                       <!-- Abdominal -->
                        <div>
                             <h3 class="subsection-title">Abdominal</h3>
                              <div class="grid-container">
-                                <!-- Conteúdo Abd... -->
                                 <div>
                                     <label class="font-medium text-secondary">Forma:</label>
                                     <select id="ef-abd-forma" class="form-select mt-1 w-full">
@@ -1002,11 +977,9 @@
                             </div>
                             <textarea id="ef-abd-obs" rows="2" class="form-textarea w-full mt-4" placeholder="Outras observações abdominais"></textarea>
                        </div>
-                       <!-- Pele e Periférico -->
                        <div>
                             <h3 class="subsection-title">Pele e Periférico</h3>
                             <div class="grid-container">
-                                <!-- Conteúdo Pele... -->
                                 <div>
                                     <label class="font-medium text-secondary">Temperatura:</label>
                                     <select id="pele-temp" class="form-select mt-1 w-full">
@@ -1097,9 +1070,6 @@
                        </div>
                     </div>
                 </div>
-                 <!-- Fim da Seção 3 -->
-
-                <!-- Seção 4: Intercorrências e Condutas -->
                  <div class="md-card">
                     <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
@@ -1119,10 +1089,7 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Fim da Seção 4 -->
-
-                <!-- Seção 5: Exames e Resultados -->
-                <div class="md-card">
+                 <div class="md-card">
                     <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
                             <i class="fas fa-vial text-xl text-blue-500"></i>
@@ -1145,9 +1112,6 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Fim da Seção 5 -->
-
-                <!-- Seção 6: Conduta e Planejamento -->
                  <div class="md-card">
                     <button class="accordion-header w-full flex justify-between items-center p-5 bg-md-surface hover:bg-gray-100 rounded-lg">
                         <div class="flex items-center space-x-4">
@@ -1165,16 +1129,13 @@
                             <label class="font-medium text-secondary">Outras considerações:</label>
                             <textarea id="planejamento" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Solicitar avaliação da fonoaudiologia, considerar retirada de acesso venoso central amanhã."></textarea>
                         </div>
-                        <!-- NOVO CAMPO: Profilaxias -->
                         <div>
                             <label class="font-medium text-secondary">Profilaxias (TVP/TEV, Úlcera de estresse):</label>
                             <textarea id="profilaxias" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: TVP com Enoxaparina 40mg SC 1x/dia, Úlcera de estresse com Pantoprazol 40mg EV 1x/dia."></textarea>
                         </div>
-                        <!-- FIM NOVO CAMPO: Profilaxias -->
-                    </div>
+                        </div>
                 </div>
-                 <!-- Fim da Seção 6 -->
-            </div>
+                 </div>
         </main>
 
         <section class="md-card p-6 md:p-8">
@@ -1183,7 +1144,7 @@
                 <h2 class="text-2xl font-semibold text-primary">Resumo Automático</h2>
             </div>
             <div class="generated-summary text-secondary" id="summary-output">
-                Preencha os campos para gerar o resumo da evolução.
+                Comece a preencher os campos para gerar o resumo.
             </div>
             <button id="copy-btn" class="mt-6 w-full flex items-center justify-center px-6 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
                 <i class="fas fa-copy mr-2"></i>
@@ -1232,6 +1193,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Lógica do Accordion
             const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            // MODIFICAÇÃO 2: REMOVIDO CÓDIGO QUE ABRIA A PRIMEIRA SEÇÃO POR PADRÃO
+            /*
             const firstHeader = accordionHeaders[0];
             const firstContent = firstHeader.nextElementSibling;
             const firstChevron = firstHeader.querySelector('.chevron-icon');
@@ -1239,6 +1203,7 @@
             // Abrir a primeira seção por padrão
             firstContent.classList.remove('hidden');
             firstChevron.classList.add('rotate-180');
+            */
 
             accordionHeaders.forEach(header => {
                 header.addEventListener('click', () => {
@@ -1778,7 +1743,15 @@
             if (profilaxias) planoList += `- Profilaxias: ${profilaxias}.\n`; // NOVO: Profilaxias
             if (planoList !== '6. CONDUTA E PLANEJAMENTO\n') resumo += planoList.trim() + '\n\n';
 
-            document.getElementById('summary-output').innerText = resumo.trim();
+            // MODIFICAÇÃO 1 (Continuação): lógica para exibir a mensagem padrão
+            const outputElement = document.getElementById('summary-output');
+            const finalResumo = resumo.trim();
+
+            if (finalResumo) {
+                outputElement.innerText = finalResumo;
+            } else {
+                outputElement.innerText = 'Comece a preencher os campos para gerar o resumo.';
+            }
         }
 
     </script>
