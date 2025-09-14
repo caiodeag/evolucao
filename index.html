@@ -316,6 +316,11 @@
                                         <input type="text" id="dor-escala" placeholder="0 a 10" class="form-input w-full mt-1">
                                     </div>
                                 </div>
+                                <!-- CAMPO ADICIONADO AQUI -->
+                                <div class="mt-4">
+                                    <label class="font-medium text-secondary">Outras observações (Parâmetros Atuais):</label>
+                                    <textarea id="parametros-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Mantendo boa saturação durante o banho no leito."></textarea>
+                                </div>
                             </div>
                         </div>
 
@@ -451,6 +456,11 @@
                                         <input type="text" id="evacuacoes" placeholder="nº/24h" class="form-input w-full mt-1">
                                     </div>
                                 </div>
+                                <!-- CAMPO ADICIONADO AQUI -->
+                                <div class="mt-4">
+                                    <label class="font-medium text-secondary">Outras observações (Suporte e Balanço):</label>
+                                    <textarea id="suporte-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Sonda enteral progredida, aguardando raio-x de controle."></textarea>
+                                </div>
                             </div>
                         </div>
 
@@ -502,7 +512,6 @@
                                         <input type="time" id="queda-sato2-hora" class="form-input w-full mt-1">
                                     </div>
                                 </div>
-                                <!-- CAMPO ADICIONADO AQUI -->
                                 <div class="mt-4">
                                     <label class="font-medium text-secondary">Outras observações de eventos:</label>
                                     <textarea id="eventos-obs" rows="2" class="form-textarea w-full mt-1" placeholder="Ex: Apresentou episódio de vômito após dieta."></textarea>
@@ -1467,7 +1476,7 @@
         let anamneseSentences = [];
         const setor = getInputValue('setor');
         const leito = getInputValue('leito');
-        if (setor || leito) anamneseSentences.push(buildSentence([`Paciente em acompanhamento no setor de ${setor || 'setor não informado'}, leito ${leito || 'não informado'}`]));
+        if (setor || leito) anamneseSentences.push(buildSentence([`Paciente em acompanhamento no(a) ${setor || 'setor não informado'}, leito ${leito || 'não informado'}`]));
         
         const evolucaoClinica = getSelectValue('evolucao-clinica');
         const evolucaoHemo = getSelectValue('evolucao-hemo');
@@ -1511,6 +1520,9 @@
         if (vitais.length > 0) paramsSentences.push(buildSentence(['Apresenta-se com os seguintes parâmetros vitais:', joinWithCommasAndAnd(vitais)]));
         const dorEscala = getInputValue('dor-escala');
         if (dorEscala) paramsSentences.push(buildSentence([`Refere dor de intensidade ${dorEscala}/10`]));
+        const parametrosObs = getInputValue('parametros-obs');
+        if (parametrosObs) paramsSentences.push(buildSentence([parametrosObs]));
+
 
         const suporteVent = getSelectValue('suporte-vent');
         if (suporteVent) {
@@ -1549,6 +1561,8 @@
         const evacuacoesTipo = processSelect('evacuacoes-tipo'); const evacuacoesQtde = getInputValue('evacuacoes');
         if(evacuacoesTipo) eliminacoesParts.push(`evacuações ${evacuacoesTipo}${evacuacoesQtde ? `, ${evacuacoesQtde} episódios/24h` : ''}`);
         if(eliminacoesParts.length > 0) paramsSentences.push(buildSentence([`Eliminações fisiológicas presentes, com`, joinWithCommasAndAnd(eliminacoesParts)]));
+        const suporteObs = getInputValue('suporte-obs');
+        if(suporteObs) paramsSentences.push(buildSentence([suporteObs]));
 
         let picosEventos = [];
         const addPicoEvento = (label, valId, hId) => { if(getInputValue(valId)) picosEventos.push(`${label} de ${getInputValue(valId)}${getInputValue(hId) ? ` às ${getInputValue(hId)}h` : ''}`); };
@@ -1559,7 +1573,6 @@
         if (picosEventos.length > 0) paramsSentences.push(buildSentence([`Nas últimas 24h, apresentou`, joinWithCommasAndAnd(picosEventos)]));
         const eventosObs = getInputValue('eventos-obs');
         if (eventosObs) paramsSentences.push(buildSentence(['Observações de eventos:', eventosObs]));
-
 
         addSection('2. PARÂMETROS VITAIS E SUPORTE', buildParagraph(paramsSentences));
         
