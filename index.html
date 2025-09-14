@@ -1,22 +1,3 @@
-Você está absolutamente correto. Esse é um problema clássico e uma excelente observação. A falha na geração do PDF em dispositivos Android (e em muitos navegadores mobile) ocorre porque eles são **extremamente agressivos com o bloqueio de pop-ups**.
-
-A sua implementação atual, que usa `window.open()`, está sendo interpretada pelo Android como um pop-up indesejado e, por isso, é bloqueada antes mesmo de conseguir carregar o conteúdo para impressão.
-
-A solução padrão e mais robusta para isso, que funciona em praticamente todos os dispositivos, é usar um **`<iframe>` invisível**. Em vez de abrir uma nova janela, o script irá:
-
-1.  Criar um quadro (`iframe`) oculto na sua página principal.
-2.  Inserir o HTML do relatório formatado dentro deste quadro.
-3.  Chamar o comando de impressão diretamente no conteúdo do quadro.
-
-Isso **contorna completamente os bloqueadores de pop-up** porque nenhuma nova janela é criada.
-
-### Código Corrigido e Implementado
-
-Eu reescrevi a função `abrirJanelaDeImpressao` para usar esta técnica do `<iframe>`. O restante do seu código, incluindo a lógica de coleta de dados e a formatação do relatório, permanece idêntico.
-
-Abaixo está o seu código completo com a correção. Pode substituir o seu arquivo por este com a certeza de que a impressão agora funcionará de forma confiável em desktops e dispositivos móveis.
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR" class="">
 
@@ -2051,4 +2032,3 @@ Abaixo está o seu código completo com a correção. Pode substituir o seu arqu
 
 </body>
 </html>
-```
