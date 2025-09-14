@@ -834,7 +834,7 @@
                                         <select id="neuro-meningeos" class="form-select mt-1 w-full printable" data-print-label="Sinais Meníngeos">
                                             <option value="">-- Selecione --</option>
                                             <option value="ausentes">Ausentes</option>
-                                            <option value="presentes">Presentes</option>
+                                            <option value="presentes">Presente</option>
                                         </select>
                                     </div>
                                     <div>
@@ -1340,26 +1340,24 @@
                 <i class="fas fa-magic-sparkles text-xl text-blue-500"></i>
                 <h2 class="text-xl md:text-2xl font-semibold text-primary">Resumo Automático</h2>
             </div>
-            <div class="generated-summary text-secondary" id="summary-output" style="white-space: pre-wrap;">
+            <div class="generated-summary text-secondary" id="summary-output" style="white-space: pre-wrap; text-align: justify;">
                 Comece a preencher os campos para gerar o resumo.
             </div>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-copy mr-2"></i>
+                    Copiar Resumo
+                </button>
+                <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-print mr-2"></i>
+                    Gerar Impressão
+                </button>
+                <button id="download-blank-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
+                    <i class="fas fa-file-pdf mr-2"></i>
+                    Baixar Formulário em Branco
+                </button>
+            </div>
         </section>
-
-        <!-- Botões movidos para fora da seção de resumo automático -->
-        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 p-4 md:p-8 md-card">
-            <button id="copy-btn" class="w-full flex items-center justify-center px-4 py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                <i class="fas fa-copy mr-2"></i>
-                Copiar Resumo
-            </button>
-            <button id="print-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-secondary font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                <i class="fas fa-print mr-2"></i>
-                Gerar Impressão
-            </button>
-            <button id="download-blank-btn" class="w-full flex items-center justify-center px-4 py-3 md-button md-button-tertiary font-medium focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
-                <i class="fas fa-file-pdf mr-2"></i>
-                Baixar Formulário em Branco
-            </button>
-        </div>
     </div>
 
     <script>
@@ -1660,99 +1658,228 @@
             addSection('Parâmetros Vitais e Suporte', buildParagraph(paramsSentences));
 
             let efSentences = [];
-            let geralParts = [], geralSecondaryParts = [];
-            if (processSelect('ef-aparencia-geral')) geralParts.push(`em ${processSelect('ef-aparencia-geral')} aparência geral`);
-            if (processSelect('ef-estado-nutricional')) geralParts.push(processSelect('ef-estado-nutricional'));
-            const geralAdj = [getCheckboxStatus('ef-corado') && 'corado(a)', getCheckboxStatus('ef-hidratado') && 'hidratado(a)', getCheckboxStatus('ef-anictérico') && 'anictérico(a)', getCheckboxStatus('ef-acianotico') && 'acianótico(a)', getCheckboxStatus('ef-afebril') && 'afebril', getCheckboxStatus('ef-eupneico') && 'eupnéico(a)'].filter(Boolean);
-            if (geralAdj.length > 0) geralParts.push(joinWithCommasAndAnd(geralAdj));
-            if (processSelect('ef-contato')) geralParts.push(processSelect('ef-contato'));
-            if (processSelect('ef-decubito')) geralParts.push(processSelect('ef-decubito'));
-            if (geralParts.length > 0) efSentences.push(buildSentence(['Ao exame físico, paciente', joinWithCommasAndAnd(geralParts)]));
-            if (processSelect('ef-facies')) geralSecondaryParts.push(buildSentence([`Apresenta fácies ${processSelect('ef-facies')}`]));
-            if (processSelect('ef-desconforto')) geralSecondaryParts.push(buildSentence([`Com sinais de desconforto ${processSelect('ef-desconforto')}`]));
-            if (getInputValue('ef-dispositivos')) geralSecondaryParts.push(buildSentence(['Em uso dos seguintes dispositivos:', getInputValue('ef-dispositivos')]));
-            if (getInputValue('ef-geral-obs')) geralSecondaryParts.push(buildSentence([getInputValue('ef-geral-obs')]));
-            if (geralSecondaryParts.length > 0) efSentences.push(buildParagraph(geralSecondaryParts));
 
-            let neuroParts = [];
-            if (processSelect('neuro-consciencia-ef')) neuroParts.push(processSelect('neuro-consciencia-ef'));
-            if (getSelectValue('neuro-rass')) neuroParts.push(`RASS ${getSelectValue('neuro-rass')}`);
-            if (getInputValue('glasgow')) neuroParts.push(`Escala de Coma de Glasgow ${getInputValue('glasgow')}`);
-            if (processSelect('neuro-pupilas')) neuroParts.push(`pupilas ${processSelect('neuro-pupilas')}`);
-            const pares = getSelectValue('neuro-pares');
-            if (pares === 'Alterados') neuroParts.push(`pares cranianos com alterações (${getInputValue('neuro-pares-detalhes') || 'não especificado'})`);
-            else if (pares) neuroParts.push(`pares cranianos ${processSelect('neuro-pares')}`);
-            const forca = getSelectValue('neuro-forca-motora');
-            if (['Paresia', 'Plegia'].includes(forca)) neuroParts.push(`${forca.toLowerCase()} em ${getInputValue('neuro-forca-motora-detalhes') || 'local não especificado'}`);
-            else if (forca) neuroParts.push(`força motora ${processSelect('neuro-forca-motora')}`);
-            if (processSelect('neuro-sensibilidade')) neuroParts.push(`sensibilidade ${processSelect('neuro-sensibilidade')}`);
-            if (processSelect('neuro-reflexos')) neuroParts.push(`reflexos ${processSelect('neuro-reflexos')}`);
-            if (getSelectValue('neuro-meningeos')) neuroParts.push(`sinais meníngeos ${getSelectValue('neuro-meningeos')}`);
-            if (neuroParts.length > 0) efSentences.push(buildSentence(['Neurológico:', joinWithCommasAndAnd(neuroParts)]));
-            if (getInputValue('neuro-obs')) efSentences.push(buildSentence([getInputValue('neuro-obs')]));
+            // --- Geral ---
+            let geralIntroParts = [];
+            const aparenciaGeral = processSelect('ef-aparencia-geral');
+            const estadoNutricional = processSelect('ef-estado-nutricional');
+            const contato = processSelect('ef-contato');
+            const decubito = processSelect('ef-decubito');
 
-            let cardioParts = [];
-            let cardioAusculta = [];
-            if (processSelect('cardio-ritmo')) cardioAusculta.push(`ritmo cardíaco ${processSelect('cardio-ritmo')}`);
-            if (processSelect('cardio-bulhas') || processSelect('cardio-bulhas-tempos')) cardioAusculta.push(`bulhas ${processSelect('cardio-bulhas') || ''} ${processSelect('cardio-bulhas-tempos') || ''}`.trim());
-            if (cardioAusculta.length > 0) cardioParts.push(joinWithCommasAndAnd(cardioAusculta));
+            if (aparenciaGeral) geralIntroParts.push(`em ${aparenciaGeral} aparência geral`);
+            if (estadoNutricional) geralIntroParts.push(estadoNutricional);
+
+            const adjEstadoGeral = [
+                getCheckboxStatus('ef-corado') && 'corado(a)',
+                getCheckboxStatus('ef-hidratado') && 'hidratado(a)',
+                getCheckboxStatus('ef-anictérico') && 'anictérico(a)',
+                getCheckboxStatus('ef-acianotico') && 'acianótico(a)',
+                getCheckboxStatus('ef-afebril') && 'afebril',
+                getCheckboxStatus('ef-eupneico') && 'eupnéico(a)'
+            ].filter(Boolean);
+
+            if (geralIntroParts.length > 0 || adjEstadoGeral.length > 0) {
+                let firstPart = "Ao exame físico, paciente";
+                let combinedGeral = joinWithCommasAndAnd(geralIntroParts.concat(adjEstadoGeral));
+                if (combinedGeral) {
+                    efSentences.push(buildSentence([firstPart, combinedGeral]));
+                }
+            }
+
+            if (contato) efSentences.push(buildSentence([`Apresenta-se ${contato}`]));
+            if (decubito) efSentences.push(buildSentence([`Mantém ${decubito}`]));
+
+            const facies = processSelect('ef-facies');
+            if (facies) efSentences.push(buildSentence([`Fácies ${facies}`]));
+
+            const desconforto = processSelect('ef-desconforto');
+            if (desconforto && desconforto !== 'ausentes') efSentences.push(buildSentence([`Com sinais de desconforto ${desconforto}`]));
+            else if (desconforto === 'ausentes') efSentences.push(buildSentence([`Sem sinais de desconforto`]));
+
+            const dispositivos = getInputValue('ef-dispositivos');
+            if (dispositivos) efSentences.push(buildSentence(['Em uso dos seguintes dispositivos:', dispositivos]));
+
+            const obsGeralEF = getInputValue('ef-geral-obs');
+            if (obsGeralEF) efSentences.push(buildSentence([obsGeralEF]));
+
+
+            // --- Neurológico ---
+            let neuroStatements = [];
+            const consciencia = processSelect('neuro-consciencia-ef');
+            const rass = getSelectValue('neuro-rass');
+            const glasgow = getInputValue('glasgow');
+
+            let neuroConsciousnessParts = [];
+            if (consciencia) neuroConsciousnessParts.push(consciencia);
+            if (rass) neuroConsciousnessParts.push(`RASS ${rass}`);
+            if (glasgow) neuroConsciousnessParts.push(`Glasgow ${glasgow}`);
+            if (neuroConsciousnessParts.length > 0) {
+                neuroStatements.push(buildSentence(['Neurológico: Paciente', joinWithCommasAndAnd(neuroConsciousnessParts)]));
+            }
+
+            const pupilas = processSelect('neuro-pupilas');
+            if (pupilas) neuroStatements.push(buildSentence([`Pupilas ${pupilas}`]));
+
+            const paresCranianos = getSelectValue('neuro-pares');
+            if (paresCranianos === 'Alterados') {
+                neuroStatements.push(buildSentence([`Pares cranianos com alterações (${getInputValue('neuro-pares-detalhes') || 'não especificado'})`]));
+            } else if (paresCranianos) {
+                neuroStatements.push(buildSentence([`Pares cranianos ${paresCranianos}`]));
+            }
+
+            const forcaMotora = getSelectValue('neuro-forca-motora');
+            if (['Paresia', 'Plegia', 'Hemiplegia', 'Tetraplegia'].includes(forcaMotora)) {
+                neuroStatements.push(buildSentence([`${forcaMotora} em ${getInputValue('neuro-forca-motora-detalhes') || 'local não especificado'}`]));
+            } else if (forcaMotora) {
+                neuroStatements.push(buildSentence([`Força motora ${forcaMotora}`]));
+            }
+
+            const sensibilidade = processSelect('neuro-sensibilidade');
+            if (sensibilidade) neuroStatements.push(buildSentence([`Sensibilidade ${sensibilidade}`]));
+
+            const reflexos = processSelect('neuro-reflexos');
+            if (reflexos) neuroStatements.push(buildSentence([`Reflexos ${reflexos}`]));
+
+            const meningeos = getSelectValue('neuro-meningeos');
+            if (meningeos) neuroStatements.push(buildSentence([`Sinais meníngeos ${meningeos}`]));
+
+            const neuroObs = getInputValue('neuro-obs');
+            if (neuroObs) neuroStatements.push(buildSentence([neuroObs]));
+
+            if (neuroStatements.length > 0) efSentences.push(buildParagraph(neuroStatements));
+
+
+            // --- Cardiovascular ---
+            let cardioStatements = [];
+            const ritmoCardio = processSelect('cardio-ritmo');
+            const bulhasCardio = processSelect('cardio-bulhas');
+            const temposCardio = processSelect('cardio-bulhas-tempos');
+
+            let auscultaCardioParts = [];
+            if (ritmoCardio) auscultaCardioParts.push(`ritmo cardíaco ${ritmoCardio}`);
+            if (bulhasCardio || temposCardio) auscultaCardioParts.push(`bulhas ${bulhasCardio || ''} ${temposCardio || ''}`.trim());
+            if (auscultaCardioParts.length > 0) cardioStatements.push(buildSentence([`Ausculta cardíaca com`, joinWithCommasAndAnd(auscultaCardioParts)]));
+
             const soproValue = getSelectValue('cardio-sopros');
-            if (soproValue === 'ausentes') cardioParts.push('sem sopros audíveis');
-            else if (soproValue) cardioParts.push(`presença de ${processSelect('cardio-sopros')}${getInputValue('cardio-sopros-detalhes') ? ` (${getInputValue('cardio-sopros-detalhes')})` : ''}`);
-            if (processSelect('cardio-tj')) cardioParts.push(`turgência jugular ${processSelect('cardio-tj')}`);
-            if (processSelect('cardio-ictus')) cardioParts.push(`ictus ${processSelect('cardio-ictus')}`);
-            if (cardioParts.length > 0) efSentences.push(buildSentence(['Aparelho cardiovascular:', joinWithCommasAndAnd(cardioParts)]));
-            if (getInputValue('ef-cardio-obs')) efSentences.push(buildSentence([getInputValue('ef-cardio-obs')]));
+            if (soproValue === 'ausentes') cardioStatements.push(buildSentence(['Sem sopros audíveis']));
+            else if (soproValue) cardioStatements.push(buildSentence([`Presença de ${processSelect('cardio-sopros')}${getInputValue('cardio-sopros-detalhes') ? ` (${getInputValue('cardio-sopros-detalhes')})` : ''}`]));
 
-            let respParts = [];
-            if (processSelect('resp-padrao')) respParts.push(`padrão respiratório ${processSelect('resp-padrao')}`);
-            let auscultaCompleta = [];
-            if (processSelect('ausculta-resp')) auscultaCompleta.push(processSelect('ausculta-resp'));
-            const raValue = getSelectValue('ra-resp');
-            if (raValue === 'ausentes') auscultaCompleta.push('sem ruídos adventícios');
-            else if (raValue) auscultaCompleta.push(`com ${processSelect('ra-resp')}${getInputValue('ra-resp-detalhes') ? ` em ${getInputValue('ra-resp-detalhes')}` : ''}`);
-            if (auscultaCompleta.length > 0) respParts.push(joinWithCommasAndAnd(auscultaCompleta));
-            if (processSelect('ef-resp-dispneia')) respParts.push(`dispneia ${processSelect('ef-resp-dispneia')}`);
+            const tj = processSelect('cardio-tj');
+            if (tj && tj !== 'ausente') cardioStatements.push(buildSentence([`Turgência jugular ${tj}`]));
+            else if (tj === 'ausente') cardioStatements.push(buildSentence(['Ausência de turgência jugular']));
+
+            const ictus = processSelect('cardio-ictus');
+            if (ictus) cardioStatements.push(buildSentence([`Ictus ${ictus}`]));
+
+            const efCardioObs = getInputValue('ef-cardio-obs');
+            if (efCardioObs) cardioStatements.push(buildSentence([efCardioObs]));
+
+            if (cardioStatements.length > 0) efSentences.push(buildParagraph(cardioStatements));
+
+
+            // --- Respiratório ---
+            let respStatements = [];
+            const padraoResp = processSelect('resp-padrao');
+            if (padraoResp) respStatements.push(buildSentence([`Padrão respiratório ${padraoResp}`]));
+
+            const auscultaResp = processSelect('ausculta-resp');
+            const raResp = getSelectValue('ra-resp');
+
+            let auscultaPulmonarParts = [];
+            if (auscultaResp) auscultaPulmonarParts.push(auscultaResp);
+            if (raResp === 'ausentes') auscultaPulmonarParts.push('sem ruídos adventícios');
+            else if (raResp) auscultaPulmonarParts.push(`com ${processSelect('ra-resp')}${getInputValue('ra-resp-detalhes') ? ` em ${getInputValue('ra-resp-detalhes')}` : ''}`);
+
+            if (auscultaPulmonarParts.length > 0) respStatements.push(buildSentence([`Ausculta pulmonar com`, joinWithCommasAndAnd(auscultaPulmonarParts)]));
+
+            const dispneia = processSelect('ef-resp-dispneia');
+            if (dispneia && dispneia !== 'ausente') respStatements.push(buildSentence([`Dispneia ${dispneia}`]));
+            else if (dispneia === 'ausente') respStatements.push(buildSentence(['Ausência de dispneia']));
+
             const tosseGeral = getSelectValue('ef-resp-tosse-geral');
-            if (tosseGeral === 'Não') respParts.push('sem tosse');
-            else if (tosseGeral === 'Sim') respParts.push(`presença de tosse ${processSelect('ef-resp-tosse')}${getInputValue('ef-resp-tosse-outro') ? ` (${getInputValue('ef-resp-tosse-outro')})` : ''}`);
-            if (respParts.length > 0) efSentences.push(buildSentence(['Aparelho respiratório:', joinWithCommasAndAnd(respParts)]));
-            if (getInputValue('ef-resp-obs')) efSentences.push(buildSentence([getInputValue('ef-resp-obs')]));
+            if (tosseGeral === 'Não') respStatements.push(buildSentence(['Sem tosse']));
+            else if (tosseGeral === 'Sim') respStatements.push(buildSentence([`Presença de tosse ${processSelect('ef-resp-tosse')}${getInputValue('ef-resp-tosse-outro') ? ` (${getInputValue('ef-resp-tosse-outro')})` : ''}`]));
 
-            let abdParts = [processSelect('ef-abd-forma'), processSelect('ef-abd-consistencia'), processSelect('ef-abd-dor')].filter(Boolean);
+            const efRespObs = getInputValue('ef-resp-obs');
+            if (efRespObs) respStatements.push(buildSentence([efRespObs]));
+
+            if (respStatements.length > 0) efSentences.push(buildParagraph(respStatements));
+
+
+            // --- Abdominal ---
+            let abdStatements = [];
+            const abdForma = processSelect('ef-abd-forma');
+            const abdConsistencia = processSelect('ef-abd-consistencia');
+            const abdDor = processSelect('ef-abd-dor');
+
+            let abdInitialParts = [];
+            if (abdForma) abdInitialParts.push(abdForma);
+            if (abdConsistencia) abdInitialParts.push(abdConsistencia);
+            if (abdDor) abdInitialParts.push(abdDor);
+
+            if (abdInitialParts.length > 0) abdStatements.push(buildSentence([`Abdome: ${joinWithCommasAndAnd(abdInitialParts)}`]));
+
             const viscero = processSelect('ef-abd-viscero');
-            if (viscero === 'ausentes') abdParts.push('sem visceromegalias palpáveis');
-            else if (viscero) abdParts.push(`com ${viscero}`);
-            if (processSelect('ef-abd-sons')) abdParts.push(`ruídos hidroaéreos ${processSelect('ef-abd-sons')}`);
-            if (abdParts.length > 0) efSentences.push(buildSentence(['Abdome:', joinWithCommasAndAnd(abdParts)]));
-            if (getInputValue('ef-abd-obs')) efSentences.push(buildSentence([getInputValue('ef-abd-obs')]));
+            if (viscero === 'ausentes') abdStatements.push(buildSentence(['Sem visceromegalias palpáveis']));
+            else if (viscero) abdStatements.push(buildSentence([`Com ${viscero}`]));
 
-            let peleParts = [];
-            if (processSelect('pele-temp') && processSelect('pele-pulsos')) peleParts.push(`extremidades ${processSelect('pele-temp')}, com pulsos ${processSelect('pele-pulsos')}`);
-            if (processSelect('pele-tec')) peleParts.push(`perfusão capilar ${processSelect('pele-tec')}`);
-            if (processSelect('pele-turgor')) peleParts.push(`turgor ${processSelect('pele-turgor')}`);
+            const rha = processSelect('ef-abd-sons');
+            if (rha) abdStatements.push(buildSentence([`Ruídos hidroaéreos ${rha}`]));
+
+            const efAbdObs = getInputValue('ef-abd-obs');
+            if (efAbdObs) abdStatements.push(buildSentence([efAbdObs]));
+
+            if (abdStatements.length > 0) efSentences.push(buildParagraph(abdStatements));
+
+
+            // --- Pele e Periférico ---
+            let peleStatements = [];
+            const peleTemp = processSelect('pele-temp');
+            const pelePulsos = processSelect('pele-pulsos');
+            if (peleTemp || pelePulsos) {
+                let extremidadesDesc = [];
+                if (peleTemp) extremidadesDesc.push(`extremidades ${peleTemp}`);
+                if (pelePulsos) extremidadesDesc.push(`pulsos ${pelePulsos}`);
+                if (extremidadesDesc.length > 0) peleStatements.push(buildSentence([joinWithCommasAndAnd(extremidadesDesc)]));
+            }
+
+            const tec = processSelect('pele-tec');
+            if (tec) peleStatements.push(buildSentence([`Perfusão capilar ${tec}`]));
+
+            const turgor = processSelect('pele-turgor');
+            if (turgor) peleStatements.push(buildSentence([`Turgor ${turgor}`]));
+
             const peleEdema = getSelectValue('pele-edema');
-            if (peleEdema === 'Ausente') peleParts.push('ausência de edema');
-            else if (peleEdema === 'Presente') peleParts.push(`presença de edema (${getInputValue('pele-edema-detalhes') || 'não especificado'})`);
+            if (peleEdema === 'Ausente') peleStatements.push(buildSentence(['Ausência de edema']));
+            else if (peleEdema === 'Presente') peleStatements.push(buildSentence([`Presença de edema (${getInputValue('pele-edema-detalhes') || 'não especificado'})`]));
+
             const integridadeValue = getSelectValue('pele-integridade');
             if (['Úlcera de Pressão', 'Com Lesões'].includes(integridadeValue)) {
-                peleParts.push(`pele com ${integridadeValue.toLowerCase()} (${getInputValue('pele-integridade-detalhes') || 'não descrito'})`);
+                peleStatements.push(buildSentence([`Pele com ${integridadeValue.toLowerCase()} (${getInputValue('pele-integridade-detalhes') || 'não descrito'})`]));
             } else if (integridadeValue) {
-                peleParts.push(`pele ${processSelect('pele-integridade')}`);
+                peleStatements.push(buildSentence([`Pele ${processSelect('pele-integridade')}`]));
             }
-            if (peleParts.length > 0) efSentences.push(buildSentence(['Pele e extremidades:', joinWithCommasAndAnd(peleParts)]));
-            if (getInputValue('pele-obs')) efSentences.push(buildSentence([getInputValue('pele-obs')]));
-            if (getInputValue('ef-outro-sistema-nome') && getInputValue('ef-outro-sistema-descricao')) efSentences.push(buildSentence([`${getInputValue('ef-outro-sistema-nome')}:`, getInputValue('ef-outro-sistema-descricao')]));
+
+            const peleObs = getInputValue('pele-obs');
+            if (peleObs) peleStatements.push(buildSentence([peleObs]));
+
+            if (peleStatements.length > 0) efSentences.push(buildParagraph(peleStatements));
+
+
+            // --- Outro Sistema ---
+            if (getInputValue('ef-outro-sistema-nome') && getInputValue('ef-outro-sistema-descricao')) {
+                efSentences.push(buildSentence([`${getInputValue('ef-outro-sistema-nome')}:`, getInputValue('ef-outro-sistema-descricao')]));
+            }
             
-            addSection('Exame Físico', buildParagraph(efSentences));
+            addSection('EXAME FÍSICO', buildParagraph(efSentences)); // Changed section title to uppercase for consistency
 
             const createDiscursiveSection = (title, items) => {
                 const content = items.map(item => item.value ? buildSentence([item.label, item.value]) : null).filter(Boolean).join(' ');
                 addSection(title, content);
             };
-            createDiscursiveSection('Intercorrências e Condutas', [{ label: 'Intercorrências clínicas:', value: getInputValue('intercorrencias') }, { label: 'Ajustes terapêuticos:', value: getInputValue('ajustes') }]);
-            createDiscursiveSection('Exames e Resultados', [{ label: 'Exames laboratoriais:', value: getInputValue('exames-lab') }, { label: 'Exames de imagem:', value: getInputValue('exames-imagem') }, { label: 'Outros exames:', value: getInputValue('exames-outros') }]);
-            createDiscursiveSection('Conduta e Planejamento', [{ label: 'Conduta:', value: getInputValue('conduta') }, { label: 'Planejamento:', value: getInputValue('planejamento') }, { label: 'Profilaxias:', value: getInputValue('profilaxias') }]);
+            createDiscursiveSection('INTERCORRÊNCIAS E CONDUTAS', [{ label: 'Intercorrências clínicas:', value: getInputValue('intercorrencias') }, { label: 'Ajustes terapêuticos:', value: getInputValue('ajustes') }]);
+            createDiscursiveSection('EXAMES E RESULTADOS', [{ label: 'Exames laboratoriais:', value: getInputValue('exames-lab') }, { label: 'Exames de imagem:', value: getInputValue('exames-imagem') }, { label: 'Outros exames:', value: getInputValue('exames-outros') }]);
+            createDiscursiveSection('CONDUTA E PLANEJAMENTO', [{ label: 'Conduta:', value: getInputValue('conduta') }, { label: 'Planejamento:', value: getInputValue('planejamento') }, { label: 'Profilaxias:', value: getInputValue('profilaxias') }]);
 
             const outputElement = document.getElementById('summary-output');
             outputElement.innerText = finalResumo.trim() ? resumoHeader + finalResumo.trim() : 'Comece a preencher os campos para gerar o resumo.';
@@ -1766,7 +1893,6 @@
 
         function gerarFormularioEmBranco() {
             const blankFormHtml = construirHtmlFormularioBranco();
-            console.log("HTML do Formulário em Branco Gerado:", blankFormHtml); // Log para depuração
             abrirJanelaDeImpressao(blankFormHtml);
         }
 
@@ -1802,8 +1928,7 @@
         }
 
         function processField(fieldEl, fieldsArray) {
-            // Verifica se o elemento está visível no DOM antes de processar para impressão preenchida
-            if (fieldEl.offsetParent === null) return; 
+            if (fieldEl.offsetParent === null) return; // Only process visible fields for a filled print
             let value = '';
             const label = fieldEl.getAttribute('data-print-label');
             const type = fieldEl.getAttribute('data-print-type');
@@ -1854,7 +1979,7 @@
                 bodyContent += `<h2>Resumo da Evolução</h2><div class="summary-content">${data.summary.replace(/\n/g, '<br>')}</div>`;
             }
 
-            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Relatório de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.5;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;padding:10px;background-color:#f9f9f9;border-radius:4px}.patient-info span{min-width:200px;margin-bottom:5px}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;margin-bottom:6px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0}.value{}.summary-content{padding:10px;background-color:#f9f9f9;border-radius:4px;white-space:pre-wrap}</style></head><body><div class="header"><h1>Relatório de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> ${data.header.nome||'Não informado'}</span><span><strong>Prontuário:</strong> ${data.header.prontuario||'Não informado'}</span><span><strong>Setor:</strong> ${data.header.setor||'Não informado'}</span><span><strong>Leito:</strong> ${data.header.leito||'Não informado'}</span><span><strong>Data:</strong> ${data.header.data}</span><span><strong>Hora:</strong> ${data.header.hora}</span></div>${bodyContent}</body></html>`;
+            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Relatório de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.5;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact;text-align:justify}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;padding:10px;background-color:#f9f9f9;border-radius:4px}.patient-info span{min-width:200px;margin-bottom:5px}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;margin-bottom:6px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0;text-align:left}.value{}.summary-content{padding:10px;background-color:#f9f9f9;border-radius:4px;white-space:pre-wrap}</style></head><body><div class="header"><h1>Relatório de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> ${data.header.nome||'Não informado'}</span><span><strong>Prontuário:</strong> ${data.header.prontuario||'Não informado'}</span><span><strong>Setor:</strong> ${data.header.setor||'Não informado'}</span><span><strong>Leito:</strong> ${data.header.leito||'Não informado'}</span><span><strong>Data:</strong> ${data.header.data}</span><span><strong>Hora:</strong> ${data.header.hora}</span></div>${bodyContent}</body></html>`;
         }
 
         function construirHtmlFormularioBranco() {
@@ -1876,87 +2001,61 @@
                 if (sectionContent) bodyContent += `<h2>${title}</h2><div class="section-content">${sectionContent}</div>`;
             });
 
-            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Formulário de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;row-gap:8px}.patient-info span{flex-basis:48%}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;align-items:baseline;margin-bottom:12px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0;padding-right:10px}.line{flex-grow:1;border-bottom:1px dotted #888;height:16px}.field-group{margin-bottom:12px;page-break-inside:avoid}.checkbox-options{display:flex;flex-wrap:wrap;gap:15px;margin-top:5px}.checkbox-item{font-size:11px}.textarea-box{height:60px;border:1px dotted #888;border-radius:3px;margin-top:5px}</style></head><body><div class="header"><h1>Formulário de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> _________________</span><span><strong>Prontuário:</strong> __________</span><span><strong>Setor:</strong> _________________</span><span><strong>Leito:</strong> __________</span></div>${bodyContent}</body></html>`;
+            return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Formulário de Evolução Médica</title><style>body{font-family:Arial,sans-serif;font-size:11px;line-height:1.6;color:#333;margin:20mm;-webkit-print-color-adjust:exact;color-adjust:exact;text-align:justify}.header{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:15px}.header h1{margin:0;font-size:20px}.patient-info{display:flex;flex-wrap:wrap;justify-content:space-between;margin-bottom:20px;font-size:12px;row-gap:8px}.patient-info span{flex-basis:48%}h2{font-size:14px;font-weight:bold;color:#fff;background-color:#334155;padding:6px 10px;margin:24px 0 10px 0;border-radius:3px;page-break-before:auto;page-break-after:avoid}h3{font-size:12px;font-weight:bold;border-bottom:1px solid #ccc;padding-bottom:3px;margin:15px 0 8px 0;page-break-after:avoid}.section-content{page-break-inside:avoid}.field{display:flex;align-items:baseline;margin-bottom:12px;page-break-inside:avoid}.label{font-weight:bold;min-width:180px;flex-shrink:0;padding-right:10px;text-align:left}.line{flex-grow:1;border-bottom:1px dotted #888;height:16px}.field-group{margin-bottom:12px;page-break-inside:avoid}.checkbox-options{display:flex;flex-wrap:wrap;gap:15px;margin-top:5px}.checkbox-item{font-size:11px}.textarea-box{height:60px;border:1px dotted #888;border-radius:3px;margin-top:5px}</style></head><body><div class="header"><h1>Formulário de Evolução Médica</h1></div><div class="patient-info"><span><strong>Paciente:</strong> _________________</span><span><strong>Prontuário:</strong> __________</span><span><strong>Setor:</strong> _________________</span><span><strong>Leito:</strong> __________</span></div>${bodyContent}</body></html>`;
         }
 
         function processBlankField(fieldEl) {
             const labelText = fieldEl.getAttribute('data-print-label');
-            if (!labelText || ['Nome do Paciente', 'Prontuário', 'Setor', 'Leito'].includes(labelText)) return '';
+            if (!labelText || ['Nome do Paciente', 'Prontuário', 'Setor', 'Leito'].includes(labelText)) {
+                return ''; // Filters out header fields, which are handled separately
+            }
             let html = '';
-            if (fieldEl.tagName === 'SELECT') {
+            const tagName = fieldEl.tagName;
+            const dataType = fieldEl.getAttribute('data-print-type');
+
+            if (tagName === 'SELECT') {
                 html += `<div class="field-group"><div class="label">${labelText}:</div><div class="checkbox-options">`;
                 fieldEl.querySelectorAll('option').forEach(opt => {
                     if (opt.value) html += `<span class="checkbox-item">&#9744; ${opt.text}</span>`;
                 });
                 html += `</div></div>`;
-            } else if (fieldEl.getAttribute('data-print-type') === 'checkbox-group') {
+            } else if (dataType === 'checkbox-group') {
                 html += `<div class="field-group"><div class="label">${labelText}:</div><div class="checkbox-options">`;
                 fieldEl.querySelectorAll('label span.ml-1').forEach(checkLabel => {
                     html += `<span class="checkbox-item">&#9744; ${checkLabel.innerText.trim()}</span>`;
                 });
                 html += `</div></div>`;
-            } else if (fieldEl.tagName === 'TEXTAREA') {
+            } else if (tagName === 'TEXTAREA') {
                 html += `<div class="field-group"><div class="label">${labelText}:</div><div class="textarea-box"></div></div>`;
-            } else {
+            } else if (tagName === 'INPUT') { // Covers all input types like text, time, etc.
                 html += `<div class="field"><span class="label">${labelText}:</span><span class="line"></span></div>`;
             }
+            // If none of the above, return empty string, though most printable elements should be covered
             return html;
         }
 
         function abrirJanelaDeImpressao(html) {
-            console.log("Tentando abrir janela de impressão.");
             const oldFrame = document.getElementById('printFrame');
-            if (oldFrame) {
-                oldFrame.remove();
-                console.log("printFrame antigo removido.");
-            }
+            if (oldFrame) oldFrame.remove();
 
             const printFrame = document.createElement('iframe');
             printFrame.id = 'printFrame';
-            // Torna o iframe invisível, mas presente no DOM
-            printFrame.style.cssText = 'position:absolute;width:1px;height:1px;border:0;left:-9999px;top:-9999px;';
+            printFrame.style.cssText = 'position:absolute;width:0;height:0;border:0;';
             document.body.appendChild(printFrame);
-            console.log("Novo printFrame criado.");
 
             const frameDoc = printFrame.contentWindow.document;
             frameDoc.open();
             frameDoc.write(html);
             frameDoc.close();
-            console.log("HTML escrito no printFrame.");
 
-            let printAttempted = false;
-
-            const triggerPrint = () => {
-                if (printAttempted) return; // Evita múltiplas chamadas de print()
-                printAttempted = true;
+            printFrame.onload = function() {
                 try {
                     printFrame.contentWindow.focus();
                     printFrame.contentWindow.print();
-                    console.log("Função print() chamada com sucesso.");
                 } catch (e) {
                     console.error("Erro ao imprimir:", e);
-                } finally {
-                    // Opcional: remover o iframe após a tentativa de impressão
-                    // setTimeout(() => {
-                    //     if (printFrame && printFrame.parentNode) {
-                    //         printFrame.parentNode.removeChild(printFrame);
-                    //         console.log("printFrame removido após impressão.");
-                    //     }
-                    // }, 1000); 
                 }
             };
-
-            // Tenta imprimir quando o iframe carrega (abordagem padrão)
-            printFrame.onload = function() {
-                console.log("printFrame carregado via evento onload.");
-                triggerPrint();
-            };
-
-            // Fallback: Tenta imprimir após um pequeno atraso, caso o onload não dispare ou seja lento
-            setTimeout(() => {
-                console.log("Tentando imprimir via fallback setTimeout.");
-                triggerPrint();
-            }, 500); // Atraso de 500ms
         }
     </script>
 
