@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR" class="">
 <head>
@@ -1164,7 +1165,7 @@
                                     <i class="fas fa-chevron-down chevron-icon text-secondary"></i>
                                 </button>
                                 <div class="accordion-content hidden p-4 border-t border-[var(--md-divider)]">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="grid-cols-1 md:grid-cols-2 gap-6 grid">
                                         <div>
                                             <label for="ef-outro-sistema-nome" class="font-medium text-secondary">Sistema:</label>
                                             <input type="text" id="ef-outro-sistema-nome" placeholder="Ex: Osteomuscular" class="form-input w-full mt-1">
@@ -1260,6 +1261,10 @@
             <button id="copy-btn" class="mt-6 w-full flex items-center justify-center px-4 py-2 md:px-6 md:py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98]">
                 <i class="fas fa-copy mr-2"></i>
                 Copiar Resumo
+            </button>
+            <button id="send-to-chatgpt-btn" class="mt-4 w-full flex items-center justify-center px-4 py-2 md:px-6 md:py-3 md-button font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform active:scale-[0.98] bg-purple-600 hover:bg-purple-700">
+                <i class="fas fa-robot mr-2"></i>
+                Enviar para ChatGPT formatar
             </button>
         </section>
     </div>
@@ -1400,6 +1405,36 @@
                 setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
             }).catch(err => console.error('Falha ao copiar texto:', err));
         });
+
+        // NOVO EVENT LISTENER PARA O BOTÃO CHATGPT
+        document.getElementById('send-to-chatgpt-btn').addEventListener('click', () => {
+            generateSummary(); // Garante que o resumo esteja atualizado
+            const summaryText = document.getElementById('summary-output').innerText;
+
+            if (summaryText.trim() === 'Comece a preencher os campos para gerar o resumo.') {
+                alert('Por favor, preencha alguns campos no formulário para gerar um resumo antes de enviar para o ChatGPT.');
+                return;
+            }
+
+            const chatGptPrompt = `Reformate o texto de evolução médica a seguir em um texto corrido e coeso, mantendo todas as informações relevantes em um formato de prontuário médico profissional. Evite introduções e conclusões genéricas, vá direto ao ponto com a informação do paciente.\n\n${summaryText}`;
+
+            navigator.clipboard.writeText(chatGptPrompt).then(() => {
+                const sendBtn = document.getElementById('send-to-chatgpt-btn');
+                const originalText = sendBtn.innerHTML;
+                sendBtn.innerHTML = `<i class="fas fa-check mr-2"></i> Prompt Copiado! Abrindo ChatGPT...`;
+
+                setTimeout(() => {
+                    window.open('https://chat.openai.com/', '_blank');
+                    alert('O prompt foi copiado para a sua área de transferência!\n\nPor favor, cole o prompt na caixa de texto do ChatGPT na nova aba e pressione ENTER para que ele formate o resumo.');
+                    sendBtn.innerHTML = originalText; // Restaura o texto original do botão
+                }, 2000);
+
+            }).catch(err => {
+                console.error('Falha ao copiar prompt para o ChatGPT:', err);
+                alert('Não foi possível copiar o prompt para a área de transferência. Por favor, tente copiar o resumo manualmente e colá-lo no ChatGPT.');
+            });
+        });
+
 
         // Gera o resumo inicial (com campos vazios)
         generateSummary();
